@@ -83,7 +83,7 @@
      <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>Point/Vertex</string>
+        <string>Enable / Disable point</string>
        </property>
       </widget>
      </item>
