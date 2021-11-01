@@ -14,9 +14,6 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 
 void Draw::loadPolygon(std::string &path)
 {
-    polygons.clear();
-    position.clear();
-    repaint();
     int id;
     double x, y;
     QPolygon polygon;

@@ -38,54 +38,47 @@ void Widget::on_pushButtonAnalyze_clicked()
     std::vector<int> position;
 
 
-    for (int i = 0; i < polygons.size(); i++)
-    {
-        QPolygon polygon = polygons[i];
-
-        for (int j = 0; j < polygon.size(); j++)
-        {
-            pol.push_back(polygon[j]);
-        }
-    }
-
-
     //Get position
     Algorithms a;
     int pos = 10; //random number
 
-    //Ray Crossing algorithm
-   if (ui->comboBox->currentIndex() == 0)
+    for (int i = 0; i < polygons.size(); i++)
     {
-       pos = a.getPositionRayCrossing(q, pol);
-    }
+        QPolygon polygon = polygons[i];
+        pol.clear();
 
-   //Winding number algorithm
-    else
-    {
-       pos = a.getPositionWinding(q, pol);
-    }
-    pol.clear();
+        for (int j = 0; j < polygon.size(); j++)
+        {
+            pol.push_back(polygon[j]);
 
+        }
+        //Ray Crossing algorithm
+        if (ui->comboBox->currentIndex() == 0)
+         {
+            pos = a.getPositionRayCrossing(q, pol);
+         }
 
-    //Print results
-    if (pos == 1)
-    {
-        ui->label->setText("Point is inside");
-        position.push_back(pos);
-    }
-    else if (pos == 0)
-    {
-        ui->label->setText("Point is outside");
-        position.push_back(pos);
-    }
-    else if (pos == -1)
-    {
-        ui->label->setText("Point is on the border");
-        position.push_back(pos);
-    }
-    else
-    {
-        ui->label->setText("Error: No polygons");
+        //Winding number algorithm
+        else
+         {
+            pos = a.getPositionWinding(q, pol);
+         }
+
+        if (pos == 1)
+        {
+            ui->label->setText("Point is inside");
+            position.push_back(pos);
+        }
+        else if (pos == 0)
+        {
+            ui->label->setText("Point is outside");
+            position.push_back(pos);
+        }
+        else if (pos == -1)
+        {
+            ui->label->setText("Point is on the border");
+            position.push_back(pos);
+        }
     }
 
 
