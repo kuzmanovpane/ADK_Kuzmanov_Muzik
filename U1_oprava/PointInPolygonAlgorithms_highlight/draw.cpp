@@ -129,5 +129,6 @@ void Draw::clear()
     //Clear and repaint
     vertices.clear();
     polygons.clear();
+    position.clear();
     repaint();
 }

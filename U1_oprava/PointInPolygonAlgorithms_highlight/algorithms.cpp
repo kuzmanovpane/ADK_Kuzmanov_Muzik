@@ -32,7 +32,8 @@ int Algorithms::getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
         return 0;
 
     //Point on the line
-    return -1;
+    if(fabs(t) < eps)
+        return -1;
 }
 
 double Algorithms::get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4)
