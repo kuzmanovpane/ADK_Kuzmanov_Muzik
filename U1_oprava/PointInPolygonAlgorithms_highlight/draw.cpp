@@ -120,6 +120,9 @@ void Draw::paintEvent(QPaintEvent *event)
         }
     }
 
+    //Redraw point q
+    painter.drawEllipse(q.x()-4, q.y()-4, 8, 8);
+
     painter.end();
 
 }
