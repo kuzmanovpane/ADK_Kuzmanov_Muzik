@@ -109,14 +109,13 @@ void Draw::paintEvent(QPaintEvent *event)
     {
         if(position[i] == 1 || position[i] == -1)
         {
+            //Add selected polygon for highlighting
             highlight << polygons[i];
             path.addPolygon(highlight);
             painter.fillPath(path, brush);
 
             //Draw highlighted polygon
             painter.drawPolygon(highlight);
-
-            highlight.clear();
         }
     }
 
