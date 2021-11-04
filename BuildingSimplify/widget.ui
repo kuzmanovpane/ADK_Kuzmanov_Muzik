@@ -45,6 +45,11 @@
          <string>Wall Aaverage</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Longest Edge</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -82,7 +87,7 @@
   <customwidget>
    <class>Draw</class>
    <extends>QWidget</extends>
-   <header location="global">draw.h</header>
+   <header>draw.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

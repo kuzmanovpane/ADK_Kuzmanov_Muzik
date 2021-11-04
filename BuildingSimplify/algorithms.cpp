@@ -286,4 +286,78 @@ std::vector<QPoint> Algorithms::resizeRectangle(std::vector<QPoint> &points, std
 
 }
 
+QPolygon Algorithms::longestEdge(std::vector<QPoint> &points)
+{
+
+    //Set maxmum edge lenght
+    double edge_max = 0;
+
+    //Compute directions for segments
+    int n = points.size();
+
+    //X Axis points for angle computing
+    QPoint p1(0,0);
+    QPoint p2(100,0);
+    //QPoint e1(0,0);
+    //QPoint e2(0,0);
+    double e1x = points[0].x();
+    double e1y = points[0].y();
+    double e2x = points[1].x();
+    double e2y = points[1].y();
+
+    for (int i = 0; i < n; i++)
+    {
+        //Coordinate differences
+        double dx = points[(i+1)%n].x() - points[i].x();
+        double dy = points[(i+1)%n].y() - points[i].y();
+
+        //Edge length
+        double edge_len = sqrt(dx*dx + dy*dy);
+
+        //Find the longest edge and its vertices
+        if(edge_len > edge_max)
+        {
+            edge_max = edge_len;
+            e1x = points[i].x();
+            e1y = points[i].y();
+            e2x = points[i+1].x();
+            e2y = points[i+1].y();
+            //QPoint e1(points[i].x(), points[i].y());
+            //QPoint e2(points[i+1].x(), points[i+1].y());
+        }
+
+    }
+
+    QPoint e1(e1x, e1y);
+    QPoint e2(e2x, e2y);
+
+    //Compute angle between longest edge and x axis
+    double sigma = get2LinesAngle(e1, e2, p1, p2);
+
+    //Minmax box
+    auto [mmb, area] = minMaxBox(points);
+
+    //Create enclosing rectangle
+    std::vector<QPoint> er = rotate(mmb, sigma);
+
+    //Resize rectangle, preserve area of the building
+    std::vector<QPoint> err = resizeRectangle(points, er);
+
+    //Convert to QPolygon
+    QPolygon err_pol = {err[0], err[1], err[2], err[3]};
+    return err_pol;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

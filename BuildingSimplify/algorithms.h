@@ -16,6 +16,7 @@ public:
     QPolygon wallAverage(std::vector<QPoint> &points);
     double LH(std::vector<QPoint> &points);
     std::vector<QPoint> resizeRectangle(std::vector<QPoint> &points, std::vector<QPoint> &er);
+    QPolygon longestEdge(std::vector<QPoint> &points);
 };
 
 #endif // ALGORITHMS_H
