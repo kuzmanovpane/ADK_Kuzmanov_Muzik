@@ -294,16 +294,7 @@ QPolygon Algorithms::longestEdge(std::vector<QPoint> &points)
 
     //Compute directions for segments
     int n = points.size();
-
-    //X Axis points for angle computing
-    QPoint p1(0,0);
-    QPoint p2(100,0);
-    //QPoint e1(0,0);
-    //QPoint e2(0,0);
-    double e1x = points[0].x();
-    double e1y = points[0].y();
-    double e2x = points[1].x();
-    double e2y = points[1].y();
+    double dx_max, dy_max;
 
     for (int i = 0; i < n; i++)
     {
@@ -318,24 +309,20 @@ QPolygon Algorithms::longestEdge(std::vector<QPoint> &points)
         if(edge_len > edge_max)
         {
             edge_max = edge_len;
-            e1x = points[i].x();
-            e1y = points[i].y();
-            e2x = points[i+1].x();
-            e2y = points[i+1].y();
-            //QPoint e1(points[i].x(), points[i].y());
-            //QPoint e2(points[i+1].x(), points[i+1].y());
+            dx_max = dx;
+            dy_max = dy;
         }
 
     }
 
-    QPoint e1(e1x, e1y);
-    QPoint e2(e2x, e2y);
+    //Compute angle
+    double sigma = atan2(dy_max, dx_max);
 
-    //Compute angle between longest edge and x axis
-    double sigma = get2LinesAngle(e1, e2, p1, p2);
+    //Rotate polygon (points)
+    std::vector<QPoint> r_points = rotate(points, -sigma);
 
     //Minmax box
-    auto [mmb, area] = minMaxBox(points);
+    auto [mmb, area] = minMaxBox(r_points);
 
     //Create enclosing rectangle
     std::vector<QPoint> er = rotate(mmb, sigma);
@@ -346,8 +333,8 @@ QPolygon Algorithms::longestEdge(std::vector<QPoint> &points)
     //Convert to QPolygon
     QPolygon err_pol = {err[0], err[1], err[2], err[3]};
     return err_pol;
-}
 
+}
 
 
 
