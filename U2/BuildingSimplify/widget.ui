@@ -42,12 +42,17 @@
        </item>
        <item>
         <property name="text">
-         <string>Wall Aaverage</string>
+         <string>Wall Average</string>
         </property>
        </item>
        <item>
         <property name="text">
          <string>Longest Edge</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Weighted Bisector</string>
         </property>
        </item>
       </widget>

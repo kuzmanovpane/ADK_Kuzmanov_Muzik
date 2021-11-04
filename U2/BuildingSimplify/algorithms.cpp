@@ -1,5 +1,6 @@
 #include "algorithms.h"
 #include <cmath>
+#include <iostream>
 #include "sortbyy.h"
 #include "sortbyx.h"
 
@@ -312,7 +313,6 @@ QPolygon Algorithms::longestEdge(std::vector<QPoint> &points)
             dx_max = dx;
             dy_max = dy;
         }
-
     }
 
     //Compute angle
@@ -336,8 +336,65 @@ QPolygon Algorithms::longestEdge(std::vector<QPoint> &points)
 
 }
 
+QPolygon Algorithms::weightedBisector(std::vector<QPoint> &points)
+{
+    //Calculate all diagonals
+    int n = points.size();
+    int diag_count = n*(n-3)/2;
+    double diag_max1 = 0, diag_max2 = 0, dx_max1, dy_max1, dx_max2, dy_max2;
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < diag_count; j++)
+        {
+            //Coordinate differences
+            double dx = points[(j+2)%n].x() - points[i].x();
+            double dy = points[(j+2)%n].y() - points[i].y();
 
+            //Diagonal length
+            double diag = sqrt(dx*dx + dy*dy);
 
+            //Find the longest diagonal and its vertices
+            if(diag > diag_max1)
+            {
+                diag_max2 = diag_max1;
+                diag_max1 = diag;
+
+                dx_max2 = dx_max1;
+                dy_max2 = dy_max1;
+                dx_max1 = dx;
+                dy_max1 = dx;
+            }
+        }
+    }
+    /*
+    //Diagonal length check
+    std::cout << "diag_max1: " << diag_max1 << std::endl;
+    std::cout << "diag_max2: " << diag_max2 << std::endl;
+    */
+
+    //Compute angles of diagonals
+    double sigma1 = atan2(dy_max1, dx_max1);
+    double sigma2 = atan2(dy_max2, dx_max2);
+
+    //Compute main angle
+    double sigma = (diag_max1*sigma1 + diag_max2*sigma2)/(diag_max1+diag_max2);
+
+    //Rotate polygon (points)
+    std::vector<QPoint> r_points = rotate(points, -sigma);
+
+    //Minmax box
+    auto [mmb, area] = minMaxBox(r_points);
+
+    //Create enclosing rectangle
+    std::vector<QPoint> er = rotate(mmb, sigma);
+
+    //Resize rectangle, preserve area of the building
+    std::vector<QPoint> err = resizeRectangle(points, er);
+
+    //Convert to QPolygon
+    QPolygon err_pol = {err[0], err[1], err[2], err[3]};
+    return err_pol;
+}
 
 
 

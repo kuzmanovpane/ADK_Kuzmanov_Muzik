@@ -46,6 +46,10 @@ void Widget::on_pushButton_clicked()
     if(ui->comboBox->currentIndex() == 2)
         er = a.longestEdge(points);
 
+    //Weighted Bisector
+    if(ui->comboBox->currentIndex() == 3)
+        er = a.weightedBisector(points);
+
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);
