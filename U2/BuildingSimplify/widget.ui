@@ -57,7 +57,7 @@
       <widget class="QComboBox" name="comboBox">
        <item>
         <property name="text">
-         <string>Minimum Bounding Rectangle</string>
+         <string>Min Area Enclosing Rectangle</string>
         </property>
        </item>
        <item>
