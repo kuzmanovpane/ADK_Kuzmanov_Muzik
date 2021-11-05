@@ -482,7 +482,7 @@ void Algorithms::quickHullLocal(int ps, int pe, std::vector<QPoint> &points, QPo
     double dist_max = 0;
 
     //Does the point  exists on the right from the edge?
-    for(int i = 1; i < points.size(); i++)
+    for(int i = 2; i < points.size(); i++)
     {
         if(getPointLinePosition(points[i], points[ps], points[pe]) == 0)
         {
