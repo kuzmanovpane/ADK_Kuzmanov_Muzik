@@ -1,4 +1,5 @@
 #include "draw.h"
+#include <QtGui>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -14,6 +15,15 @@ void Draw::paintEvent(QPaintEvent *event)
     int r = 4;
     QPolygon pol;
 
+    //Draw polygons
+    for (QPolygon polygon : Draw::polygons)
+    {
+        qp.setBrush(Qt::yellow);
+        qp.drawPolygon(polygon);
+    }
+
+    qp.setBrush(Qt::NoBrush);
+
     for (int i=0; i<points.size(); i++)
     {
         qp.drawEllipse(points[i].x()-r, points[i].y()-r, 2*r, 2*r);
@@ -27,12 +37,17 @@ void Draw::paintEvent(QPaintEvent *event)
     //Draw convex hull
     qp.setBrush(Qt::NoBrush);
     qp.setPen(Qt::red);
-    qp.drawPolygon(ch);
+    if (chs.size() > 0)
+        for (QPolygon chull : chs)
+            qp.drawPolygon(chull);
+
 
     //Draw enclosing rectangle
     qp.setBrush(Qt::NoBrush);
     qp.setPen(Qt::blue);
-    qp.drawPolygon(er);
+    if (ers.size() > 0)
+        for (QPolygon enrect : ers)
+            qp.drawPolygon(enrect);
 
     qp.end();
 }
@@ -52,11 +67,28 @@ void Draw::mousePressEvent(QMouseEvent *event)
     repaint();
 }
 
-void Draw::clear()
+void Draw::clearDrawing()
 {
     points.clear();
-    ch.clear();
-    er.clear();
+    chs.clear();
+    ers.clear();
+
+    repaint();
+}
+
+void Draw::clearAddedData()
+{
+    polygons.clear();
+    chs.clear();
+    ers.clear();
+
+    repaint();
+}
+void Draw::drawPolygons(std::vector<QPolygon> &data)
+{
+    Draw::polygons.clear();
+    for (QPolygon data_ : data)
+        Draw::polygons.push_back(data_);
 
     repaint();
 }

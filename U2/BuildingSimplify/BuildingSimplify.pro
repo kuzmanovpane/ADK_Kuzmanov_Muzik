@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     algorithms.cpp \
     draw.cpp \
+    load.cpp \
     main.cpp \
     sortbyx.cpp \
     sortbyy.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     algorithms.h \
     draw.h \
+    load.h \
     sortbyx.h \
     sortbyy.h \
     widget.h

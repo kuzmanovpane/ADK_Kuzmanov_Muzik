@@ -12,15 +12,21 @@ class Draw : public QWidget
 private:
     std::vector<QPoint> points;
     QPolygon ch, er;
+    std::vector<QPolygon> polygons, chs, ers;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
-    void clear();
+    void clearAddedData();
+    void clearDrawing();
     std::vector<QPoint> getPoints() {return points;}
-    void setCh(QPolygon &ch_) {ch = ch_;}
-    void setEr(QPolygon &er_) {er = er_;}
+    std::vector<QPolygon> getPolygons(){return polygons;}
+    void setCh(QPolygon &ch_) {chs.push_back(ch_);}
+    void setEr(QPolygon &er_) {ers.push_back(er_);}
+    void clearChs(){chs.clear();}
+    void clearErs(){ers.clear();}
+    void drawPolygons(std::vector<QPolygon> &data);
 
 signals:
 

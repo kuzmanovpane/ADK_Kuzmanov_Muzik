@@ -16,9 +16,15 @@ public:
     ~Widget();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_pushButtonClear_clicked();
 
     void on_pushButton_clicked();
+
+    void on_pushButtonLoad_clicked();
+
+    void on_pushButtonClearData_clicked();
+
+    void processPoints(std::vector<QPoint> &points);
 
 private:
     Ui::Widget *ui;
