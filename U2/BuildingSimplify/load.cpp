@@ -50,7 +50,7 @@ std::vector<QPolygon> Load::load_file(std::string &filename)
                     if (i == 0)
                         x = (stod(scoord) - 641500);
                     else if (i == 1)
-                        y = (stod(scoord) - 1111000)/3;
+                        y = (stod(scoord) - 1111000)-600;
                     i++;
                 }
                 //Point added to polygon

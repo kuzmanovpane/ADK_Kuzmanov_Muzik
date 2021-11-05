@@ -38,16 +38,21 @@ void Widget::processPoints(std::vector<QPoint> &points)
 
     //Wall Average
     else if(ui->comboBox->currentIndex() == 1)
+    {
         er = a.wallAverage(points);
+    }
 
     //Longest Edge
     else if(ui->comboBox->currentIndex() == 2)
+    {
         er = a.longestEdge(points);
+    }
 
     //Weighted Bisector
     else if(ui->comboBox->currentIndex() == 3)
+    {
         er = a.weightedBisector(points);
-
+    }
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);
