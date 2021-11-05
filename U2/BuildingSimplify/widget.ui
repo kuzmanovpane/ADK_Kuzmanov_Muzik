@@ -78,6 +78,27 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Convex hull:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_ch">
+       <item>
+        <property name="text">
+         <string>Jarvis Scan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quick Hull</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
         <string>Building simplify</string>
@@ -85,7 +106,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer">
+      <spacer name="verticalSpacer_3">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>

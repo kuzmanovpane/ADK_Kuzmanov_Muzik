@@ -26,6 +26,8 @@ private slots:
 
     void processPoints(std::vector<QPoint> &points);
 
+
+
 private:
     Ui::Widget *ui;
 };

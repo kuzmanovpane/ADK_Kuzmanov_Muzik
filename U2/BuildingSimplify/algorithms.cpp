@@ -33,7 +33,43 @@ double Algorithms::get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4
 
 }
 
-QPolygon Algorithms::cHull(std::vector <QPoint> &points)
+int Algorithms::getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
+{
+    //Analyze point and line position
+    double eps = 1.0e-10;
+
+    //Coordinate differences
+    double ux=p2.x()-p1.x();
+    double uy=p2.y()-p1.y();
+
+    double vx=a.x()-p1.x();
+    double vy=a.y()-p1.y();
+
+    //Half plane test(cross product)
+    double t = ux*vy-vx*uy;
+
+    //Point in the left halfplane
+    if (t > eps)
+        return 1;
+
+    //Point in the right halfplane
+    if (t < -eps)
+        return 0;
+
+    //Point on the line
+    if(fabs(t) < eps)
+        return -1;
+}
+
+double Algorithms::getPointLineDistance(QPoint &a, QPoint &p1, QPoint &p2)
+{
+    double du = a.x()*(p1.y()-p2.y()) + p1.x()*(p2.y()-a.y()) + p2.x()*(a.y()-p1.y());
+    double dl = sqrt((p2.x()-p1.x())*(p2.x()-p1.x()) + (p2.y()-p1.y())*(p2.y()-p1.y()));
+
+    return fabs(du)/dl;
+}
+
+QPolygon Algorithms::cHullJarvisScan(std::vector <QPoint> &points)
 {
     QPolygon ch;
 
@@ -128,10 +164,10 @@ std::tuple<std::vector<QPoint>, double> Algorithms::minMaxBox(std::vector<QPoint
 QPolygon Algorithms::minAreaEnclosingRectangle(std::vector<QPoint> &points)
 {
     //Create minimum area enclosing rectangle
-    QPolygon ch = cHull(points);
+    QPolygon ch = cHullJarvisScan(points);
 
     //Searching for minmaxbox with min area
-    int n = ch.size();
+    int n = points.size();
     double sigma_min = 0;
     std::vector<QPoint> mmb_min;
 
@@ -397,8 +433,83 @@ QPolygon Algorithms::weightedBisector(std::vector<QPoint> &points)
 }
 
 
+QPolygon Algorithms::cHullQuickHull(std::vector <QPoint> &points)
+{
+    QPolygon ch;
+    std::vector<QPoint> su, sl;
 
+    //Sort by x and find q1 and q3
+    QPoint q1 =*std::min_element(points.begin(), points.end(), sortByX());
+    QPoint q3 =*std::max_element(points.begin(), points.end(), sortByX());
 
+    //Add q1, q3 to su, sl
+    su.push_back(q1);
+    su.push_back(q3);
+    sl.push_back(q1);
+    sl.push_back(q3);
+
+    int n = points.size();
+    //Distribution of points to upper or lower segment
+    for(int i = 0; i < n;i++)
+    {
+        //Left half-plane
+        if(getPointLinePosition(points[i], q1, q3) == 1)
+            su.push_back(points[i]);
+
+        //Right half-plane
+        else if(getPointLinePosition(points[i], q1, q3) == 0)
+            sl.push_back(points[i]);
+    }
+
+    //Add q3 to chull
+    ch.push_back(q3);
+
+    //Compute su
+    quickHullLocal(1, 0, su, ch);
+
+    //Add q1 to chull
+    ch.push_back(q1);
+
+    //Compute sl
+    quickHullLocal(0, 1, sl, ch);
+
+    return ch;
+}
+
+void Algorithms::quickHullLocal(int ps, int pe, std::vector<QPoint> &points, QPolygon &ch)
+{
+    int i_max = -1;
+    double dist_max = 0;
+
+    //Does the point  exists on the right from the edge?
+    for(int i = 1; i < points.size(); i++)
+    {
+        if(getPointLinePosition(points[i], points[ps], points[pe]) == 0)
+        {
+            double dist = getPointLineDistance(points[i], points[ps], points[pe]);
+
+            //Point with maximum distance
+            if(dist > dist_max)
+            {
+                dist_max = dist;
+                i_max = i;
+            }
+        }
+    }
+
+    //When point in the right half-plane exists
+    if(i_max > -1)
+    {
+        //Compute chull - upper hull
+        quickHullLocal(ps, i_max, points, ch);
+
+        //Add point to chull
+        ch.push_back(points[i_max]);
+
+        //Compute chull - lower hull
+        quickHullLocal(i_max, pe, points, ch);
+    }
+}
 
 
 

@@ -26,36 +26,39 @@ void Widget::processPoints(std::vector<QPoint> &points)
 {
     //Create enclosing rectangle
     Algorithms a;
-    QPolygon er;
+    QPolygon er, ch;
 
     //Minimum area enclosing rectangle
     if (ui->comboBox->currentIndex() == 0)
     {
-        QPolygon ch = a.cHull(points);
         er = a.minAreaEnclosingRectangle(points);
-        ui->Canvas->setCh(ch);
     }
 
     //Wall Average
     else if(ui->comboBox->currentIndex() == 1)
-    {
         er = a.wallAverage(points);
-    }
+
 
     //Longest Edge
     else if(ui->comboBox->currentIndex() == 2)
-    {
         er = a.longestEdge(points);
-    }
 
     //Weighted Bisector
     else if(ui->comboBox->currentIndex() == 3)
-    {
         er = a.weightedBisector(points);
-    }
+
+    //Jarvis Scan
+    if(ui->comboBox_ch->currentIndex() == 0)
+        ch = a.cHullJarvisScan(points);
+
+    //Quick Hull
+    else if(ui->comboBox_ch->currentIndex() == 1)
+        ch = a.cHullQuickHull(points);
+
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);
+    ui->Canvas->setCh(ch);
 
     //Repaint
     repaint();
@@ -90,7 +93,6 @@ void Widget::on_pushButton_clicked()
     ui->Canvas->clearChs();
     ui->Canvas->clearErs();
 }
-
 
 void Widget::on_pushButtonLoad_clicked()
 {
