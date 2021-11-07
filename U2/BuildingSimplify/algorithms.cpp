@@ -398,7 +398,7 @@ QPolygon Algorithms::weightedBisector(std::vector<QPoint> &points)
                 dx_max2 = dx_max1;
                 dy_max2 = dy_max1;
                 dx_max1 = dx;
-                dy_max1 = dx;
+                dy_max1 = dy;
             }
         }
     }
@@ -414,6 +414,12 @@ QPolygon Algorithms::weightedBisector(std::vector<QPoint> &points)
 
     //Compute main angle
     double sigma = (diag_max1*sigma1 + diag_max2*sigma2)/(diag_max1+diag_max2);
+
+    /*
+    std::cout << "sigma1: " << sigma1 << std::endl;
+    std::cout << "sigma2: " << sigma2 << std::endl;
+    std::cout << "sigma: " << sigma << std::endl;
+    */
 
     //Rotate polygon (points)
     std::vector<QPoint> r_points = rotate(points, -sigma);
@@ -431,7 +437,6 @@ QPolygon Algorithms::weightedBisector(std::vector<QPoint> &points)
     QPolygon err_pol = {err[0], err[1], err[2], err[3]};
     return err_pol;
 }
-
 
 QPolygon Algorithms::cHullQuickHull(std::vector <QPoint> &points)
 {

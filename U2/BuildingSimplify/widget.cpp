@@ -32,6 +32,7 @@ void Widget::processPoints(std::vector<QPoint> &points)
     if (ui->comboBox->currentIndex() == 0)
     {
         er = a.minAreaEnclosingRectangle(points);
+
     }
 
     //Wall Average
