@@ -73,12 +73,8 @@ QPolygon Algorithms::cHullJarvisScan(std::vector <QPoint> &points)
 {
     QPolygon ch;
 
-    //Sort points by Y
-  //  std::sort(points.begin(), points.end(), sortByY());
+    //Sort points by Y and find pivot
     QPoint q=*std::min_element(points.begin(), points.end(), sortByY());
-
-    //Find pivot
-  //  QPoint q = points[0];
 
     //Add pivot to convex hull
     ch.append(q);
