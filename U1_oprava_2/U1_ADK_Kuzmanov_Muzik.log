@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  12 NOV 2021 15:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  12 NOV 2021 16:26
 entering extended mode
 **./U1_ADK_Kuzmanov_Muzik.tex
 (U1_ADK_Kuzmanov_Muzik.tex
@@ -703,7 +703,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 408--409
 Here is how much of TeX's memory you used:
  7403 strings out of 479799
  114320 string characters out of 2869723
- 433299 words of memory out of 3000000
+ 432299 words of memory out of 3000000
  24261 multiletter control sequences out of 15000+200000
  547112 words of font info for 62 fonts, out of 3000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -730,7 +730,7 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users
 <C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 sy6.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmsy8.pfb>
-Output written on U1_ADK_Kuzmanov_Muzik.pdf (11 pages, 883638 bytes).
+Output written on U1_ADK_Kuzmanov_Muzik.pdf (11 pages, 883599 bytes).
 PDF statistics:
  751 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
