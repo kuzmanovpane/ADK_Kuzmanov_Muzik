@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{ZABAGED}
+{\sc {Český úřad zeměměřický a katastrální}}.
+\newblock {Základní báze geografických dat České republiky (ZABAGED)}.
+\newblock https://www.cuzk.cz/ [cit. 2020-11-05].
+
+\bibitem{qgis}
+{\sc {QGIS}}.
+\newblock {A Free and Open Source Geographic Information System}.
+\newblock https://qgis.org/en/site/index.html [cit. 2020-11-05].
+
+\end{thebibliography}
