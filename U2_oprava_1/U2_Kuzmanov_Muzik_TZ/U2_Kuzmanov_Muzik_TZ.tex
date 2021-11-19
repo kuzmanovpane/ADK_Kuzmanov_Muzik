@@ -225,21 +225,16 @@ Lokální procedura:
 
 \section{Problematické situace a jejich rozbor} \label{problemrozbor}
 % (tj. simplexy) + ošetření těchto situací v kódu
-Aplikace má problém při řešení algoritmu Minimum Area Enclosing Rectangle, který spočívá v~dělení nulou pro případ, jestliže jsou na vstupu dva body se stejnou x~--~ovou souřadnicí. Konkrétně se jedná o~výpočet úhlu sigma~--~viz níže (ukázka části kódu):
+Jako problematické je hodnoceno možné chybné určení hlavního směru pomocí metody Longest Edge, kdy nejdelší strana nemusí nutně zobrazovat hlavní směr. Na obrázku~\ref{fig:lon_edge_problem} je tento problém znázorněn~--~hlavní směr (modře) je ve skutečnosti kolmý na nejdelší stranu (červeně).
 
-\begin{verbatim}
-QPolygon Algorithms::minAreaEnclosingRectangle(std::vector<QPoint> &points)
-{
-...
-        //Coordinate differences
-        double dx = ch[(i+1)%n].x() - ch[i].x();
-        double dy = ch[(i+1)%n].y() - ch[i].y();
-
-        double sigma = atan2(dy, dx);
-...
-}
-\end{verbatim}
-
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.6]{obrazky/lon_edge_problem.png} 
+	\caption{Ukázka možného problému při užití Longest Edge algoritmu.
+	}
+	\label{fig:lon_edge_problem}
+\end{figure} 
+\FloatBarrier
 
 \section{Vstupní data}
 % formát vstupních dat, popis
@@ -543,17 +538,64 @@ Minimum Area Enclosing Rectangle se jeví jako nejproblematičtější z několi
 
 Nejkomplexnější metodou je, z~hlediska výpočtu, Wall Average. Tato metoda dává dobré výsledky, avšak je citlivá na polygony s~ostrými úhly. 
 
-Weighted Bisector dává dobré výsledky, nicméně pro složitější polygony může vytvořit nežádoucí naklonění ohraničujícího obdélníku, z~důvodu výpočtu hlavního úhlu sigma přes úhlopříčky, jejichž délka a vzájemný úhel můžou být nevyzpytatelné.
+Weighted Bisector dává dobré výsledky, nicméně pro složitější polygony může vytvořit nežádoucí naklonění ohraničujícího obdélníku, z~důvodu výpočtu hlavního úhlu sigma přes úhlopříčky, jejichž délka a vzájemný úhel můžou být nevyzpytatelné (viz obr.~\ref{fig:weig_bi}).
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Metoda}                & Longest Edge                                   \\ \hline
+\textbf{Problematické situace} & nejdelší hrana nemusí představovat hlavní směr \\ \hline
+\textbf{Výhody}                & jednoduchost, vhodný pro prvostní náhled       \\ \hline
+\textbf{Efektivita (v \%)}     & 85                                             \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Metoda}                & Weighted Bisector                                     \\ \hline
+\textbf{Problematické situace} & pro komplexnější polygony vytváří nežádnoucí natočení \\ \hline
+\textbf{Výhody}                & vhodný pro méně komplexní polygony                    \\ \hline
+\textbf{Efektivita (v \%)}     & 80                                                    \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Metoda}                & Min. Area Encl. Rect.                                \\ \hline
+\textbf{Problematické situace} & nutnost tvorby konvexní obálky, polygony tvaru L a Z \\ \hline
+\textbf{Výhody}                & dobré výsledky pro méně komplexní polygony           \\ \hline
+\textbf{Efektivita (v \%)}     & 90                                                   \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Metoda}                & Wall Average                         \\ \hline
+\textbf{Problematické situace} & komplexnost, polygony s ostrými úhly \\ \hline
+\textbf{Výhody}                & obecně dobré výsledky                \\ \hline
+\textbf{Efektivita (v \%)}     & 90                                   \\ \hline
+\end{tabular}
+\end{table}
+\FloatBarrier
 
 \subsection{Možné či neřešené problémy} \label{mcn_problemy}
-Nebyla řešena poslední bonusová úloha. Aplikace má problém při řešení algoritmu Minimum Area Enclosing Rctangle (viz \ref{problemrozbor}).
+Nebyla řešena poslední bonusová úloha. 
 
 \subsection{Náměty na vylepšení} \label{vylepseni}
-K~vylepšení se nabízí případ dělení nulou z~předchozí kapitoly~\ref{mcn_problemy}. Dále by bylo možné vizuálně upravit grafické prostředí aplikace. Vykreslování konvexní obálky s~užitím samostatného tlačítka bylo taktéž bráno v~potaz při psaní aplikace, avšak finální implementované řešení bylo zvoleno jako uživatelsky nejjednodušší. Zároveň by bylo možné do každé rozevírací nabídky přidat možnost nevykreslení ohraničujícího obdélníku či konvexní obálky, pokud by chtěl uživatel vykreslit pouze jednu z~možností. 
+K~vylepšení se nabízí úprava grafického prostředí aplikace. Vykreslování konvexní obálky s~užitím samostatného tlačítka bylo taktéž bráno v~potaz při psaní aplikace, avšak finální implementované řešení bylo zvoleno jako uživatelsky nejjednodušší. Zároveň by bylo možné do každé rozevírací nabídky přidat možnost nevykreslení ohraničujícího obdélníku či konvexní obálky, pokud by chtěl uživatel vykreslit pouze jednu z~možností. 
 
 
 \begin{flushright}
-V Praze 7.11.2021\\
+V Praze 19.11.2021\\
 \vspace{2mm}
 Bc. Pane Kuzmanov\\
 Bc. František Mužík\\
