@@ -35,8 +35,8 @@ int Algorithms::getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
     else if (t < -eps)
         return 0;
 
-    //Point on the line
-    else if(fabs(t) < eps)
+    //Point on the line and making sure that the point a is between point p1 and point p2
+    else if((fabs(t) < eps) && ((a.x() > p1.x()) && (a.x() < p2.x()) && (a.y() > p1.y()) && (a.y() < p2.y())))
         return -1;
 }
 
@@ -127,6 +127,7 @@ int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
         //Point is on the border
         if(fabs(d-dq) < eps)
             return -1;
+
 
         //Find point position
         if (((yr > 0) && (yi <= 0)) || ((yi > 0) && (yr <= 0)))
