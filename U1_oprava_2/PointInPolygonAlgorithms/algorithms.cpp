@@ -23,6 +23,8 @@ int Algorithms::getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
     //Half plane test(cross product)
     double t = ux*vy-vx*uy;
 
+    double m = vx / ux;
+
     //Point is on the vertex
     if (((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) && (a.y()==p2.y())))
         return -2;
@@ -36,7 +38,7 @@ int Algorithms::getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
         return 0;
 
     //Point on the line and making sure that the point a is between point p1 and point p2
-    else if((fabs(t) < eps) && ((a.x() > p1.x()) && (a.x() < p2.x()) && (a.y() > p1.y()) && (a.y() < p2.y())))
+    else if (t >= -eps and t <= eps and m >= 0 and m <= 1)
         return -1;
 }
 
