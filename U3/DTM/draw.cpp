@@ -75,59 +75,59 @@ void Draw::paintEvent(QPaintEvent *event)
         //Get exposition
         double exp = t.getExposition();
 
-        if (exp > 0 && exp <= M_PI/4)
+        if (exp >= M_PI/8 && exp < M_PI/4+M_PI/8)
         {
-            QColor color(128, 255, 0);
+            QColor color(128, 255, 0); //Light green
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
-        else if (exp >= M_PI/4 && exp < M_PI/2)
+        else if (exp >= M_PI/4+M_PI/8 && exp < M_PI/2+M_PI/8)
         {
-            QColor color(0, 128, 128);
+            QColor color(0, 128, 128); //Dark green
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
-        else if (exp >= M_PI/2 && exp < 3*M_PI/4)
+        else if (exp >= M_PI/2+M_PI/8 && exp < 3*M_PI/4+M_PI/8)
         {
-            QColor color(0, 0, 100);
+            QColor color(0, 0, 100); //Blue
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
-        else if (exp >= 3*M_PI/4 && exp < M_PI)
+        else if ((exp >= 3*M_PI/4+M_PI/8 && exp <= M_PI) || (exp >= -M_PI && exp < -3*M_PI/4-M_PI/8 ))
         {
-            QColor color(80, 31, 200);
+            QColor color(80, 31, 200); //Dark blue
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
 
-        else if (exp >= -M_PI && exp < -3*M_PI/4)
+        else if (exp >= -3*M_PI/4-M_PI/8 && exp < -M_PI/2-M_PI/8)
         {
-            QColor color(128, 0, 128);
+            QColor color(128, 0, 128); //Purple
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
-        else if (exp >= -3*M_PI/4 && exp < -M_PI/2)
+        else if (exp >= -M_PI/2-M_PI/8 && exp < -M_PI/4-M_PI/8)
         {
-            QColor color(255, 0, 0);
+            QColor color(255, 0, 0); //Red
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
-        else if (exp >= -M_PI/2 && exp < -M_PI/4)
+        else if (exp >= -M_PI/4-M_PI/8 && exp < -M_PI/8)
         {
-            QColor color(255, 128, 0);
+            QColor color(255, 128, 0); //Orange
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
         }
-        else if (exp >= -M_PI/4 && exp < 0)
+        else if (exp >= -M_PI/8 && exp < M_PI/8)
         {
-            QColor color(255, 255, 0);
+            QColor color(255, 255, 0); //Yellow
             //Set pen and brush
             qp.setBrush(color);
             qp.setPen(color);
