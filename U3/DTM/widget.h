@@ -34,6 +34,10 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_ClearAll_clicked();
+
+    void on_pushButton_Exposition_clicked();
+
 private:
     Ui::Widget *ui;
 };

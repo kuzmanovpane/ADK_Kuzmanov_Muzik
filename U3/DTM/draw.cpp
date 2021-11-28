@@ -55,13 +55,92 @@ void Draw::paintEvent(QPaintEvent *event)
         qp.setPen(color);
 
         //Create polygon for triangle
-        QPolygon pol;
-        pol.push_back(QPoint(p1.x(), p1.y()));
-        pol.push_back(QPoint(p2.x(), p2.y()));
-        pol.push_back(QPoint(p3.x(), p3.y()));
+        QPolygon pol_exp;
+        pol_exp.push_back(QPoint(p1.x(), p1.y()));
+        pol_exp.push_back(QPoint(p2.x(), p2.y()));
+        pol_exp.push_back(QPoint(p3.x(), p3.y()));
 
         //Draw triangle
-        qp.drawPolygon(pol);
+        qp.drawPolygon(pol_exp);
+    }
+
+    //Draw exposition
+    for (Triangle t:triangles_exp)
+    {
+        //Get vertices of each triangle
+        QPoint3D p1 = t.getP1();
+        QPoint3D p2 = t.getP2();
+        QPoint3D p3 = t.getP3();
+
+        //Get exposition
+        double exp = t.getExposition();
+
+        if (exp > 0 && exp <= M_PI/4)
+        {
+            QColor color(128, 255, 0);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+        else if (exp >= M_PI/4 && exp < M_PI/2)
+        {
+            QColor color(0, 128, 128);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+        else if (exp >= M_PI/2 && exp < 3*M_PI/4)
+        {
+            QColor color(0, 0, 100);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+        else if (exp >= 3*M_PI/4 && exp < M_PI)
+        {
+            QColor color(80, 31, 200);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+
+        else if (exp >= -M_PI && exp < -3*M_PI/4)
+        {
+            QColor color(128, 0, 128);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+        else if (exp >= -3*M_PI/4 && exp < -M_PI/2)
+        {
+            QColor color(255, 0, 0);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+        else if (exp >= -M_PI/2 && exp < -M_PI/4)
+        {
+            QColor color(255, 128, 0);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+        else if (exp >= -M_PI/4 && exp < 0)
+        {
+            QColor color(255, 255, 0);
+            //Set pen and brush
+            qp.setBrush(color);
+            qp.setPen(color);
+        }
+
+        //Create polygon for triangle
+        QPolygon pol_exp;
+        pol_exp.push_back(QPoint(p1.x(), p1.y()));
+        pol_exp.push_back(QPoint(p2.x(), p2.y()));
+        pol_exp.push_back(QPoint(p3.x(), p3.y()));
+
+        //Draw triangle
+        qp.drawPolygon(pol_exp);
     }
 
     //Draw contour lines
@@ -77,9 +156,11 @@ void Draw::paintEvent(QPaintEvent *event)
         //Set pen and brush
         qp.setBrush(blue);
         qp.setPen(blue);
+
         //Draw line
         qp.drawLine(s_point,e_point);
      }
+
 
     //Stop drawing
     qp.end();
@@ -114,3 +195,12 @@ void Draw::clearDT()
     repaint();
 }
 
+void Draw::clearAll()
+{
+    points.clear();
+    dt.clear();
+    contours.clear();
+    triangles.clear();
+    triangles_exp.clear();
+    repaint();
+}

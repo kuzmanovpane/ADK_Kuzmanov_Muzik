@@ -105,6 +105,40 @@ void Widget::on_pushButton_4_clicked()
         //Set triangles
         ui->Canvas->setTriangles(triangles);
 
+        //Redraw exposition
+        ui->Canvas->clearExposition();
+        ui->Canvas->setDT(dt);
         repaint();
     }
 }
+
+void Widget::on_pushButton_ClearAll_clicked()
+{
+    //Clear all data
+    ui->Canvas->clearAll();
+    repaint();
+}
+
+
+void Widget::on_pushButton_Exposition_clicked()
+{
+    //Draw exposition
+    std::vector<Edge> dt = ui->Canvas->getDT();
+
+    //Is the triangulation not empty?
+    if (dt.size() > 0)
+    {
+        Algorithms a;
+        //Analyze DTM
+        std::vector<Triangle> triangles_exp = a.analyzeDTM(dt);
+
+        //Set triangles
+        ui->Canvas->setTrianglesExp(triangles_exp);
+
+        //Redraw slope
+        ui->Canvas->clearSlope();
+        repaint();
+    }
+}
+
+

@@ -15,7 +15,7 @@ private:
     std::vector<QPoint3D> points;
     std::vector<Edge> dt;
     std::vector<Edge> contours;
-    std::vector<Triangle> triangles;
+    std::vector<Triangle> triangles, triangles_exp;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -30,6 +30,11 @@ public:
     std::vector<Triangle> getTriangles(){return triangles;}
     void setTriangles(std::vector<Triangle> &triangles_){triangles = triangles_;}
     void clearDT();
+    void clearAll();
+    std::vector<Triangle> getTrianglesExp(){return triangles_exp;}
+    void setTrianglesExp(std::vector<Triangle> &triangles_exp_){triangles_exp = triangles_exp_;}
+    void clearSlope(){triangles.clear();}
+    void clearExposition(){triangles_exp.clear();}
 
 
 

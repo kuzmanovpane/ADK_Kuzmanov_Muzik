@@ -79,7 +79,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_3">
        <property name="text">
-        <string>Create contours</string>
+        <string>Draw Contours</string>
        </property>
       </widget>
      </item>
@@ -87,6 +87,13 @@
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
         <string>Draw Slope</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Exposition">
+       <property name="text">
+        <string>DrawExposition</string>
        </property>
       </widget>
      </item>
@@ -106,7 +113,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>Clear</string>
+        <string>Clear Points</string>
        </property>
       </widget>
      </item>
@@ -114,6 +121,13 @@
       <widget class="QPushButton" name="pushButton_cleardt">
        <property name="text">
         <string>Clear DT</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_ClearAll">
+       <property name="text">
+        <string> Clear All</string>
        </property>
       </widget>
      </item>

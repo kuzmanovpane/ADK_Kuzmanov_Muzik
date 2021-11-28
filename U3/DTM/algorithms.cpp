@@ -362,7 +362,6 @@ double Algorithms:: getExposition(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3)
     //Normal vector
     double nx = uy*vz - vy*uz;
     double ny = -ux*vz + vx*uz;
-    double nz = ux*vy - vx*uy;
 
     //Direction of the vector
     return atan2(nx, ny);
