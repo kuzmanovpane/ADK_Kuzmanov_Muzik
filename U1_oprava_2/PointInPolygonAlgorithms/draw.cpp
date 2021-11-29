@@ -2,6 +2,7 @@
 #include <QtGui>
 #include <fstream>
 #include <QWidget>
+#include <iostream>
 
 
 
@@ -116,6 +117,8 @@ void Draw::paintEvent(QPaintEvent *event)
 
             //Draw highlighted polygon
             painter.drawPolygon(highlight);
+
+            highlight.clear();
         }
     }
 

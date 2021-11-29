@@ -41,15 +41,15 @@ void Widget::on_pushButtonAnalyze_clicked()
     //Position of point
     std::vector<int> position;
 
-
     //Get position
     Algorithms a;
     int pos = 10; //random number
 
+    /*
     for (int i = 0; i < polygons.size(); i++)
     {
-        QPolygon polygon = polygons[i];
         pol.clear();
+        QPolygon polygon = polygons[i];
 
         for (int j = 0; j < polygon.size(); j++)
         {
@@ -94,9 +94,55 @@ void Widget::on_pushButtonAnalyze_clicked()
                 ui->label->setText("Point is outside");
                 position.push_back(pos);
             }
+        }
+    }*/
+
+
+  //Working
+    for (int i = 0; i < polygons.size(); i++)
+    {
+        QPolygon polygon = polygons[i];
+        pol.clear();
+
+        for (int j = 0; j < polygon.size(); j++)
+        {
+            pol.push_back(polygon[j]);
 
         }
+        //Ray Crossing algorithm
+        if (ui->comboBox->currentIndex() == 0)
+         {
+            pos = a.getPositionRayCrossing(q, pol);
+         }
 
+        //Winding number algorithm
+        else
+         {
+            pos = a.getPositionWinding(q, pol);
+         }
+
+        if (pos == 1)
+        {
+            ui->label->setText("Point is inside");
+            position.push_back(pos);
+
+        }
+        else if (pos == 0)
+        {
+            ui->label->setText("Point is outside");
+            position.push_back(pos);
+
+        }
+        else if (pos == -1)
+        {
+            ui->label->setText("Point is on the border");
+            position.push_back(pos);
+        }
+        else if (pos == -2)
+        {
+            ui->label->setText("Point is on the vertex");
+            position.push_back(pos);
+        }
     }
 
 
