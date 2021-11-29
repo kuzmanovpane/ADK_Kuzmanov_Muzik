@@ -3,6 +3,10 @@
 #include "algorithms.h"
 #include <QFileDialog>
 #include "draw.h"
+#include <iostream>
+#include <QtDebug>
+
+using namespace std;
 
 
 Widget::Widget(QWidget *parent)
@@ -64,26 +68,35 @@ void Widget::on_pushButtonAnalyze_clicked()
             pos = a.getPositionWinding(q, pol);
          }
 
+
         if (pos == 1)
         {
             ui->label->setText("Point is inside");
             position.push_back(pos);
-        }
-        else if (pos == 0)
-        {
-            ui->label->setText("Point is outside");
-            position.push_back(pos);
+            break;
         }
         else if (pos == -1)
         {
             ui->label->setText("Point is on the border");
             position.push_back(pos);
+            break;
         }        
         else if (pos == -2)
         {
             ui->label->setText("Point is on the vertex");
             position.push_back(pos);
+            break;
         }
+        else if (pos == 0)
+        {
+            if (i == polygons.size() - 1)
+            {
+                ui->label->setText("Point is outside");
+                position.push_back(pos);
+            }
+
+        }
+
     }
 
 
