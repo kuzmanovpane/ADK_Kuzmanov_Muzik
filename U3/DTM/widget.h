@@ -40,6 +40,8 @@ private slots:
 
     void on_pushButton_LoadPoints_clicked();
 
+    void on_pushButton_mcLabels_clicked();
+
 private:
     Ui::Widget *ui;
 };

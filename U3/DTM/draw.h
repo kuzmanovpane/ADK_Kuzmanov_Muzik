@@ -14,7 +14,7 @@ class Draw : public QWidget
 private:
     std::vector<QPoint3D> points;
     std::vector<Edge> dt;
-    std::vector<Edge> contours;
+    std::vector<Edge> contours, main_contours, main_contours_label;
     std::vector<Triangle> triangles, triangles_exp;
 
 public:
@@ -36,6 +36,11 @@ public:
     void clearSlope(){triangles.clear();}
     void clearExposition(){triangles_exp.clear();}
     void loadPoints(std::string &path);
+    void setMainContours(std::vector<Edge> &main_contours_){main_contours = main_contours_;}
+    std::vector<Edge> getMainContours(){return main_contours;}
+    void setMainContoursLabel(std::vector<Edge> &main_contours_label_){main_contours_label = main_contours_label_;}
+    std::vector<Edge> getMainContoursLabel(){return main_contours_label;}
+
 
 
 

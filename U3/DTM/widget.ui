@@ -104,6 +104,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton_mcLabels">
+       <property name="text">
+        <string>Draw Main Contour Labels</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
         <string>Draw Slope</string>

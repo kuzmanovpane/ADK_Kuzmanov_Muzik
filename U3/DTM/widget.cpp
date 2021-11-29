@@ -82,8 +82,12 @@ void Widget::on_pushButton_3_clicked()
         //Create contours
         std::vector<Edge> contours = a.getContourLines(dt, zmin, zmax, dz);
 
+        //Create main contours
+        std::vector<Edge> main_contours = a.getContourLines(dt, zmin, zmax, dz*5);
+
         //Set contours
         ui->Canvas->setContours(contours);
+        ui->Canvas->setMainContours(main_contours);
 
         repaint();
     }
@@ -149,5 +153,23 @@ void Widget::on_pushButton_LoadPoints_clicked()
     QString path(QFileDialog::getOpenFileName(this, tr("Select file with points"), "../", tr("Text Files (*.txt)")));
     std::string path_ = path.toStdString();
     ui->Canvas->loadPoints(path_);
+}
+
+
+void Widget::on_pushButton_mcLabels_clicked()
+{
+    std::vector<Edge> dt = ui->Canvas->getDT();
+    //Is the triangulation not empty?
+    if (dt.size() > 0)
+    {
+        Algorithms a;
+        // Load main contours edges
+        std::vector<Edge> main_contours_label = ui->Canvas->getMainContours();
+
+        //Set main contours label
+        ui->Canvas->setMainContoursLabel(main_contours_label);
+
+        repaint();
+    }
 }
 

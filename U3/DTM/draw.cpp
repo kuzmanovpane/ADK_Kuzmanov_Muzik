@@ -168,23 +168,56 @@ void Draw::paintEvent(QPaintEvent *event)
     }
 
     //Draw contour lines
-    for (Edge c:contours)
-    {
-        //Get start point, get end point
-        QPoint3D s_point = c.getStart();
-        QPoint3D e_point = c.getEnd();
+       for (Edge c:contours)
+       {
+           //Get start point, get end point
+           QPoint3D s_point = c.getStart();
+           QPoint3D e_point = c.getEnd();
 
-        //Color set
-        QColor blue(0, 0, 255);
+           //Color set
+           QColor col(139, 69, 19);
 
-        //Set pen and brush
-        qp.setBrush(blue);
-        qp.setPen(blue);
+           //Set pen and brush
+           qp.setBrush(col);
+           qp.setPen(col);
 
-        //Draw line
-        qp.drawLine(s_point,e_point);
-     }
+           //Draw line
+           qp.drawLine(s_point,e_point);
+        }
 
+       //Draw main contour lines
+       for (Edge c:main_contours)
+       {
+           //Get start point, get end point
+           QPoint3D s_point = c.getStart();
+           QPoint3D e_point = c.getEnd();
+
+           //Color set
+           QColor col(139, 69, 19);
+           QPen p (col, 2);
+
+           //Set pen and brush
+           qp.setBrush(col);
+           qp.setPen(p);
+
+           //Draw line
+           qp.drawLine(s_point,e_point);
+        }
+
+       //Draw main contours label
+       for (Edge mcl : main_contours_label)
+       {
+          //Start and end point of the contour edge
+          QPoint3D sl_point = mcl.getStart();
+          QPoint3D el_point = mcl.getEnd();
+
+          //Get label coordintes
+          QPoint3D label_point( (sl_point.x()+el_point.x())/2, (sl_point.y()+el_point.y())/2);
+
+          //Draw Z coordinate
+          QString z = QString::number(sl_point.getZ());
+          qp.drawText(label_point, z);
+       }
 
     //Stop drawing
     qp.end();
@@ -224,6 +257,8 @@ void Draw::clearAll()
     points.clear();
     dt.clear();
     contours.clear();
+    main_contours.clear();
+    main_contours_label.clear();
     triangles.clear();
     triangles_exp.clear();
     repaint();
