@@ -1,10 +1,34 @@
 #include "draw.h"
 #include <stdlib.h>
+#include <fstream>
+#include <QtGui>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
     //Initialize random number generator
     srand (time(NULL));
+}
+
+void Draw::loadPoints(std::string &path)
+{
+    double x, y, z;
+
+    //Load data from file
+    std::ifstream coords(path);
+
+    if(coords.is_open())
+    {
+        while(coords >> x >> y >> z)
+        {
+            QPoint3D point;
+            point.setX(x);
+            point.setY(y);
+            point.setZ(z);
+            points.push_back(point);
+        }
+        coords.close();
+    }
+    repaint();
 }
 
 void Draw::paintEvent(QPaintEvent *event)

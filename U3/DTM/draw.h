@@ -35,6 +35,8 @@ public:
     void setTrianglesExp(std::vector<Triangle> &triangles_exp_){triangles_exp = triangles_exp_;}
     void clearSlope(){triangles.clear();}
     void clearExposition(){triangles_exp.clear();}
+    void loadPoints(std::string &path);
+
 
 
 

@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 #include "algorithms.h"
 #include "edge.h"
+#include <QFileDialog>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -141,4 +142,12 @@ void Widget::on_pushButton_Exposition_clicked()
     }
 }
 
+
+
+void Widget::on_pushButton_LoadPoints_clicked()
+{
+    QString path(QFileDialog::getOpenFileName(this, tr("Select file with points"), "../", tr("Text Files (*.txt)")));
+    std::string path_ = path.toStdString();
+    ui->Canvas->loadPoints(path_);
+}
 
