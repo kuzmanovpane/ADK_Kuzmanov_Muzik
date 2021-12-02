@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  12 NOV 2021 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  2 DEC 2021 17:08
 entering extended mode
 **./U1_ADK_Kuzmanov_Muzik.tex
 (U1_ADK_Kuzmanov_Muzik.tex
@@ -559,87 +559,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 167--168
  []
 
 [4]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-95.
+<obrazky/bodzahranou.png, id=297, 549.53822pt x 352.76346pt>
+File: obrazky/bodzahranou.png Graphic file (type png)
+<use obrazky/bodzahranou.png>
+Package pdftex.def Info: obrazky/bodzahranou.png  used on input line 199.
+(pdftex.def)             Requested size: 329.72548pt x 211.6597pt.
+ [5]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+06.
  (C:\Users\fanda\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Overfull \hbox (69.50275pt too wide) in paragraph at lines 204--204
-[]    \T1/cmtt/m/n/12 if (((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x
-()) && (a.y()==p2.y())))[] 
+Overfull \hbox (44.80878pt too wide) in paragraph at lines 228--228
+[]\T1/cmtt/m/n/12 if (((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) 
+&& (a.y()==p2.y())))[] 
  []
 
-[5]
-Overfull \hbox (7.76782pt too wide) in paragraph at lines 235--235
+[6 <./obrazky/bodzahranou.png>]
+Overfull \hbox (7.76782pt too wide) in paragraph at lines 270--270
 []\T1/cmtt/m/n/12 int Algorithms::getPositionRayCrossing(QPoint &q, std::vector
 <QPoint> &pol)[] 
  []
 
-[6]
-<obrazky/app_zapnuti.png, id=305, 786.38347pt x 553.11594pt>
+[7]
+<obrazky/app_zapnuti.png, id=312, 786.38347pt x 553.11594pt>
 File: obrazky/app_zapnuti.png Graphic file (type png)
 <use obrazky/app_zapnuti.png>
-Package pdftex.def Info: obrazky/app_zapnuti.png  used on input line 252.
+Package pdftex.def Info: obrazky/app_zapnuti.png  used on input line 287.
 (pdftex.def)             Requested size: 224.12161pt x 157.63968pt.
-<obrazky/app_pol.png, id=307, 784.95238pt x 557.40921pt>
+<obrazky/app_pol.png, id=313, 784.95238pt x 557.40921pt>
 File: obrazky/app_pol.png Graphic file (type png)
 <use obrazky/app_pol.png>
-Package pdftex.def Info: obrazky/app_pol.png  used on input line 253.
+Package pdftex.def Info: obrazky/app_pol.png  used on input line 288.
 (pdftex.def)             Requested size: 223.71375pt x 158.86327pt.
-<obrazky/select_met.png, id=308, 118.7804pt x 195.34366pt>
+<obrazky/select_met.png, id=314, 118.7804pt x 195.34366pt>
 File: obrazky/select_met.png Graphic file (type png)
 <use obrazky/select_met.png>
-Package pdftex.def Info: obrazky/select_met.png  used on input line 264.
+Package pdftex.def Info: obrazky/select_met.png  used on input line 299.
 (pdftex.def)             Requested size: 95.02443pt x 156.27513pt.
-<obrazky/app_analyze.png, id=309, 786.38347pt x 553.83148pt>
+<obrazky/app_analyze.png, id=315, 786.38347pt x 553.83148pt>
 File: obrazky/app_analyze.png Graphic file (type png)
 <use obrazky/app_analyze.png>
-Package pdftex.def Info: obrazky/app_analyze.png  used on input line 281.
+Package pdftex.def Info: obrazky/app_analyze.png  used on input line 316.
 (pdftex.def)             Requested size: 224.12161pt x 157.84361pt.
-<obrazky/bod_na_rozhr.png, id=310, 787.09901pt x 556.69366pt>
+<obrazky/bod_na_rozhr.png, id=316, 787.09901pt x 556.69366pt>
 File: obrazky/bod_na_rozhr.png Graphic file (type png)
 <use obrazky/bod_na_rozhr.png>
-Package pdftex.def Info: obrazky/bod_na_rozhr.png  used on input line 282.
+Package pdftex.def Info: obrazky/bod_na_rozhr.png  used on input line 317.
 (pdftex.def)             Requested size: 224.32555pt x 158.65933pt.
- [7 <./obrazky/app_zapnuti.png> <./obrazky/app_pol.png> <./obrazky/select_met.p
+ [8 <./obrazky/app_zapnuti.png> <./obrazky/app_pol.png> <./obrazky/select_met.p
 ng>]
-<obrazky/bod_na_vrcholu.png, id=318, 785.66792pt x 554.54703pt>
+<obrazky/bod_na_vrcholu.png, id=323, 785.66792pt x 554.54703pt>
 File: obrazky/bod_na_vrcholu.png Graphic file (type png)
 <use obrazky/bod_na_vrcholu.png>
-Package pdftex.def Info: obrazky/bod_na_vrcholu.png  used on input line 291.
+Package pdftex.def Info: obrazky/bod_na_vrcholu.png  used on input line 326.
 (pdftex.def)             Requested size: 392.833pt x 277.27283pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 
  []
 
-[8 <./obrazky/app_analyze.png> <./obrazky/bod_na_rozhr.png> <./obrazky/bod_na_v
+[9 <./obrazky/app_analyze.png> <./obrazky/bod_na_rozhr.png> <./obrazky/bod_na_v
 rcholu.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 319--320
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--334
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 338--339
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 343--344
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 349--350
 
  []
@@ -650,27 +631,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 354--355
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 359--360
+Underfull \hbox (badness 10000) in paragraph at lines 368--369
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--365
+Underfull \hbox (badness 10000) in paragraph at lines 373--374
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--370
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 374--375
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 379--380
+Underfull \hbox (badness 10000) in paragraph at lines 378--379
 
  []
 
@@ -680,31 +651,66 @@ Underfull \hbox (badness 10000) in paragraph at lines 384--385
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--394
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--399
+Underfull \hbox (badness 10000) in paragraph at lines 394--395
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--404
+Underfull \hbox (badness 10000) in paragraph at lines 399--400
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--409
+Underfull \hbox (badness 10000) in paragraph at lines 404--405
 
  []
 
-[10] [11] (U1_ADK_Kuzmanov_Muzik.aux) ) 
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 414--415
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 419--420
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 443--444
+
+ []
+
+[11] [12] (U1_ADK_Kuzmanov_Muzik.aux) ) 
 Here is how much of TeX's memory you used:
- 7403 strings out of 479799
- 114320 string characters out of 2869723
- 432299 words of memory out of 3000000
- 24261 multiletter control sequences out of 15000+200000
+ 7410 strings out of 479799
+ 114486 string characters out of 2869723
+ 432307 words of memory out of 3000000
+ 24267 multiletter control sequences out of 15000+200000
  547112 words of font info for 62 fonts, out of 3000000 for 9000
  1142 hyphenation exceptions out of 8191
  78i,17n,85p,672b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -730,9 +736,9 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users
 <C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 sy6.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmsy8.pfb>
-Output written on U1_ADK_Kuzmanov_Muzik.pdf (11 pages, 883599 bytes).
+Output written on U1_ADK_Kuzmanov_Muzik.pdf (12 pages, 901031 bytes).
 PDF statistics:
- 751 PDF objects out of 1000 (max. 8388607)
+ 760 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

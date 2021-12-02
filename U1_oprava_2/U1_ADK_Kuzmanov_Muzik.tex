@@ -190,16 +190,40 @@ Z~několika důvodů je vhodné použít upravenou variantu algoritmu s~redukcí
 \section{Problematické situace a jejich rozbor}
 % (tj. simplexy) + ošetření těchto situací v kódu
 \subsection{Winding Number Algorithm} \label{WNA_problem}
-Tento algoritmus problematicky řeší případ, když je bod~$q$ shodný s~vrcholem polygonu~$p_i$. Tato singularita je ošetřena přímým porovnáním souřadnic určovaného bodu s body tvořícími danou hranu. 
+Tento algoritmus problematicky řeší případ, když je bod~$q$ shodný s~vrcholem polygonu~$p_i$. Tato singularita je ošetřena přímým porovnáním souřadnic určovaného bodu s body tvořícími danou hranu. Pozice bodu je vypočtena metodou getPoinLinePosition. 
+
+Dále bylo nutné ošetřit situaci, ve které je bod~$q$ na hraně polygonu. V~tomto případě je potřeba zjistit, zda~--~li bod~$q$ leží na přímce, která prochází hranou a zároveň se nenachází až za koncem hrany. Názorněji je problém popsán na obr.~\ref{fig:bodzahranou}.
+
+\begin{figure}[htbh]
+	\centering
+	\includegraphics[scale=0.6]{obrazky/bodzahranou.png}
+	\caption{Problematická situace při určování polohy bodu na hraně.
+	}
+	\label{fig:bodzahranou}
+\end{figure} 
+\FloatBarrier
 
 \begin{verbatim}
 int Algorithms::getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
 {
 ...
-    //Point is on the vertex
-    if (((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) && (a.y()==p2.y())))
-        return -2;
-...
+double m = vx / ux;
+
+//Point is on the vertex
+if (((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) && (a.y()==p2.y())))
+    return -2;
+
+//Point in the left halfplane
+else if (t > eps)
+    return 1;
+
+//Point in the right halfplane
+else if (t < -eps)
+    return 0;
+
+//Point on the line and making sure that the point a is between p1 and p2
+else if (t >= -eps and t <= eps and m >= 0 and m <= 1)
+    return -1;
 }
 \end{verbatim}
 
@@ -216,7 +240,7 @@ int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
 ...
     for (int i = 1; i < n+1; i++)
     {
-...
+        ...
         double xi = pol[i].x() - q.x();
         double yi = pol[i].y() - q.y();
 
@@ -229,7 +253,18 @@ int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
         //Point is on the border
         if(fabs(d-dq) < eps)
             return -1;
-...
+
+        //Find point position
+        if (((yr > 0) && (yi <= 0)) || ((yi > 0) && (yr <= 0)))
+        {
+            double xm = (xi * yr - xr * yi) / (yi - yr);
+
+            //Point is in the right halfplane
+            if (xm > eps)
+                k += 1;
+        }
+    }
+    return k% 2;
 }
 
 \end{verbatim}
