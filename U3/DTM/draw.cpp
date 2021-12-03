@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <QtGui>
+#include "widget.h"
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -71,6 +72,8 @@ void Draw::paintEvent(QPaintEvent *event)
         //Get slope
         double slope = t.getSlope();
 
+        if (grayscale == TRUE)
+        {
         //Convert to color
         int col = 255 - k * slope;
         QColor color(col, col, col);
@@ -78,15 +81,28 @@ void Draw::paintEvent(QPaintEvent *event)
         //Set pen and brush
         qp.setBrush(color);
         qp.setPen(color);
+        }
+
+        if (yelred == TRUE)
+        {
+        //Convert to color
+        int col = 255 - k * slope;
+        int colg = k * slope;
+        QColor color(255, colg, col);
+
+        //Set pen and brush
+        qp.setBrush(color);
+        qp.setPen(color);
+        }
 
         //Create polygon for triangle
-        QPolygon pol_exp;
-        pol_exp.push_back(QPoint(p1.x(), p1.y()));
-        pol_exp.push_back(QPoint(p2.x(), p2.y()));
-        pol_exp.push_back(QPoint(p3.x(), p3.y()));
+        QPolygon pol_slope;
+        pol_slope.push_back(QPoint(p1.x(), p1.y()));
+        pol_slope.push_back(QPoint(p2.x(), p2.y()));
+        pol_slope.push_back(QPoint(p3.x(), p3.y()));
 
         //Draw triangle
-        qp.drawPolygon(pol_exp);
+        qp.drawPolygon(pol_slope);
     }
 
     //Draw exposition
@@ -100,62 +116,126 @@ void Draw::paintEvent(QPaintEvent *event)
         //Get exposition
         double exp = t.getExposition();
 
-        if (exp >= M_PI/8 && exp < M_PI/4+M_PI/8)
+        if (kmcol == TRUE)
         {
-            QColor color(128, 255, 0); //Light green
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
-        }
-        else if (exp >= M_PI/4+M_PI/8 && exp < M_PI/2+M_PI/8)
-        {
-            QColor color(0, 128, 128); //Dark green
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
-        }
-        else if (exp >= M_PI/2+M_PI/8 && exp < 3*M_PI/4+M_PI/8)
-        {
-            QColor color(0, 0, 100); //Blue
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
-        }
-        else if ((exp >= 3*M_PI/4+M_PI/8 && exp <= M_PI) || (exp >= -M_PI && exp < -3*M_PI/4-M_PI/8 ))
-        {
-            QColor color(80, 31, 200); //Dark blue
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
+            if (exp >= M_PI/8 && exp < M_PI/4+M_PI/8)
+            {
+                QColor color(128, 255, 0); //Light green
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= M_PI/4+M_PI/8 && exp < M_PI/2+M_PI/8)
+            {
+                QColor color(0, 128, 128); //Dark green
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= M_PI/2+M_PI/8 && exp < 3*M_PI/4+M_PI/8)
+            {
+                QColor color(0, 0, 100); //Blue
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if ((exp >= 3*M_PI/4+M_PI/8 && exp <= M_PI) || (exp >= -M_PI && exp < -3*M_PI/4-M_PI/8 ))
+            {
+                QColor color(80, 31, 200); //Dark blue
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+
+            else if (exp >= -3*M_PI/4-M_PI/8 && exp < -M_PI/2-M_PI/8)
+            {
+                QColor color(128, 0, 128); //Purple
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= -M_PI/2-M_PI/8 && exp < -M_PI/4-M_PI/8)
+            {
+                QColor color(255, 0, 0); //Red
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= -M_PI/4-M_PI/8 && exp < -M_PI/8)
+            {
+                QColor color(255, 128, 0); //Orange
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= -M_PI/8 && exp < M_PI/8)
+            {
+                QColor color(255, 255, 0); //Yellow
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
         }
 
-        else if (exp >= -3*M_PI/4-M_PI/8 && exp < -M_PI/2-M_PI/8)
+        if (esricol == TRUE)
         {
-            QColor color(128, 0, 128); //Purple
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
-        }
-        else if (exp >= -M_PI/2-M_PI/8 && exp < -M_PI/4-M_PI/8)
-        {
-            QColor color(255, 0, 0); //Red
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
-        }
-        else if (exp >= -M_PI/4-M_PI/8 && exp < -M_PI/8)
-        {
-            QColor color(255, 128, 0); //Orange
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
-        }
-        else if (exp >= -M_PI/8 && exp < M_PI/8)
-        {
-            QColor color(255, 255, 0); //Yellow
-            //Set pen and brush
-            qp.setBrush(color);
-            qp.setPen(color);
+            if (exp >= M_PI/8 && exp < M_PI/4+M_PI/8)
+            {
+                QColor color(0, 255, 0); //Southeast
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= M_PI/4+M_PI/8 && exp < M_PI/2+M_PI/8)
+            {
+                QColor color(0, 255, 255); //South
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= M_PI/2+M_PI/8 && exp < 3*M_PI/4+M_PI/8)
+            {
+                QColor color(0, 166, 255); //Southwest
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if ((exp >= 3*M_PI/4+M_PI/8 && exp <= M_PI) || (exp >= -M_PI && exp < -3*M_PI/4-M_PI/8 ))
+            {
+                QColor color(0, 0, 255); //West
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+
+            else if (exp >= -3*M_PI/4-M_PI/8 && exp < -M_PI/2-M_PI/8)
+            {
+                QColor color(255, 0, 255); //Northwest
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= -M_PI/2-M_PI/8 && exp < -M_PI/4-M_PI/8)
+            {
+                QColor color(255, 0, 0); //North
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= -M_PI/4-M_PI/8 && exp < -M_PI/8)
+            {
+                QColor color(255, 166, 0); //Northeast
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
+            else if (exp >= -M_PI/8 && exp < M_PI/8)
+            {
+                QColor color(255, 255, 0); //East
+                //Set pen and brush
+                qp.setBrush(color);
+                qp.setPen(color);
+            }
         }
 
         //Create polygon for triangle

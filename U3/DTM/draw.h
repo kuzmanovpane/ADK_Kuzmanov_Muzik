@@ -16,6 +16,7 @@ private:
     std::vector<Edge> dt;
     std::vector<Edge> contours, main_contours, main_contours_label;
     std::vector<Triangle> triangles, triangles_exp;
+    bool grayscale, yelred, kmcol, esricol;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -41,10 +42,10 @@ public:
     std::vector<Edge> getMainContours(){return main_contours;}
     void setMainContoursLabel(std::vector<Edge> &main_contours_label_){main_contours_label = main_contours_label_;}
     std::vector<Edge> getMainContoursLabel(){return main_contours_label;}
-
-
-
-
+    void setGrayscale(bool &grayscale_){grayscale = grayscale_;}
+    void setYelRed(bool &yelred_){yelred = yelred_;}
+    void setKMCol(bool &kmcol_){kmcol = kmcol_;}
+    void setEsriCol(bool &esricol_){esricol = esricol_;}
 
 signals:
 

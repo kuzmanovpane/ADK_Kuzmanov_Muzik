@@ -100,6 +100,24 @@ void Widget::on_pushButton_4_clicked()
     //Draw slope
     std::vector<Edge> dt = ui->Canvas->getDT();
 
+    //Select color palette
+    bool grayscale, yelred;
+
+    if (ui->comboBox_slope->currentIndex() == 0)
+    {
+        grayscale = TRUE;
+        yelred = FALSE;
+    }
+    else if (ui->comboBox_slope->currentIndex() == 1)
+    {
+        grayscale = FALSE;
+        yelred = TRUE;
+    }
+
+    //Set color palette
+    ui->Canvas->setGrayscale(grayscale);
+    ui->Canvas->setYelRed(yelred);
+
     //Is the triangulation not empty?
     if (dt.size() > 0)
     {
@@ -129,6 +147,24 @@ void Widget::on_pushButton_Exposition_clicked()
 {
     //Draw exposition
     std::vector<Edge> dt = ui->Canvas->getDT();
+
+    //Select color palette
+    bool kmcol, esricol;
+
+    if (ui->comboBox_exp->currentIndex() == 0)
+    {
+        kmcol = TRUE;
+        esricol = FALSE;
+    }
+    else if (ui->comboBox_exp->currentIndex() == 1)
+    {
+        kmcol = FALSE;
+        esricol = TRUE;
+    }
+
+    //Set color palette
+    ui->Canvas->setKMCol(kmcol);
+    ui->Canvas->setEsriCol(esricol);
 
     //Is the triangulation not empty?
     if (dt.size() > 0)

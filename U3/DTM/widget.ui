@@ -162,6 +162,40 @@
       </widget>
      </item>
      <item>
+      <spacer name="verticalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Select slope color palette:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_slope">
+       <item>
+        <property name="text">
+         <string>Grayscale</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Yellow to Red</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
         <string>Draw Slope</string>
@@ -169,9 +203,30 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Select Exposition color palette:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_exp">
+       <item>
+        <property name="text">
+         <string>KM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Esri </string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_Exposition">
        <property name="text">
-        <string>DrawExposition</string>
+        <string>Draw Exposition</string>
        </property>
       </widget>
      </item>
