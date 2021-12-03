@@ -23,6 +23,13 @@ public:
     double getSlope(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3);
     double getExposition(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3);
     std::vector<Triangle> analyzeDTM(std::vector<Edge> &dt);
+    double distance(QPoint3D &p1, QPoint3D p2);
+    std::vector<QPoint3D> generateRandomPoints(int n, int height, int width);
+    std::vector<QPoint3D> generatePile(std::vector<QPoint3D> &points);
+    std::vector<QPoint3D> generateSaddle(std::vector<QPoint3D> &points);
+    std::vector<QPoint3D> generateRidge(std::vector<QPoint3D> &points);
+
+
 };
 
 #endif // ALGORITHMS_H

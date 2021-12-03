@@ -395,3 +395,118 @@ std::vector<Triangle> Algorithms::analyzeDTM(std::vector<Edge> &dt)
 
     return triangles;
 }
+
+double Algorithms:: distance(QPoint3D &p1, QPoint3D p2)
+{
+    //Coordinate differences
+    double dx = p1.x() - p2.x();
+    double dy = p1.y() - p2.y();
+
+    //Distance between two points
+    double d = sqrt(dx*dx + dy*dy);
+
+    return d;
+}
+
+std::vector<QPoint3D> Algorithms:: generateRandomPoints(int n, int height, int width)
+{
+    std::vector<QPoint3D> points;
+
+    //Generate random points in the Canvas
+    for (int i = 0; i < n; i++)
+    {
+        QPoint3D point;
+
+        double x = rand() % width;
+        double y = rand() % height;
+        double z = rand() % 1000;
+        point.setX(x);
+        point.setY(y);
+        point.setZ(z);
+
+        points.push_back(point);
+    }
+
+    return points;
+}
+
+std::vector<QPoint3D> Algorithms:: generatePile(std::vector<QPoint3D> &points)
+{
+    int n = points.size();
+    double x_p = 0.0;
+    double y_p = 0.0;
+    QPoint3D p;
+
+    //Find center of the random generated points
+    for(int i = 0; i < n; i++)
+    {
+        x_p += points[i].x();
+        y_p += points[i].y();
+    }
+
+    p.setX(x_p/n);
+    p.setY(y_p/n);
+    p.setZ(1000);
+
+    points.push_back(p);
+
+    //Set Z to the points
+    for(int i = 0; i < n; i++)
+    {
+        double d = distance(points[n], points[i]);
+        points[i].setZ(1000 - d + rand() % 10);
+    }
+
+    return points;
+}
+
+std::vector<QPoint3D> Algorithms:: generateSaddle(std::vector<QPoint3D> &points)
+{
+    int n = points.size();
+    double z;
+
+    for (int i = 0; i < n; i+=1)
+    {
+        double x = points[i].x() - points[n-1].x();
+        double y = points[i].y() - points[n-1].y();
+
+        z = (x * y)/250 + 500;
+        z += rand() % 10;
+
+        points[i].setZ(z);
+    }
+
+    return points;
+}
+
+std::vector<QPoint3D>Algorithms:: generateRidge(std::vector<QPoint3D> &points)
+{
+    /*int n = points.size();
+    double z;
+
+    for (int i = 0; i < n; i+=1)
+    {
+        double y = points[i].y() - points[n-1].y();
+        z = sqrt((points[n-1].y()+40)*(points[n-1].y()+40) - y*y) + points[i].x() + rand() % 10;
+
+        points[i].setZ(z);
+    }
+
+    return points;*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

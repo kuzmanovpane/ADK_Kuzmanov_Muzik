@@ -54,6 +54,7 @@ void Draw::paintEvent(QPaintEvent *event)
         QPoint3D e_point = e.getEnd();
 
         //Draw line
+        qp.setPen(QPen(Qt::cyan, 1));
         qp.drawLine(s_point,e_point);
     }
 

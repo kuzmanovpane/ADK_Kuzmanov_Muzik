@@ -62,12 +62,12 @@ void Widget::on_lineEdit_editingFinished()
 
 void Widget::on_lineEdit_2_editingFinished()
 {
-    zmax = ui->lineEdit->text().toDouble();
+    zmax = ui->lineEdit_2->text().toDouble();
 }
 
 void Widget::on_lineEdit_3_editingFinished()
 {
-    dz = ui->lineEdit->text().toDouble();
+    dz = ui->lineEdit_3->text().toDouble();
 }
 
 void Widget::on_pushButton_3_clicked()
@@ -171,5 +171,34 @@ void Widget::on_pushButton_mcLabels_clicked()
 
         repaint();
     }
+}
+
+
+void Widget::on_pushButton_Generate_clicked()
+{
+    //Number of points on the line
+    n = ui->lineEdit_NumberOfPoints->text().toDouble();
+
+    //Size of the canvas
+    QSize size = ui->Canvas->size();
+    int height = size.height();
+    int width = size.width();
+
+    Algorithms a;
+    std::vector<QPoint3D> points = a.generateRandomPoints(n, height, width);
+
+    if (ui->comboBox->currentIndex() == 1)
+        points = a.generatePile(points);
+    else if (ui->comboBox->currentIndex() == 2)
+        points = a.generateSaddle(points);
+    else if (ui->comboBox->currentIndex() == 3)
+        points = a.generateRidge(points);
+
+
+
+
+
+    ui->Canvas->setPoints(points);
+    repaint();
 }
 

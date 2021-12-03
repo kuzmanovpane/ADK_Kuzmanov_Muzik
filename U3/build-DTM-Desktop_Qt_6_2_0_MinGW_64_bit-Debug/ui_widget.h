@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -29,9 +30,13 @@ public:
     Draw *Canvas;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_LoadPoints;
-    QSpacerItem *verticalSpacer_4;
-    QPushButton *pushButton;
     QSpacerItem *verticalSpacer_3;
+    QComboBox *comboBox;
+    QLineEdit *lineEdit_NumberOfPoints;
+    QPushButton *pushButton_Generate;
+    QSpacerItem *verticalSpacer_2;
+    QPushButton *pushButton;
+    QSpacerItem *verticalSpacer_4;
     QLabel *label;
     QLineEdit *lineEdit;
     QLabel *label_2;
@@ -39,13 +44,13 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_3;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_mcLabels;
     QPushButton *pushButton_4;
     QPushButton *pushButton_Exposition;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_2;
     QPushButton *pushButton_cleardt;
     QPushButton *pushButton_ClearAll;
-    QSpacerItem *verticalSpacer_2;
 
     void setupUi(QWidget *Widget)
     {
@@ -71,18 +76,41 @@ public:
 
         verticalLayout->addWidget(pushButton_LoadPoints);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer_4);
+        verticalLayout->addItem(verticalSpacer_3);
+
+        comboBox = new QComboBox(Widget);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+        verticalLayout->addWidget(comboBox);
+
+        lineEdit_NumberOfPoints = new QLineEdit(Widget);
+        lineEdit_NumberOfPoints->setObjectName(QString::fromUtf8("lineEdit_NumberOfPoints"));
+
+        verticalLayout->addWidget(lineEdit_NumberOfPoints);
+
+        pushButton_Generate = new QPushButton(Widget);
+        pushButton_Generate->setObjectName(QString::fromUtf8("pushButton_Generate"));
+
+        verticalLayout->addWidget(pushButton_Generate);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
 
         pushButton = new QPushButton(Widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         verticalLayout->addWidget(pushButton);
 
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer_3);
+        verticalLayout->addItem(verticalSpacer_4);
 
         label = new QLabel(Widget);
         label->setObjectName(QString::fromUtf8("label"));
@@ -119,6 +147,11 @@ public:
 
         verticalLayout->addWidget(pushButton_3);
 
+        pushButton_mcLabels = new QPushButton(Widget);
+        pushButton_mcLabels->setObjectName(QString::fromUtf8("pushButton_mcLabels"));
+
+        verticalLayout->addWidget(pushButton_mcLabels);
+
         pushButton_4 = new QPushButton(Widget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
 
@@ -148,10 +181,6 @@ public:
 
         verticalLayout->addWidget(pushButton_ClearAll);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_2);
-
 
         horizontalLayout->addLayout(verticalLayout);
 
@@ -165,11 +194,19 @@ public:
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "DTM", nullptr));
         pushButton_LoadPoints->setText(QCoreApplication::translate("Widget", "Load points", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("Widget", "Random points", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("Widget", "Pile", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("Widget", "Saddle", nullptr));
+        comboBox->setItemText(3, QCoreApplication::translate("Widget", "Ridge", nullptr));
+
+        lineEdit_NumberOfPoints->setText(QCoreApplication::translate("Widget", "100", nullptr));
+        pushButton_Generate->setText(QCoreApplication::translate("Widget", "Generate", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Create DT", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Z_min:", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "Z_max:", nullptr));
         label_3->setText(QCoreApplication::translate("Widget", "dZ:", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Widget", "Draw Contours", nullptr));
+        pushButton_mcLabels->setText(QCoreApplication::translate("Widget", "Draw Main Contour Labels", nullptr));
         pushButton_4->setText(QCoreApplication::translate("Widget", "Draw Slope", nullptr));
         pushButton_Exposition->setText(QCoreApplication::translate("Widget", "DrawExposition", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear Points", nullptr));

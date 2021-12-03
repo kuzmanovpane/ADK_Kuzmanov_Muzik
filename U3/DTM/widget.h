@@ -11,6 +11,7 @@ class Widget : public QWidget
 {
     Q_OBJECT
     private:
+        int n;
         double zmin, zmax, dz;
 
 public:
@@ -41,6 +42,8 @@ private slots:
     void on_pushButton_LoadPoints_clicked();
 
     void on_pushButton_mcLabels_clicked();
+
+    void on_pushButton_Generate_clicked();
 
 private:
     Ui::Widget *ui;

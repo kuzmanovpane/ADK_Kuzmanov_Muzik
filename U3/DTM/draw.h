@@ -22,6 +22,7 @@ public:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void clear();
+    void setPoints(std::vector<QPoint3D> &points_){points = points_;}
     std::vector<QPoint3D> getPoints(){return points;}
     void setDT(std::vector<Edge> &dt_){dt = dt_;}
     std::vector<Edge> getDT(){return dt;}
