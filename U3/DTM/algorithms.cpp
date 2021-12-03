@@ -508,5 +508,3 @@ std::vector<QPoint3D>Algorithms:: generateRidge(std::vector<QPoint3D> &points)
 
 
 
-
-

@@ -16,6 +16,7 @@ private:
     std::vector<Edge> dt;
     std::vector<Edge> contours, main_contours, main_contours_label;
     std::vector<Triangle> triangles, triangles_exp;
+    std::vector<QPolygon> pol_hyps;
     bool grayscale, yelred, kmcol, esricol;
 
 public:
@@ -46,6 +47,8 @@ public:
     void setYelRed(bool &yelred_){yelred = yelred_;}
     void setKMCol(bool &kmcol_){kmcol = kmcol_;}
     void setEsriCol(bool &esricol_){esricol = esricol_;}
+    void setHypsometry(std::vector<QPolygon> &pol_hyps_){pol_hyps = pol_hyps_;}
+    std::vector<QPolygon> getHypsometry(){return pol_hyps;}
 
 signals:
 

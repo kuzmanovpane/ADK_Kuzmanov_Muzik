@@ -45,6 +45,8 @@ private slots:
 
     void on_pushButton_Generate_clicked();
 
+    void on_pushButton_drawHypsometry_clicked();
+
 private:
     Ui::Widget *ui;
 };

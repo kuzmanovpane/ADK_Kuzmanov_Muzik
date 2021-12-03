@@ -29,7 +29,6 @@ public:
     std::vector<QPoint3D> generateSaddle(std::vector<QPoint3D> &points);
     std::vector<QPoint3D> generateRidge(std::vector<QPoint3D> &points);
 
-
 };
 
 #endif // ALGORITHMS_H

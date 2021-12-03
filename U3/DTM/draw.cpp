@@ -3,6 +3,7 @@
 #include <fstream>
 #include <QtGui>
 #include "widget.h"
+#include "algorithms.h"
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -246,6 +247,28 @@ void Draw::paintEvent(QPaintEvent *event)
 
         //Draw triangle
         qp.drawPolygon(pol_exp);
+    }
+
+    //Draw hypsometry - not working
+    for (Edge h:main_contours)
+    {
+        QPoint3D p1 = h.getStart();
+        QPoint3D p2 = h.getEnd();
+
+        if (p1.getZ() > 0 && p1.getZ() < 600)
+        {
+        QColor color(255, 0, 0);
+        //Set pen and brush
+        qp.setBrush(color);
+        qp.setPen(color);
+        }
+
+        QPolygon pol_hyps;
+        pol_hyps.push_back(QPoint(p1.x(), p1.y()));
+        pol_hyps.push_back(QPoint(p2.x(), p2.y()));
+
+        //Draw polygon
+        qp.drawPolygon(pol_hyps);
     }
 
     //Draw contour lines

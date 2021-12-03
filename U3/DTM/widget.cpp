@@ -238,3 +238,20 @@ void Widget::on_pushButton_Generate_clicked()
     repaint();
 }
 
+
+void Widget::on_pushButton_drawHypsometry_clicked()
+{
+    //Draw hypsometry
+    std::vector<QPolygon> pol_hyps = ui->Canvas->getHypsometry();
+
+    ui->Canvas->setHypsometry(pol_hyps);
+
+    //Redraw slope
+    ui->Canvas->clearSlope();
+
+    //Redraw exposition
+    ui->Canvas->clearExposition();
+
+    repaint();
+}
+
