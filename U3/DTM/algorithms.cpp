@@ -1,5 +1,6 @@
 #include "algorithms.h"
 #include "sortbyx.h"
+#include "sortbyy.h"
 #include <list>
 #include <cmath>
 
@@ -408,6 +409,19 @@ double Algorithms:: distance(QPoint3D &p1, QPoint3D p2)
     return d;
 }
 
+double Algorithms::pointLineDistance(QPoint3D &q, QPoint3D &p1, QPoint3D &p2)
+{
+    //Calculate point and line distance
+    double numerator = q.x() * (p1.y() - p2.y()) + p1.x() * (p2.y() - q.y()) + p2.x() * (q.y() - p1.y());
+    double dx = p2.x() - p1.x();
+    double dy = p2.y() - p1.y();
+    double denumenator = sqrt(dx * dx + dy * dy);
+
+    double dist = fabs(numerator)/denumenator;
+    return dist;
+}
+
+
 std::vector<QPoint3D> Algorithms:: generateRandomPoints(int n, int height, int width)
 {
     std::vector<QPoint3D> points;
@@ -481,21 +495,99 @@ std::vector<QPoint3D> Algorithms:: generateSaddle(std::vector<QPoint3D> &points)
 
 std::vector<QPoint3D>Algorithms:: generateRidge(std::vector<QPoint3D> &points)
 {
-    /*int n = points.size();
-    double z;
+    int n = points.size();
+    double x_p = 0.0;
+    double y_p = 0.0;
+    QPoint3D p;
 
-    for (int i = 0; i < n; i+=1)
+    //Randomly generate 0 or 1;
+    int rn = rand() % 2;
+
+    if (rn == 0)
+        std::sort(points.begin(), points.end(), sortByX());
+    else
+        std::sort(points.begin(), points.end(), sortByY());
+
+
+    points[0].setZ(1000);
+    points.back().setZ(950);
+
+
+    //Find center of the random generated points
+    for(int i = 0; i < n; i++)
     {
-        double y = points[i].y() - points[n-1].y();
-        z = sqrt((points[n-1].y()+40)*(points[n-1].y()+40) - y*y) + points[i].x() + rand() % 10;
-
-        points[i].setZ(z);
+        x_p += points[i].x();
+        y_p += points[i].y();
     }
 
-    return points;*/
+    p.setX(x_p/n);
+    p.setY(y_p/n);
+    p.setZ(1000);
+
+    points.push_back(p);
+
+    //Set Z to the points
+    for(int i = 0; i < n; i++)
+    {
+        double d1 = distance (points[i], points[0]);
+        double d2 = distance (points[i], points[n-2]);
+
+        if (d1 < d2)
+            points[i].setZ(1000 - pointLineDistance(points[i], points[0], points.back()) + rand() % 10);
+        else
+            points[i].setZ(1000 - pointLineDistance(points[i], points[n-2], points.back()) + rand() % 10);
+    }
+
+    return points;
 }
 
+std::vector<QPoint3D> Algorithms:: generateValley(std::vector<QPoint3D> &points)
+{
+    int n = points.size();
+    double x_p = 0.0;
+    double y_p = 0.0;
+    QPoint3D p;
 
+    //Randomly generate 0 or 1;
+    int rn = rand() % 2;
+
+    if (rn == 0)
+        std::sort(points.begin(), points.end(), sortByX());
+    else
+        std::sort(points.begin(), points.end(), sortByY());
+
+
+    points[0].setZ(100);
+    points.back().setZ(150);
+
+
+    //Find center of the random generated points
+    for(int i = 0; i < n; i++)
+    {
+        x_p += points[i].x();
+        y_p += points[i].y();
+    }
+
+    p.setX(x_p/n);
+    p.setY(y_p/n);
+    p.setZ(120);
+
+    points.push_back(p);
+
+    //Set Z to the points
+    for(int i = 0; i < n; i++)
+    {
+        double d1 = distance (points[i], points[0]);
+        double d2 = distance (points[i], points[n-2]);
+
+        if (d1 < d2)
+            points[i].setZ(150 + pointLineDistance(points[i], points[0], points.back()) + rand() % 10);
+        else
+            points[i].setZ(150 + pointLineDistance(points[i], points[n-2], points.back()) + rand() % 10);
+    }
+
+    return points;
+}
 
 
 

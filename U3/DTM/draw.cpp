@@ -11,25 +11,56 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
     srand (time(NULL));
 }
 
-void Draw::loadPoints(std::string &path)
+void Draw::loadPoints(std::string &path, int height, int width)
 {
+    int id;
     double x, y, z;
+
+    //Random numbers
+    double x_max = 1.0e1;
+    double y_max = 1.0e1;
+    double x_min = 1.0e10;
+    double y_min = 1.0e10;
 
     //Load data from file
     std::ifstream coords(path);
 
     if(coords.is_open())
     {
-        while(coords >> x >> y >> z)
+        while(coords >> id >> x >> y >> z)
         {
+            //Set coordinates point by point
             QPoint3D point;
             point.setX(x);
             point.setY(y);
             point.setZ(z);
             points.push_back(point);
+
+            //Set min-max values
+            if(x > x_max)
+                x_max = x;
+            if(y > y_max)
+                y_max = y;
+            if(x < x_min)
+                x_min = x;
+            if(y < y_min)
+                y_min = y;
+
         }
         coords.close();
     }
+
+    //Transformation coefficient
+    double kx = width/(x_max - x_min);
+    double ky = height/(y_max - y_min);
+
+    //Scale points to the size of Canvas
+    for (int i = 0; i < points.size(); i++)
+    {
+        points[i].setX((points[i].x() - x_min)*kx);
+        points[i].setY((points[i].y() - y_min)*ky);
+    }
+
     repaint();
 }
 

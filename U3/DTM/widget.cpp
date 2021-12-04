@@ -186,9 +186,14 @@ void Widget::on_pushButton_Exposition_clicked()
 
 void Widget::on_pushButton_LoadPoints_clicked()
 {
+    //Size of the canvas
+    QSize size = ui->Canvas->size();
+    int height = size.height();
+    int width = size.width();
+
     QString path(QFileDialog::getOpenFileName(this, tr("Select file with points"), "../", tr("Text Files (*.txt)")));
     std::string path_ = path.toStdString();
-    ui->Canvas->loadPoints(path_);
+    ui->Canvas->loadPoints(path_, height, width);
 }
 
 
@@ -229,9 +234,8 @@ void Widget::on_pushButton_Generate_clicked()
         points = a.generateSaddle(points);
     else if (ui->comboBox->currentIndex() == 3)
         points = a.generateRidge(points);
-
-
-
+    else if (ui->comboBox->currentIndex() == 4)
+        points = a.generateValley(points);
 
 
     ui->Canvas->setPoints(points);

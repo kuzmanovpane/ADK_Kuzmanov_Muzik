@@ -4,6 +4,7 @@ debug/edge.o
 debug/main.o
 debug/qpoint3d.o
 debug/sortbyx.o
+debug/sortbyy.o
 debug/triangle.o
 debug/widget.o
 debug/moc_draw.o

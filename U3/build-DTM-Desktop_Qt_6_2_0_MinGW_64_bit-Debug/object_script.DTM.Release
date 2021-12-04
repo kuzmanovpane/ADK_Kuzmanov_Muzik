@@ -4,6 +4,7 @@ release/edge.o
 release/main.o
 release/qpoint3d.o
 release/sortbyx.o
+release/sortbyy.o
 release/triangle.o
 release/widget.o
 release/moc_draw.o
