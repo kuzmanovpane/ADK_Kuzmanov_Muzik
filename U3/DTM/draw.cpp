@@ -22,12 +22,13 @@ void Draw::loadPoints(std::string &path, int height, int width)
     double x_min = 1.0e10;
     double y_min = 1.0e10;
 
+
     //Load data from file
     std::ifstream coords(path);
 
     if(coords.is_open())
     {
-        while(coords >> id >> x >> y >> z)
+        while(coords >> id >> y >> x >> z)
         {
             //Set coordinates point by point
             QPoint3D point;
@@ -45,20 +46,23 @@ void Draw::loadPoints(std::string &path, int height, int width)
                 x_min = x;
             if(y < y_min)
                 y_min = y;
-
         }
         coords.close();
     }
 
     //Transformation coefficient
-    double kx = width/(x_max - x_min);
-    double ky = height/(y_max - y_min);
+    double kx = width/fabs(x_max - x_min);
+    double ky = height/fabs(y_max - y_min);
 
     //Scale points to the size of Canvas
     for (int i = 0; i < points.size(); i++)
     {
-        points[i].setX((points[i].x() - x_min)*kx);
-        points[i].setY((points[i].y() - y_min)*ky);
+        double px = points[i].x();
+        double py = points[i].y();
+
+        //Rewrite coords
+        points[i].setX(-kx*(py - y_max));
+        points[i].setY(ky*(px - x_min));
     }
 
     repaint();
