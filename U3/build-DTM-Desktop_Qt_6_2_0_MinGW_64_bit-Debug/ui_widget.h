@@ -35,7 +35,7 @@ public:
     QLineEdit *lineEdit_NumberOfPoints;
     QPushButton *pushButton_Generate;
     QSpacerItem *verticalSpacer_2;
-    QPushButton *pushButton;
+    QPushButton *pushButton_createDT;
     QSpacerItem *verticalSpacer_4;
     QLabel *label;
     QLineEdit *lineEdit;
@@ -43,18 +43,18 @@ public:
     QLineEdit *lineEdit_2;
     QLabel *label_3;
     QLineEdit *lineEdit_3;
-    QPushButton *pushButton_3;
+    QPushButton *pushButton_drawContours;
     QPushButton *pushButton_mcLabels;
+    QPushButton *pushButton_clearContours;
     QSpacerItem *verticalSpacer_5;
-    QPushButton *pushButton_drawHypsometry;
     QLabel *label_4;
     QComboBox *comboBox_slope;
-    QPushButton *pushButton_4;
+    QPushButton *pushButton_drawSlope;
     QLabel *label_5;
     QComboBox *comboBox_exp;
     QPushButton *pushButton_Exposition;
     QSpacerItem *verticalSpacer;
-    QPushButton *pushButton_2;
+    QPushButton *pushButton_clearPoints;
     QPushButton *pushButton_cleardt;
     QPushButton *pushButton_ClearAll;
 
@@ -110,10 +110,10 @@ public:
 
         verticalLayout->addItem(verticalSpacer_2);
 
-        pushButton = new QPushButton(Widget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton_createDT = new QPushButton(Widget);
+        pushButton_createDT->setObjectName(QString::fromUtf8("pushButton_createDT"));
 
-        verticalLayout->addWidget(pushButton);
+        verticalLayout->addWidget(pushButton_createDT);
 
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -149,24 +149,24 @@ public:
 
         verticalLayout->addWidget(lineEdit_3);
 
-        pushButton_3 = new QPushButton(Widget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_drawContours = new QPushButton(Widget);
+        pushButton_drawContours->setObjectName(QString::fromUtf8("pushButton_drawContours"));
 
-        verticalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(pushButton_drawContours);
 
         pushButton_mcLabels = new QPushButton(Widget);
         pushButton_mcLabels->setObjectName(QString::fromUtf8("pushButton_mcLabels"));
 
         verticalLayout->addWidget(pushButton_mcLabels);
 
+        pushButton_clearContours = new QPushButton(Widget);
+        pushButton_clearContours->setObjectName(QString::fromUtf8("pushButton_clearContours"));
+
+        verticalLayout->addWidget(pushButton_clearContours);
+
         verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_5);
-
-        pushButton_drawHypsometry = new QPushButton(Widget);
-        pushButton_drawHypsometry->setObjectName(QString::fromUtf8("pushButton_drawHypsometry"));
-
-        verticalLayout->addWidget(pushButton_drawHypsometry);
 
         label_4 = new QLabel(Widget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
@@ -180,10 +180,10 @@ public:
 
         verticalLayout->addWidget(comboBox_slope);
 
-        pushButton_4 = new QPushButton(Widget);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_drawSlope = new QPushButton(Widget);
+        pushButton_drawSlope->setObjectName(QString::fromUtf8("pushButton_drawSlope"));
 
-        verticalLayout->addWidget(pushButton_4);
+        verticalLayout->addWidget(pushButton_drawSlope);
 
         label_5 = new QLabel(Widget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
@@ -206,10 +206,10 @@ public:
 
         verticalLayout->addItem(verticalSpacer);
 
-        pushButton_2 = new QPushButton(Widget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_clearPoints = new QPushButton(Widget);
+        pushButton_clearPoints->setObjectName(QString::fromUtf8("pushButton_clearPoints"));
 
-        verticalLayout->addWidget(pushButton_2);
+        verticalLayout->addWidget(pushButton_clearPoints);
 
         pushButton_cleardt = new QPushButton(Widget);
         pushButton_cleardt->setObjectName(QString::fromUtf8("pushButton_cleardt"));
@@ -242,24 +242,24 @@ public:
 
         lineEdit_NumberOfPoints->setText(QCoreApplication::translate("Widget", "100", nullptr));
         pushButton_Generate->setText(QCoreApplication::translate("Widget", "Generate", nullptr));
-        pushButton->setText(QCoreApplication::translate("Widget", "Create DT", nullptr));
+        pushButton_createDT->setText(QCoreApplication::translate("Widget", "Create DT", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Z_min:", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "Z_max:", nullptr));
         label_3->setText(QCoreApplication::translate("Widget", "dZ:", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("Widget", "Draw Contours", nullptr));
+        pushButton_drawContours->setText(QCoreApplication::translate("Widget", "Draw Contours", nullptr));
         pushButton_mcLabels->setText(QCoreApplication::translate("Widget", "Draw Main Contour Labels", nullptr));
-        pushButton_drawHypsometry->setText(QCoreApplication::translate("Widget", "Draw Hypsometry", nullptr));
+        pushButton_clearContours->setText(QCoreApplication::translate("Widget", "Clear Contours", nullptr));
         label_4->setText(QCoreApplication::translate("Widget", "Select slope color palette:", nullptr));
         comboBox_slope->setItemText(0, QCoreApplication::translate("Widget", "Grayscale", nullptr));
         comboBox_slope->setItemText(1, QCoreApplication::translate("Widget", "Yellow to Red", nullptr));
 
-        pushButton_4->setText(QCoreApplication::translate("Widget", "Draw Slope", nullptr));
+        pushButton_drawSlope->setText(QCoreApplication::translate("Widget", "Draw Slope", nullptr));
         label_5->setText(QCoreApplication::translate("Widget", "Select Exposition color palette:", nullptr));
         comboBox_exp->setItemText(0, QCoreApplication::translate("Widget", "KM", nullptr));
         comboBox_exp->setItemText(1, QCoreApplication::translate("Widget", "Esri ", nullptr));
 
         pushButton_Exposition->setText(QCoreApplication::translate("Widget", "Draw Exposition", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Widget", "Clear Points", nullptr));
+        pushButton_clearPoints->setText(QCoreApplication::translate("Widget", "Clear Points", nullptr));
         pushButton_cleardt->setText(QCoreApplication::translate("Widget", "Clear DT", nullptr));
         pushButton_ClearAll->setText(QCoreApplication::translate("Widget", " Clear All", nullptr));
     } // retranslateUi

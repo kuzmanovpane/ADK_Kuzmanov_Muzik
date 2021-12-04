@@ -23,43 +23,44 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
     const uint offsetsAndSize[32];
-    char stringdata0[416];
+    char stringdata0[453];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Widget_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_Widget_t qt_meta_stringdata_Widget = {
     {
 QT_MOC_LITERAL(0, 6), // "Widget"
-QT_MOC_LITERAL(7, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(31, 0), // ""
-QT_MOC_LITERAL(32, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(54, 29), // "on_pushButton_cleardt_clicked"
-QT_MOC_LITERAL(84, 27), // "on_lineEdit_editingFinished"
-QT_MOC_LITERAL(112, 29), // "on_lineEdit_2_editingFinished"
-QT_MOC_LITERAL(142, 29), // "on_lineEdit_3_editingFinished"
-QT_MOC_LITERAL(172, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(196, 23), // "on_pushButton_4_clicked"
-QT_MOC_LITERAL(220, 30), // "on_pushButton_ClearAll_clicked"
-QT_MOC_LITERAL(251, 32), // "on_pushButton_Exposition_clicked"
-QT_MOC_LITERAL(284, 32), // "on_pushButton_LoadPoints_clicked"
-QT_MOC_LITERAL(317, 30), // "on_pushButton_mcLabels_clicked"
-QT_MOC_LITERAL(348, 30), // "on_pushButton_Generate_clicked"
-QT_MOC_LITERAL(379, 36) // "on_pushButton_drawHypsometry_..."
+QT_MOC_LITERAL(7, 33), // "on_pushButton_clearPoints_cli..."
+QT_MOC_LITERAL(41, 0), // ""
+QT_MOC_LITERAL(42, 29), // "on_pushButton_cleardt_clicked"
+QT_MOC_LITERAL(72, 27), // "on_lineEdit_editingFinished"
+QT_MOC_LITERAL(100, 29), // "on_lineEdit_2_editingFinished"
+QT_MOC_LITERAL(130, 29), // "on_lineEdit_3_editingFinished"
+QT_MOC_LITERAL(160, 34), // "on_pushButton_drawContours_cl..."
+QT_MOC_LITERAL(195, 31), // "on_pushButton_drawSlope_clicked"
+QT_MOC_LITERAL(227, 30), // "on_pushButton_ClearAll_clicked"
+QT_MOC_LITERAL(258, 32), // "on_pushButton_Exposition_clicked"
+QT_MOC_LITERAL(291, 32), // "on_pushButton_LoadPoints_clicked"
+QT_MOC_LITERAL(324, 30), // "on_pushButton_mcLabels_clicked"
+QT_MOC_LITERAL(355, 30), // "on_pushButton_Generate_clicked"
+QT_MOC_LITERAL(386, 35), // "on_pushButton_clearContours_c..."
+QT_MOC_LITERAL(422, 30) // "on_pushButton_createDT_clicked"
 
     },
-    "Widget\0on_pushButton_2_clicked\0\0"
-    "on_pushButton_clicked\0"
-    "on_pushButton_cleardt_clicked\0"
+    "Widget\0on_pushButton_clearPoints_clicked\0"
+    "\0on_pushButton_cleardt_clicked\0"
     "on_lineEdit_editingFinished\0"
     "on_lineEdit_2_editingFinished\0"
     "on_lineEdit_3_editingFinished\0"
-    "on_pushButton_3_clicked\0on_pushButton_4_clicked\0"
+    "on_pushButton_drawContours_clicked\0"
+    "on_pushButton_drawSlope_clicked\0"
     "on_pushButton_ClearAll_clicked\0"
     "on_pushButton_Exposition_clicked\0"
     "on_pushButton_LoadPoints_clicked\0"
     "on_pushButton_mcLabels_clicked\0"
     "on_pushButton_Generate_clicked\0"
-    "on_pushButton_drawHypsometry_clicked"
+    "on_pushButton_clearContours_clicked\0"
+    "on_pushButton_createDT_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -117,20 +118,20 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         auto *_t = static_cast<Widget *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_pushButton_2_clicked(); break;
-        case 1: _t->on_pushButton_clicked(); break;
-        case 2: _t->on_pushButton_cleardt_clicked(); break;
-        case 3: _t->on_lineEdit_editingFinished(); break;
-        case 4: _t->on_lineEdit_2_editingFinished(); break;
-        case 5: _t->on_lineEdit_3_editingFinished(); break;
-        case 6: _t->on_pushButton_3_clicked(); break;
-        case 7: _t->on_pushButton_4_clicked(); break;
-        case 8: _t->on_pushButton_ClearAll_clicked(); break;
-        case 9: _t->on_pushButton_Exposition_clicked(); break;
-        case 10: _t->on_pushButton_LoadPoints_clicked(); break;
-        case 11: _t->on_pushButton_mcLabels_clicked(); break;
-        case 12: _t->on_pushButton_Generate_clicked(); break;
-        case 13: _t->on_pushButton_drawHypsometry_clicked(); break;
+        case 0: _t->on_pushButton_clearPoints_clicked(); break;
+        case 1: _t->on_pushButton_cleardt_clicked(); break;
+        case 2: _t->on_lineEdit_editingFinished(); break;
+        case 3: _t->on_lineEdit_2_editingFinished(); break;
+        case 4: _t->on_lineEdit_3_editingFinished(); break;
+        case 5: _t->on_pushButton_drawContours_clicked(); break;
+        case 6: _t->on_pushButton_drawSlope_clicked(); break;
+        case 7: _t->on_pushButton_ClearAll_clicked(); break;
+        case 8: _t->on_pushButton_Exposition_clicked(); break;
+        case 9: _t->on_pushButton_LoadPoints_clicked(); break;
+        case 10: _t->on_pushButton_mcLabels_clicked(); break;
+        case 11: _t->on_pushButton_Generate_clicked(); break;
+        case 12: _t->on_pushButton_clearContours_clicked(); break;
+        case 13: _t->on_pushButton_createDT_clicked(); break;
         default: ;
         }
     }
