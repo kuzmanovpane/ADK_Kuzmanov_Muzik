@@ -19,9 +19,7 @@ public:
     ~Widget();
 
 private slots:
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_clicked();
+    void on_pushButton_clearPoints_clicked();
 
     void on_pushButton_cleardt_clicked();
 
@@ -31,9 +29,9 @@ private slots:
 
     void on_lineEdit_3_editingFinished();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_drawContours_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_pushButton_drawSlope_clicked();
 
     void on_pushButton_ClearAll_clicked();
 
@@ -45,7 +43,9 @@ private slots:
 
     void on_pushButton_Generate_clicked();
 
-    void on_pushButton_drawHypsometry_clicked();
+    void on_pushButton_clearContours_clicked();
+
+    void on_pushButton_createDT_clicked();
 
 private:
     Ui::Widget *ui;

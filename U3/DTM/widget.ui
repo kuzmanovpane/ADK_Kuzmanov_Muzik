@@ -103,7 +103,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_createDT">
        <property name="text">
         <string>Create DT</string>
        </property>
@@ -153,7 +153,7 @@
       <widget class="QLineEdit" name="lineEdit_3"/>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pushButton_drawContours">
        <property name="text">
         <string>Draw Contours</string>
        </property>
@@ -163,6 +163,13 @@
       <widget class="QPushButton" name="pushButton_mcLabels">
        <property name="text">
         <string>Draw Main Contour Labels</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_clearContours">
+       <property name="text">
+        <string>Clear Contours</string>
        </property>
       </widget>
      </item>
@@ -178,13 +185,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_drawHypsometry">
-       <property name="text">
-        <string>Draw Hypsometry</string>
-       </property>
-      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_4">
@@ -208,7 +208,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButton_drawSlope">
        <property name="text">
         <string>Draw Slope</string>
        </property>
@@ -256,7 +256,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton_clearPoints">
        <property name="text">
         <string>Clear Points</string>
        </property>
