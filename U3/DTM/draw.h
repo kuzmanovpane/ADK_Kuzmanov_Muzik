@@ -38,6 +38,7 @@ public:
     void setTrianglesExp(std::vector<Triangle> &triangles_exp_){triangles_exp = triangles_exp_;}
     void clearSlope(){triangles.clear();}
     void clearExposition(){triangles_exp.clear();}
+    void clearContours(){contours.clear(), main_contours.clear(), main_contours_label.clear();}
     void loadPoints(std::string &path, int height, int width);
     void setMainContours(std::vector<Edge> &main_contours_){main_contours = main_contours_;}
     std::vector<Edge> getMainContours(){return main_contours;}

@@ -3,6 +3,7 @@
 #include "algorithms.h"
 #include "edge.h"
 #include <QFileDialog>
+#include <QMessageBox>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -39,12 +40,24 @@ void Widget::on_pushButton_clicked()
 
     //Create DT
     Algorithms a;
+
+    if(points.size() > 0)
+    {
     std::vector<Edge> dt = a.dT(points);
 
     //Set DT
     ui->Canvas->setDT(dt);
 
     repaint();
+    }
+    else
+    {
+        QMessageBox mb;
+        mb.setText("Error: No points. Load points or draw it by clicking on the Canvas!");
+        mb.setStandardButtons(QMessageBox:: Cancel);
+        mb.setDefaultButton(QMessageBox:: Cancel);
+        int exec = mb.exec();
+    }
 
 }
 
@@ -52,6 +65,9 @@ void Widget::on_pushButton_cleardt_clicked()
 {
     //Clear DT
     ui->Canvas->clearDT();
+    ui->Canvas->clearSlope();
+    ui->Canvas->clearExposition();
+    ui->Canvas->clearContours();
     repaint();
 }
 
@@ -90,6 +106,14 @@ void Widget::on_pushButton_3_clicked()
         ui->Canvas->setMainContours(main_contours);
 
         repaint();
+    }
+    else
+    {
+        QMessageBox mb;
+        mb.setText("Error: No triangulation. Create it by clicking 'Create DT'!");
+        mb.setStandardButtons(QMessageBox:: Cancel);
+        mb.setDefaultButton(QMessageBox:: Cancel);
+        int exec = mb.exec();
     }
 
 }
@@ -132,6 +156,14 @@ void Widget::on_pushButton_4_clicked()
         ui->Canvas->clearExposition();
         ui->Canvas->setDT(dt);
         repaint();
+    }
+    else
+    {
+        QMessageBox mb;
+        mb.setText("Error: No triangulation. Create it by clicking 'Create DT'!");
+        mb.setStandardButtons(QMessageBox:: Cancel);
+        mb.setDefaultButton(QMessageBox:: Cancel);
+        int exec = mb.exec();
     }
 }
 
@@ -180,6 +212,15 @@ void Widget::on_pushButton_Exposition_clicked()
         ui->Canvas->clearSlope();
         repaint();
     }
+    else
+    {
+        QMessageBox mb;
+        mb.setText("Error: No triangulation. Create it by clicking 'Create DT'!");
+        mb.setStandardButtons(QMessageBox:: Cancel);
+        mb.setDefaultButton(QMessageBox:: Cancel);
+        int exec = mb.exec();
+
+    }
 }
 
 
@@ -211,6 +252,14 @@ void Widget::on_pushButton_mcLabels_clicked()
         ui->Canvas->setMainContoursLabel(main_contours_label);
 
         repaint();
+    }
+    else
+    {
+        QMessageBox mb;
+        mb.setText("Error: No contours. Create it by clicking 'Create contours'!");
+        mb.setStandardButtons(QMessageBox:: Cancel);
+        mb.setDefaultButton(QMessageBox:: Cancel);
+        int exec = mb.exec();
     }
 }
 
