@@ -21,7 +21,7 @@
 
 
 
-\hyphenation{po-ly-gon}
+\hyphenation{po-ly-gon desk-to-po-vá}
 
 \newcommand{\tg}{\mathop{\rm tg}\nolimits}
 \newcommand{\arctg}{\mathop{\rm arctg}\nolimits}
@@ -98,6 +98,7 @@ Praha 2021
 \clearpage
 \section{Údaje o bonusových úlohách}
 \subsection{Triangulace nekonvexní oblasti zadané polygonem (+5b)}
+Tato bonusová úloha nebyla řešena.
 
 \subsection{Výběr barevných stupnic při vizualizaci sklonu a expozice (+3b)}
 Byla implementována možnost výběru dvou barevných palet pro každou z vizualizací. Pro sklon terénu je možné zvolit jednu z variant "Grayscale"~--~odstíny šedé nebo "Yellow to Red"~--~žluto~--~červená paleta. Ve výběru pro expozici lze najít dvě možnosti: KM~--~zvolená námi (obr.~\ref{fig:expozice_barvy}) nebo barevnou paletu, kterou používá ArcGIS (obr.~\ref{fig:esri_expozice}). Detailnější popis je v kapitolách \ref{vyp_sklon} a \ref{vyp_exp}.
@@ -107,13 +108,16 @@ Byla implementována možnost výběru dvou barevných palet pro každou z vizua
 Byl implementován automatický popis hlavních vrstevnic. Hlavní vrstevnice je každá pátá vrstevnice, která je zároveň výrazněji vykreslená. Více informací je v~kapitole~\ref{popis_vrs}.
 
 \subsection{Automatický popis vrstevnic respektující kartografické zásady (+10b)}
+Tato bonusová úloha nebyla řešena.
 
 \subsection{Algoritmus pro automatické generováních terénních tvarů (+10b)}
+Bylo implementováno automatické tvoření následujících terénních tvarů: kupa, údolí, spočinek, hřbet. Zároveň je součástí aplikace možnost generování náhodných bodů. Popis řešení je v kapitole~\ref{gen_ter_tvar}.
 
 \subsection{3D vizualizace terénu s využitím promítání (+10b)}
+Tato bonusová úloha nebyla řešena.
 
 \subsection{Barevná hypsometrie (+5b)}
-
+Tato bonusová úloha nebyla vyřešena.
 
 
 \section{Popis a rozbor problému}
@@ -257,7 +261,89 @@ Ve třídě Draw je implementace následovná:
        }
 \end{verbatim}
 
+\subsection{Generování terénních tvarů}\label{gen_ter_tvar}
+Implementace algoritmů pro generování terénních tvarů a náhodných bodů, je popsána níže zvlášť pro jednotlivé případy. Uživatel může manuálně nastavit počet vygenerovaných bodů. Výsledné snímky obrazovky jsou v~kapitole~\ref{snimky}.
 
+\subsection{Náhodné body}
+S~využitím funkce $rand()$ jsou vygenerovány x~--~ové, y~--~ové a z~--~ové souřadnice podrobných bodů v~rámci Canvasu (plátna).
+
+\textbf{Implementace algoritmu:}
+\begin{enumerate}
+\item Určení souřadnic $(x_i,y_i,z_i)$ každého bodu $p_i$, přičemž $i \in (1,n)$, kde $n$ je manuálně zvolený počet bodů množiny $points$
+\item \quad Výpočet $x_i=rand()~\%~width$, kde $width$ je šířka plátna
+\item \quad Výpočet $y_i=rand()~\%~height$, kde $height$ je výška plátna
+\item \quad Výpočet $z_i=rand()~\%~1000$, přičemž 1000 je horní limit pro výpočet nadmořské výšky
+\item \quad $p_i(x_i,y_i,z_i) \rightarrow points$
+\item Opakuj pro každé $i<n$
+\end{enumerate}
+
+\subsection{Kupa}\label{kupa}
+S~užitím náhodných bodů z~předchozího výpočtu, kterým se přiřadí z~--~ové souřadnice dle vzdálenosti bodů od těžiště množiny bodů $points$, je vypočtena kupa. Body v~nejbližším okolí těžiště $t$ mají vyšší nadmořské výšky(z) a s~rostoucí vzdáleností od těžiště nadmořské výšky klesají.
+
+\textbf{Implementace algoritmu:}
+\begin{enumerate}
+\item Inicializace vstupní množiny náhodných bodů $points$ o~celkovém počtu~$n$
+\item Nalezení těžiště $t$ množiny podrobných bodů $points$:
+\item \quad $x_t= \dfrac{\Sigma x_i}{n}$ 
+\item \quad $y_t= \dfrac{\Sigma y_i}{n}$
+\item \quad $z_t= 1000$, kde 1000 je maximální hodnota pro generování výšky
+\item $t \rightarrow points$
+\item Výpočet výšky bodů v~závislosti na rostoucí vzdálenosti od těžiště. $\forall p_i \in points$:
+\item \quad $z_i=1000-d+rand()~\%~10$, kde $d$ je vzdálenost bodů $p_i$ a $t$
+\end{enumerate}
+
+\subsection{Spočinek}
+Podrobné body jsou určeny náhodně, přičemž nadmořská výška je určena postupem popsaným níže. Jedná se o~generování mírného svahu.
+
+\textbf{Implementace algoritmu:}
+\begin{enumerate}
+\item Pro množinu bodů $points$ platí: $\forall i<n$:
+\item \quad $x=x_{points~i}-x_{points~n-1}$
+\item \quad $y=y_{points~i}-y_{points~n-1}$
+\item \quad $z=\dfrac{x+y}{250}+500$
+\item \quad $points~i \leftarrow z$
+\item Opakování pro $i<n$
+\end{enumerate}
+
+\subsection{Hřbet}\label{hrbet}
+Výpočet podrobných bodů na hřebu vychází taktéž z~náhodných bodů. Nejprve je náhodně určen směr, kterým bude hřbet procházet (směr osy x nebo y). Na základě určení směru proběhne setřídění souřadnic bodů dle souřadnice x nebo y. Dále je určeno těžiště obdobně jako v~případě kupy (kapitola~\ref{kupa}) a výšky podrobných bodů jsou vypočteny v~závislosti na vzdálenosti těžiště s~přihlédnutím ke směru hřbetu.
+
+\textbf{Implementace algoritmu:}
+\begin{enumerate}
+\item Náhodné určení směru hřbetu $\rightarrow$ seřazení bodů dle určeného směru, tedy buď podle osy~x nebo dle osy~y
+\item Zadání nadmořských výšek počátečnímu a koncovému bodu (pořadí dle setřídění souřadnic z~předchozího kroku)
+\item Nalezení těžiště $t$:
+\item \quad $x_t= \dfrac{\Sigma x_i}{n}$ 
+\item \quad $y_t= \dfrac{\Sigma y_i}{n}$
+\item \quad $z_t= 1000$, kde 1000 je maximální hodnota pro generování výšky
+\item $t \rightarrow points$
+\item Určení výšek podobných bodů $p_i$: $\forall p_i \in points $:
+\item \quad Výpočet délek $d_1$(vzdálenost $p_i$ a počátečního bodu z~$points$) a $d_2$(vzdálenost $p_i$ a předposledního bodu z~$points$) 
+\item \quad Pokud $d_1<d_2$:
+\item \quad \quad Pak $z_i=1000-vzd(p_i,(points_{pocatecni},points_{posledni}))+rand()~\%~10$
+\item \quad \quad Jinak $z_i=1000-vzd(p_i,(points_{predposledni},points_{posledni}))+rand()~\%~10$
+\item Opakování pro $i<n$
+\end{enumerate}
+
+\subsection{Údolí}
+Výpočetní algoritmus pro údolí je v~podstatě totožný jako v případě hřbetu (kapitola~\ref{hrbet}), jen s~rozdílem ve výpočtu nadmořských výšek podrobných bodů. Zároveň není počítáno s~hodnotami menšími než 1000, nýbrž s~hodnotami menšími než 150 z~důvodu příklonu k~realističtějšímu znázornění situace.
+
+\textbf{Implementace algoritmu:}
+\begin{enumerate}
+\item Náhodné určení směru hřbetu $\rightarrow$ seřazení bodů dle určeného směru, tedy buď podle osy~x nebo dle osy~y
+\item Zadání nadmořských výšek počátečnímu a koncovému bodu (pořadí dle setřídění souřadnic z~předchozího kroku)
+\item Nalezení těžiště $t$:
+\item \quad $x_t= \dfrac{\Sigma x_i}{n}$ 
+\item \quad $y_t= \dfrac{\Sigma y_i}{n}$
+\item \quad $z_t= 1000$, kde 1000 je maximální hodnota pro generování výšky
+\item $t \rightarrow points$
+\item Určení výšek podobných bodů $p_i$: $\forall p_i \in points $:
+\item \quad Výpočet délek $d_1$(vzdálenost $p_i$ a počátečního bodu z~$points$) a $d_2$(vzdálenost $p_i$ a předposledního bodu z~$points$) 
+\item \quad Pokud $d_1<d_2$:
+\item \quad \quad Pak $z_i=150+vzd(p_i,(points_{pocatecni},points_{posledni}))+rand()~\%~10$
+\item \quad \quad Jinak $z_i=150+vzd(p_i,(points_{predposledni},points_{posledni}))+rand()~\%~10$
+\item Opakování pro $i<n$
+\end{enumerate}
 
 \section{Problematické situace a jejich rozbor} \label{problemrozbor}
 % (tj. simplexy) + ošetření těchto situací v kódu
@@ -283,10 +369,47 @@ void Draw::paintEvent(QPaintEvent *event)
 }
 \end{verbatim}
 
+\subsection{Správné natočení dat vůči světovým stranám}
+Aplikace umí číst vstupní data v EPSG 5514 (S-JTSK / Krovak East North), s čímž se pojí nutnost přetransformovat souřadnice do místního systému plátna spolu se záměnou souřadnic, jejich natočením a určením měřítka pro rovnoměrné vykreslení dle velikosti plátna. Transformace souřadnice je v~kódu sepsána ve třídě Draw takto: 
+
+\begin{verbatim}
+void Draw::loadPoints(std::string &path, int height, int width)
+{
+...
+    //Load data from file
+    std::ifstream coords(path);
+
+    if(coords.is_open())
+    {
+        while(coords >> id >> y >> x >> z)
+        {
+        ...
+        }
+        coords.close();
+    }
+
+    //Transformation coefficient
+    double kx = width/fabs(x_max - x_min);
+    double ky = height/fabs(y_max - y_min);
+
+    //Scale points to the size of Canvas
+    for (int i = 0; i < points.size(); i++)
+    {
+        double px = points[i].x();
+        double py = points[i].y();
+
+        //Rewrite coords
+        points[i].setX(-kx*(py - y_max));
+        points[i].setY(ky*(px - x_min));
+    }
+...
+}
+\end{verbatim}
+
 
 \section{Vstupní data}
 % formát vstupních dat, popis
-Vstupem je textový soubor s~prostorovými souřadnicemi X,Y,Z geodetických bodů. Tyto body jsou považovány za vstupní množinu~P. Body byly získány exportem z~Digitálního modelu reliéfu 4.~generace \cite{ZABAGED} v prosředí ArcGIS~Pro \cite{arcgispro} (viz. obr. \ref{fig:arcgis_body}). 
+Vstupem je textový soubor s~prostorovými souřadnicemi X,Y,Z geodetických bodů. Tyto body jsou považovány za vstupní množinu~P. Body byly získány exportem z~Digitálního modelu reliéfu 4.~generace \cite{ZABAGED} v prosředí ArcGIS~Pro \cite{arcgispro} (viz. obr. \ref{fig:arcgis_body}). Body byly následně profiltrovány z~důvodu jednoduššího a rychlejšího výpočtu aplikace.
 
 \begin{figure}[!htb]
 	\centering
@@ -311,7 +434,172 @@ Formát vstupních dat je následující (ID, X, Y, Z):
 Za~výstup je považována grafický výstup vytvořené aplikace. Grafickým výstupem je polyedrický DMT nad množinou~P představovaný vrstevnicemi doplněný vizualizací sklonu trojúhelníků, jejich expozicí a vrstevnicemi s~popisem. 
 
 
-\section{Snímky obrazovky vytvořené aplikace a její popis}
+\section{Snímky obrazovky vytvořené aplikace a její popis}\label{snimky}
+\subsection{Popis ovládání grafického prostředí aplikace}
+Grafické prostředí aplikace se skládá z~plátna, ve kterém se vykreslují grafické operace a z~nabídky funkcí aplikace v~pravé části okna. Zde se nacházejí tlačítka, rozevírací nabídky a pole pro zadání čísel. Při nesprávném použití aplikace se objeví chybová hláška s~patřičným problémem.
+
+\textbf{Popis nabídky funkcí aplikace:} (čísla korespondují s~obr. \ref{fig:zapnuti})
+\begin{enumerate}
+\item Load Points načte textový soubor s podrobnými body
+\item Rozevírací nabídka pro výběr generovaného terénního tvaru
+\item Zadání počtu vygenerovaných bodů
+\item Spuštění generování bodů
+\item Vytvoření Delaunay triangulace
+\item Nastavení minimální hodnoty vrstevnic
+\item Nastavení maximální hodnoty vrstevnic
+\item Nastavení kroku mezi vrstevnicemi
+\item Spuštění kresby vrstevnic
+\item Spuštění kresby popisku hlavních vrstevnic
+\item Vymazání vykreslených vrstevnic
+\item Výběr barevné palety pro vybarvení sklonu terénu
+\item Vykreslení sklonu terénu
+\item Výběr barevné palety pro vybarvení expozice částí terénu
+\item Vykreslení expozice
+\item Vymazání načtených bodů
+\item Vymazání triangulace
+\item Vymazání celého okna
+\end{enumerate}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/zapnuti.png} 
+	\caption{Aplikace po spuštění.
+	}
+	\label{fig:zapnuti}
+\end{figure} 
+\FloatBarrier
+
+\subsection{Vykreslení sklonu a expozice}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/sklon_gs.png} 
+	\caption{Sklon terénu v barevné paletě stupňů šedi.
+	}
+	\label{fig:sklon_gs}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/sklon_yr.png} 
+	\caption{Sklon terénu ve žluto~--~červené barevné paletě.
+	}
+	\label{fig:sklon_yr}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/exp_km.png} 
+	\caption{Expozice v KM barevné paletě.
+	}
+	\label{fig:exp_km}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/exp_arcgis.png} 
+	\caption{Expozice ve standardní barevné paletě, kterou používá např. ArcGIS.
+	}
+	\label{fig:exp_arcgis}
+\end{figure} 
+\FloatBarrier
+
+\subsection{Vykreslení vrstevnic}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/vrst_bezpop.png} 
+	\caption{Vykreslení vrstevnic bez popisu.
+	}
+	\label{fig:vrst_bezpop}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/vrst_pop.png} 
+	\caption{Vykreslení vrstevnic s popisem.
+	}
+	\label{fig:vrst_pop}
+\end{figure} 
+\FloatBarrier
+
+
+\subsection{Generování terénních tvarů}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/rand_dt.png} 
+	\caption{Delaunay triangulace nad náhodně generovanými body.
+	}
+	\label{fig:rand_dt}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/kupa.png} 
+	\caption{Vykreslení kupy.
+	}
+	\label{fig:kupa}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/spocinek.png} 
+	\caption{Vykreslení spočinku.
+	}
+	\label{fig:spocinek}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/hrbet.png} 
+	\caption{Vykreslení hřbetu.
+	}
+	\label{fig:hrbet}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.45]{obrazky/udoli.png} 
+	\caption{Vykreslení údolí.
+	}
+	\label{fig:udoli}
+\end{figure} 
+\FloatBarrier
+
+\subsection{Chybové hlášky}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.7]{obrazky/no_points.png} 
+	\caption{Chyb. hl. pro nutnost načtení bodů.
+	}
+	\label{fig:no_points}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.7]{obrazky/no_dt.png} 
+	\caption{Chyb. hl. pro nutnost vytvoření triangulace.
+	}
+	\label{fig:no_dt}
+\end{figure} 
+\FloatBarrier
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.7]{obrazky/no_contours.png} 
+	\caption{Chyb. hl. pro nutnost vytvoření vrstevnic.
+	}
+	\label{fig:no_contours}
+\end{figure} 
+\FloatBarrier
 
 
 
@@ -323,226 +611,464 @@ Tato třída obsahuje výpočetní vzorce pro použité algoritmy.
 \textbf{Třída algorithms obsahuje následující veřejné metody:}
 
 \begin{verbatim}
-double get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4)
-\end{verbatim}
-Metoda vypočte velikost úhlu, který svírají dvě přímky. První přímku tvoří body $p_1, p_2$ a druhou přímku body $p_3, p_4$.\\
-
-\begin{verbatim}
 int getPointLinePosition(QPoint &a,QPoint &p1,QPoint &p2)
 \end{verbatim}
 Metoda určuje, zda~--~li bod leží v~levé či v~pravé polorovině od přímky (hrany polygonu). Vstupními parametry jsou určovaný bod~$a$ a body $p_1, p_2$, které tvoří přímku.\\
 
 \begin{verbatim}
-double getPointLineDistance(QPoint &a, QPoint &p1, QPoint &p2)
+std::tuple<QPoint3D,double> getCircleCenterAndRadius(
+    QPoint3D &p1,QPoint3D &p2,QPoint3D &p3)
 \end{verbatim}
-Metoda určuje vzdálenost bodu~$a$ od přímky tvořenou body $p_1, p_2$.\\
+Vytvoření opsané kružnice nad třemi body.\\
 
 \begin{verbatim}
-QPolygon cHullJarvisScan(std::vector <QPoint> &points)
+int getDelaunayPoint(QPoint3D &s,QPoint3D &e,std::vector<QPoint3D> &points)
 \end{verbatim}
-Výpočet konvexní obálky načtených bodů na základě algoritmu Jarvis Scan (kapitola \ref{js}).\\
+Určení Delaunay bodu pro triangulaci.\\
 
 \begin{verbatim}
-std::vector<QPoint> rotate(std::vector<QPoint> &points, double sigma)
+int getNearestPoint(QPoint3D &p, std::vector<QPoint3D> &points)
 \end{verbatim}
-Otočení načtených bodů o~zadaný úhel $sigma$.\\
+Nalezení nejbližšího bodu.\\
 
 \begin{verbatim}
-std::tuple<std::vector<QPoint>, double> minMaxBox(std::vector<QPoint> &points)
+std::vector<Edge> dT(std::vector<QPoint3D> &points)
 \end{verbatim}
-Proměnná vracející min~--~max box, tedy vrcholy obdélníka a jeho výměru. Vstupem jsou načtené body.\\
 
 \begin{verbatim}
-QPolygon minAreaEnclosingRectangle(std::vector<QPoint> &points)
+void updateAEL(Edge &e, std::list<Edge> &ael)
 \end{verbatim}
-Určení hlavního směru polygonu s využitím algoritmu Minimum Area Eclosing Rectangle (kapitola \ref{maer}). Na vstupu jsou body polygonu. Výstupem je generalizovaný a pootočený polygon.\\
+Aktualizace seznamu AEL pro Delaunay triangulaci.\\
 
 \begin{verbatim}
-QPolygon wallAverage(std::vector<QPoint> &points)
+QPoint3D getContourPoint(QPoint3D &p1, QPoint3D &p2, double z)
 \end{verbatim}
-Určení hlavního směru polygonu s využitím algoritmu Wall Average (kapitola \ref{wa}). Na vstupu jsou body polygonu. Výstupem je generalizovaný a pootočený polygon.\\
+Nalezení průsečíku trojúhelníku a horizontální vrstevnice.\\
 
 \begin{verbatim}
-double LH(std::vector<QPoint> &points)
+std::vector<Edge> getContourLines(
+    std::vector<Edge> &dt, double zmin, double zmax, double dz)
 \end{verbatim}
-Výpočet plochy obecného mnohoúhelníků pomocí LH vzorce.\\ 
+Výpočet vrstevnic na základě zadaných hran triangulace, minimální a maximální hodnoty vrstevnic a rozestupu mezi vrstevnicemi.\\
 
 \begin{verbatim}
-std::vector<QPoint> resizeRectangle(std::vector<QPoint> &points, std::vector<QPoint> &er)
+double getSlope(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3)
 \end{verbatim}
-Přepočet velikosti ohraničujícího obdélníku na základě výměry původního polygonu.\\
+Výpočet sklonu trojúhelníka tvořeného vstupními body.\\
 
 \begin{verbatim}
-QPolygon longestEdge(std::vector<QPoint> &points)
+double getExposition(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3)
 \end{verbatim}
-Určení hlavního směru polygonu s využitím algoritmu Longest Edge (kapitola \ref{le}). Na vstupu jsou body polygonu. Výstupem je generalizovaný a pootočený polygon.\\
+Výpočet expozice trojúhelníka tvořeného vstupními body.\\
 
 \begin{verbatim}
-QPolygon weightedBisector(std::vector<QPoint> &points)
+std::vector<Triangle> analyzeDTM(std::vector<Edge> &dt)
 \end{verbatim}
-Určení hlavního směru polygonu s využitím algoritmu Weighted Bisector (kapitola \ref{wb}). Na vstupu jsou body polygonu. Výstupem je generalizovaný a pootočený polygon.\\
+Výpočet sklonu a expozice pro každý trojúhelník v~triangluaci.\\
 
 \begin{verbatim}
-QPolygon cHullQuickHull(std::vector <QPoint> &points)
+double distance(QPoint3D &p1, QPoint3D p2)
 \end{verbatim}
-Výpočet konvexní obálky načtených bodů na základě algoritmu Quick Hull (kapitola \ref{qh}).\\
+Výpočet vzdálenosti mezi dvěma body.\\
 
 \begin{verbatim}
-void quickHullLocal(int ps, int pe, std::vector<QPoint> &points, QPolygon &ch)
+double pointLineDistance(QPoint3D &q, QPoint3D &p1, QPoint3D &p2)
 \end{verbatim}
-Metoda pro pomocný výpočet rekurentního určení konvexní obálky bodů algoritmem Quick Hull, lokální procedura (kapitola \ref{qh}). Vstupními parametry jsou indexy počátečního a koncového bodu $ps$ a $pe$ vstupní hrany, načtené body a konvexní obálka.\\
+Výpočet vzdálenosti bodu od přímky.\\
+
+\begin{verbatim}
+std::vector<QPoint3D> generateRandomPoints(int n, int height, int width)
+\end{verbatim}
+Generování náhodných bodů na základě jejich počtu a rozměrů plátna.\\
+
+\begin{verbatim}
+std::vector<QPoint3D> generatePile(std::vector<QPoint3D> &points)
+\end{verbatim}
+Generování kupy s využitím náhodných bodů.\\
+
+\begin{verbatim}
+std::vector<QPoint3D> generateSaddle(std::vector<QPoint3D> &points)
+\end{verbatim}
+Generování spočinku s využitím náhodných bodů.\\
+
+\begin{verbatim}
+std::vector<QPoint3D> generateValley(std::vector<QPoint3D> &points)
+\end{verbatim}
+Generování údolí s využitím náhodných bodů.\\
+
+\begin{verbatim}
+std::vector<QPoint3D> generateRidge(std::vector<QPoint3D> &points)
+\end{verbatim}
+Generování hřbetu s využitím náhodných bodů.\\
 
     
     
 \subsection{Třída Draw}
-Tato třída umožňuje vykreslování bodu a polygonů.
+Tato třída umožňuje vykreslování bodů, trojúhelníků a vrstevnic.
 
-\textbf{Třída draw obsahuje následující privátní metody a proměnné:}
+\textbf{Třída draw obsahuje následující privátní proměnné:}
 \begin{verbatim}
 std::vector<QPoint> points
 \end{verbatim}
 Proměnná se souřadnicemi načtených bodů.\\
 
 \begin{verbatim}
-QPolygon ch, er;
+std::vector<Edge> dt
 \end{verbatim}
-Polygony pro ukládání konvexní obálky a ohraničujícího obdélníku.\\
+Proměnná pro ukládání hran tvořených dvěma body.\\
 
 \begin{verbatim}
-std::vector<QPolygon> polygons, chs, ers
+std::vector<Edge> contours, main_contours, main_contours_label
 \end{verbatim}
-Proměnná uchovávající pomocné polygony v~průběhu výpočtu a pro vykreslení.\\
-
-
-\textbf{Třída draw obsahuje následující veřejné metody a proměnné:}
-\begin{verbatim}
-explicit Draw(QWidget *parent = nullptr)
-\end{verbatim}
-Prvotní vykreslení bodu mimo okno aplikace.\\
+Proměnná pro výpočet vrstevnic a jejich popisů.\\
 
 \begin{verbatim}
-void paintEvent(QPaintEvent *event)
+std::vector<Triangle> triangles, triangles_exp
 \end{verbatim}
-Metoda, která vykresluje bod či polygony.\\
+Proměnná pro ukládání trojúhelníků tvořených třemi body.\\
 
 \begin{verbatim}
-void mousePressEvent(QMouseEvent *event)
+bool grayscale, yelred, kmcol, esricol
 \end{verbatim}
-Metoda určující souřadnice určeného bodu.\\
+Proměnná pro výběr barevných palet.\\
+
+\textbf{Třída draw obsahuje následující veřejné metody:}
+\begin{verbatim}
+void clear();
+\end{verbatim}
+Vymazání daného objektu.\\
 
 \begin{verbatim}
-void clearAddedData()
+void setPoints(std::vector<QPoint3D> &points_){points = points_;}
 \end{verbatim}
-Metoda mazající přidaná data z~obrazovky.\\
+Nastavení podrobných bodů.\\
 
 \begin{verbatim}
-void clearDrawing()
+std::vector<QPoint3D> getPoints(){return points;}
 \end{verbatim}
-Metoda mazající nakreslený polygon z~obrazovky.\\
+Předání podrobných bodů.\\
 
 \begin{verbatim}
-std::vector<QPoint> getPoints() {return points;}
+void setDT(std::vector<Edge> &dt_){dt = dt_;}
 \end{verbatim}
-Vrací souřadnice lomových bodů polygonu.\\
+Nastavení hran Delaunay triangulace.\\
 
 \begin{verbatim}
-std::vector<QPolygon> getPolygons(){return polygons;}
+std::vector<Edge> getDT(){return dt;}
 \end{verbatim}
-Vrací souřadnice polygonů.\\
+Předání hran Delaunay triangulace.\\
 
 \begin{verbatim}
-void setCh(QPolygon &ch_) {chs.push_back(ch_);}
+void setContours(std::vector<Edge> &contours_){contours = contours_;}
 \end{verbatim}
-Nastavení polygonu konvexní obálky.\\
+Nastavení vrstevnic.\\
 
 \begin{verbatim}
-void setEr(QPolygon &er_) {ers.push_back(er_);}
+std::vector<Edge> getContours(){return contours;}
 \end{verbatim}
-Nastavení polygonu ohraničujícího obdélníku.\\
+Předání vrstevnic.\\
 
 \begin{verbatim}
-void clearChs(){chs.clear();}
+std::vector<Triangle> getTriangles(){return triangles;}
 \end{verbatim}
-Smazání polygonu konvexní obálky.\\
+Předání trojúhelníků.\\
 
 \begin{verbatim}
-void clearErs(){ers.clear();}
+void setTriangles(std::vector<Triangle> &triangles_){triangles = triangles_;}
 \end{verbatim}
-Smazání polygonu ohraničujícího obdélníku.\\
+Nastavení trojúhelníků.\\
 
 \begin{verbatim}
-void drawPolygons(std::vector<QPolygon> &data);
+void clearDT();
 \end{verbatim}
-Vykreslení polygonů načtených z~textového souboru.\\
+Vymazání Delaunay triangulace z plátna.\\
 
-\subsection{Třída Load}
-\textbf{Třída draw obsahuje následující veřejnou proměnnou:}
 \begin{verbatim}
-static std::vector<QPolygon> load_file(std::string &filename)
+void clearAll();
 \end{verbatim}
-Umožňuje načítání polygonů z textového souboru.\\
+Vymazání celého plátna.\\
+
+\begin{verbatim}
+std::vector<Triangle> getTrianglesExp(){return triangles_exp;}
+\end{verbatim}
+Předání trojúhelníků s expozicí.\\
+
+\begin{verbatim}
+void setTrianglesExp(std::vector<Triangle> &triangles_exp_)
+    {triangles_exp = triangles_exp_;}
+\end{verbatim}
+Natavení trojúhelníků s expozicí.\\
+
+\begin{verbatim}
+void clearSlope(){triangles.clear();}
+\end{verbatim}
+Vymazání sklonu terénu z plátna.\\
+
+\begin{verbatim}
+void clearExposition(){triangles_exp.clear();}
+\end{verbatim}
+Vymazání expozice z plátna.\\
+
+\begin{verbatim}
+void clearContours(){
+    contours.clear(), main_contours.clear(), main_contours_label.clear();}
+\end{verbatim}
+Vymazání vrstevnic z plátna.\\
+
+\begin{verbatim}
+void loadPoints(std::string &path, int height, int width)
+\end{verbatim}
+Načtení bodů z textového souboru.\\
+
+\begin{verbatim}
+void setMainContours(std::vector<Edge> &main_contours_)
+    {main_contours = main_contours_;}
+\end{verbatim}
+Nastavení hlavních vrstevnic.\\
+
+\begin{verbatim}
+std::vector<Edge> getMainContours(){return main_contours;}
+\end{verbatim}
+Předání hlavních vrstevnic.\\
+
+\begin{verbatim}
+void setMainContoursLabel(std::vector<Edge> &main_contours_label_
+    {main_contours_label = main_contours_label_;}
+\end{verbatim}
+Nastavení popisu hlavních vrstevnic.\\
+
+\begin{verbatim}
+std::vector<Edge> getMainContoursLabel(){return main_contours_label;}
+\end{verbatim}
+Předání popisu hlavních vrstevnic.\\
+
+\begin{verbatim}
+void setGrayscale(bool &grayscale_){grayscale = grayscale_;}
+\end{verbatim}
+Natavení šedobílé barevné palety.\\
+
+\begin{verbatim}
+void setYelRed(bool &yelred_){yelred = yelred_;}
+\end{verbatim}
+Nastavení žlutočervené barevné palety.\\
+
+\begin{verbatim}
+void setKMCol(bool &kmcol_){kmcol = kmcol_;}
+\end{verbatim}
+Nastavení první možnosti pro vykreslení expozice.\\
+
+\begin{verbatim}
+void setEsriCol(bool &esricol_){esricol = esricol_;}
+\end{verbatim}
+Nastavení druhé možnosti pro vykreslení expozice.\\
+
+\subsection{Edge}
+Třída uchovávající informace o hranách tvořených dvěma body.\\
+\textbf{Třída draw obsahuje následující veřejné metody:}
+\begin{verbatim}
+void changeOrientation(){QPoint3D temp=s; s=e; e=temp;}
+\end{verbatim}
+Změna orientace hrany.\\
+
+\begin{verbatim}
+QPoint3D getStart() const {return s;}
+\end{verbatim}
+Vrácení počátečního bodu hrany.\\
+
+\begin{verbatim}
+QPoint3D getEnd() const {return e;}
+\end{verbatim}
+Vrácení koncového bodu hrany.\\
+
+\subsection{QPoint3D}
+\textbf{Třída draw obsahuje následující privátní proměnnou:}
+\begin{verbatim}
+double z
+\end{verbatim}
+Nadmořská výška bodu.\\
+
+\textbf{Třída draw obsahuje následující veřejné metody:}
+\begin{verbatim}
+void setZ(double z_){z = z_;}
+\end{verbatim}
+Nastavení nadmořské výšky bodu.\\
+
+\begin{verbatim}
+double getZ(){return z;}
+\end{verbatim}
+Předání nadmořské výšky bodu.\\
 
 \subsection{Třída SortByX}
 \textbf{Třída draw obsahuje následující veřejnou proměnnou:}
 \begin{verbatim}
 bool operator() (QPoint &p1, QPoint &p2)
 \end{verbatim}
-Ražení bodů dle jejich x~--~ové souřadnice.\\
+Řazení bodů dle jejich x~--~ové souřadnice.\\
 
 \subsection{Třída SortByY}
 \textbf{Třída draw obsahuje následující veřejnou proměnnou:}
 \begin{verbatim}
 bool operator() (QPoint &p1, QPoint &p2)
 \end{verbatim}
-Ražení bodů dle jejich y~--~ové souřadnice.\\
+Řazení bodů dle jejich y~--~ové souřadnice.\\
+
+\subsection{Triangle}
+Třída tvořící trojúhelník.\\
+\textbf{Třída draw obsahuje následující privátní proměnné:}
+\begin{verbatim}
+QPoint3D p1, p2, p3
+\end{verbatim}
+Vrcholy trojúhelníka.\\
+
+\begin{verbatim}
+double slope, exposition
+\end{verbatim}
+Sklon a expozice trojúhelníka.\\
+
+\textbf{Třída draw obsahuje následující veřejné metody:}
+\begin{verbatim}
+QPoint3D getP1(){return p1;}
+\end{verbatim}
+Vrácení souřadnic vrcholu 1.\\
+
+\begin{verbatim}
+QPoint3D getP2(){return p2;}
+\end{verbatim}
+Vrácení souřadnic vrcholu 2.\\
+
+\begin{verbatim}
+QPoint3D getP3(){return p3;}
+\end{verbatim}
+Vrácení souřadnic vrcholu 3.\\
+
+\begin{verbatim}
+double getSlope(){return slope;}
+\end{verbatim}
+Předání sklonu trojúhelníka.\\
+
+\begin{verbatim}
+double getExposition(){return exposition;}
+\end{verbatim}
+Předání expozice trojúhelníka.\\
+
+\begin{verbatim}
+void setP1(QPoint3D &p1_){p1 = p1_;}
+\end{verbatim}
+Nastavení vrcholu 1.\\
+
+\begin{verbatim}
+void setP2(QPoint3D &p2_){p2 = p2_;}
+\end{verbatim}
+Nastavení vrcholu 2.\\
+
+\begin{verbatim}
+void setP3(QPoint3D &p3_){p3 = p3_;}
+\end{verbatim}
+Nastavení vrcholu 3.\\
+
+\begin{verbatim}
+void setSlope(double &slope_){slope = slope_;}
+\end{verbatim}
+Natavení sklonu trojúhelníka.\\
+
+\begin{verbatim}
+void setExposition(double &exposition_){exposition = exposition_;}
+\end{verbatim}
+Nastavení expozice trojúhelníka.\\
+
 
 \subsection{Třída Widget}
 Tato třída propojuje uživatelské rozhraní aplikace s kódem. Je vytvořena v sekci \emph{Design}.
 
-\textbf{Třída widget obsahuje následující privátní metody a proměnné:}
+\textbf{Třída widget obsahuje následující privátní metody:}
 \begin{verbatim}
-void on_pushButtonClear_clicked()
+void on_pushButton_clearPoints_clicked()
 \end{verbatim}
-Vymazání kresby. Propojení s~tlačítkem \emph{Clear drawing}.\\
-
-\begin{verbatim}
-void on_pushButtonLoad_clicked()
-\end{verbatim}
-Načtení lomových bodů polygonů z~textového souboru. Propojení s~tlačítkem \emph{Load file with polygon}.\\
+Vymazání podrobných bodů z plátna.\\
 
 \begin{verbatim}
-void on_pushButton_clicked()
+void on_pushButton_cleardt_clicked()
 \end{verbatim}
-Spuštění funkce Building Simplify s~vybraným algoritmem. Propojení s~tlačítkem \emph{Building Simplify}.\\
+Vymazání triangulace z plátna.\\
 
 \begin{verbatim}
-void on_pushButtonClearData_clicked()
+void on_lineEdit_editingFinished()
 \end{verbatim}
-Vymazání přidaných dat. Propojení s~tlačítkem \emph{Clear added data}.\\
+Manuální zápis minimální hodnoty pro vrstevnice.\\
 
 \begin{verbatim}
-void processPoints(std::vector<QPoint> &points)
+void on_lineEdit_2_editingFinished()
 \end{verbatim}
-Volba použitého algoritmu na základě výběru z~combo boxů.\\
+Manuální zápis maximální hodnoty pro vrstevnice.\\
 
+\begin{verbatim}
+void on_lineEdit_3_editingFinished()
+\end{verbatim}
+Manuální zápis rozestupu mezi vrstevnicemi.\\
 
+\begin{verbatim}
+void on_pushButton_drawContours_clicked()
+\end{verbatim}
+Vykreslení vrstevnic.\\
+
+\begin{verbatim}
+void on_pushButton_drawSlope_clicked()
+\end{verbatim}
+Vykreslení sklonu terénu.\\
+
+\begin{verbatim}
+void on_pushButton_ClearAll_clicked()
+\end{verbatim}
+Vymazání celého plátna.\\
+
+\begin{verbatim}
+void on_pushButton_Exposition_clicked()
+\end{verbatim}
+Vykreslení expozice terénu.\\
+
+\begin{verbatim}
+void on_pushButton_LoadPoints_clicked()
+\end{verbatim}
+Načtení textového souboru se vstupními body.\\
+
+\begin{verbatim}
+void on_pushButton_mcLabels_clicked()
+\end{verbatim}
+Vykreslení popisů vrstevnic.\\
+
+\begin{verbatim}
+void on_pushButton_Generate_clicked()
+\end{verbatim}
+Generování náhodných bodů či terénních útvarů.\\
+
+\begin{verbatim}
+void on_pushButton_clearContours_clicked()
+\end{verbatim}
+Vymazání vrstevnic z plátna.\\
+
+\begin{verbatim}
+void on_pushButton_createDT_clicked()
+\end{verbatim}
+Vykreslení Delaunay triangulace.\\
 
 \section{Závěr}
+Byla vytvořena desktopová aplikace s~interaktivním grafickým prostředí, která uživateli umožňuje vypočítat a vykreslit digitální model terénu nad zadanými či náhodně generovanými bodovými daty. Je na výběr z~následujících náhodně generovaných terénních tvarů: kupa, údolí, spočinek, hřbet nebo znázornění bodů čistě náhodných. 
 
-
-
-
-
+V aplikaci je možné vykreslit sklon terénu a expozici částí terénu k jednotlivým světovým stranám, přičemž pro obě z~možností jsou na výběr dvě barevné vykreslovací palety. Aplikace dále umožňuje vykreslení vrstevnic, včetně zvýraznění a popisu hlavních vrstevnic. Rozestup vrstevnic, včetně minimální a maximální výšky vrstevnic, lze manuálně měnit v~okně aplikace. Vývoj aplikace proběhl v~programovacím jazyce C++. 
 
 \subsection{Možné či neřešené problémy} \label{mcn_problemy}
-
+Nebyly řešeny některé bonusové úlohy. Problém může nastávat při větším objemu vstupních dat, už při 2500 vstupních bodech není triangulace rozhodně "instantní". 
+Při aplikaci nad reálnými daty je objevují nedostatky výpočtu, například kreslení vrstevnic přes vodní plochu.
 
 \subsection{Náměty na vylepšení} \label{vylepseni}
+Aplikaci lze jistě vylepšit v mnoha ohledech. Grafické zpracování by mohlo být pokročilejší, bylo by možné přidat více barevných palet nebo při výběru barevné palety zobrazit její barvy, aby je uživatel znal dopředu. 
+Pro zadaná data by mohla aplikace rozpoznat minimální a maximální nadmořskou výšku, a tedy by jí nemusel uživatel manuálně zadávat.
+
 
 
 
 \begin{flushright}
-V Praze 30.11.2021\\
+V Praze 5. 12.2021\\
 \vspace{2mm}
 Bc. Pane Kuzmanov\\
 Bc. František Mužík\\
