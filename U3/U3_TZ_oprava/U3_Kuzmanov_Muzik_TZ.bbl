@@ -1,0 +1,26 @@
+\begin{thebibliography}{1}
+
+\bibitem{arcgispro}
+{\sc {ArcGis Pro}}.
+\newblock {Základ systému ArcGIS}.
+\newblock https://www.arcdata.cz/produkty/arcgis/desktopovy-gis/arcgis-pro
+  [cit. 2021-12-03].
+
+\bibitem{rgbcol}
+{\sc {Computer Science Field Guide}}.
+\newblock {Computer Science Education Research Group at the University of
+  Canterbury, New Zealand}.
+\newblock https://www.csfieldguide.org.nz/en/interactives/rgb-mixer/ [cit.
+  2021-12-04].
+
+\bibitem{ZABAGED}
+{\sc {Český úřad zeměměřický a katastrální}}.
+\newblock {Základní báze geografických dat České republiky (ZABAGED)}.
+\newblock https://www.cuzk.cz/ [cit. 2021-12-03].
+
+\bibitem{zcu}
+{\sc {Západočeská univerzita v Plzni}}.
+\newblock {Katedra geomatiky, Fakulta aplikovaných věd}.
+\newblock https://kgm.zcu.cz/ [cit. 2021-12-03].
+
+\end{thebibliography}
