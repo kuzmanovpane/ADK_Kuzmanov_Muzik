@@ -431,8 +431,11 @@ std::vector<QPoint3D> Algorithms:: generateRandomPoints(int n, int height, int w
     {
         QPoint3D point;
 
-        double x = rand() % width;
-        double y = rand() % height;
+        //double x = rand() % width;
+        //double y = rand() % height;
+        double x = QRandomGenerator::global()->bounded(10, width - 10);
+        double y = QRandomGenerator::global()->bounded(10, height - 10);
+
         double z = rand() % 1000;
         point.setX(x);
         point.setY(y);

@@ -51,8 +51,8 @@ void Draw::loadPoints(std::string &path, int height, int width)
     }
 
     //Transformation coefficient
-    double kx = width/fabs(x_max - x_min);
-    double ky = height/fabs(y_max - y_min);
+    double kx = (width - 10)/fabs(x_max - x_min);
+    double ky = (height - 10)/fabs(y_max - y_min);
 
     //Scale points to the size of Canvas
     for (int i = 0; i < points.size(); i++)
