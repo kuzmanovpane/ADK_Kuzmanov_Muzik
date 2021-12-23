@@ -25,6 +25,7 @@ public:
     void setEdges(TEdges &edg){res = edg;}
     void clear(){res.clear();}
     void clearAll(){A.clear(); B.clear(); res.clear();}
+    void loadData(std::string &path);
 
 signals:
 

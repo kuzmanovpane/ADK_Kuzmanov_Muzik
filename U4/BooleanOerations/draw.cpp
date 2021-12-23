@@ -1,8 +1,44 @@
 #include "draw.h"
+#include <fstream>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
     addA = true;
+}
+
+void Draw::loadData(std::string &path)
+{
+    A.clear();
+    B.clear();
+    res.clear();
+    int id;
+    double x, y;
+    QPointFBO point;
+
+
+    //Load data from file
+    std::ifstream coords(path);
+
+    if (coords.is_open())
+    {
+        while(coords >> id >> x >> y)
+        {
+            if (id == 1)
+            {
+                point.setX(x);
+                point.setY(y);
+                A.push_back(point);
+            }
+            if (id == 2)
+            {
+                point.setX(x);
+                point.setY(y);
+                B.push_back(point);
+            }
+        }
+        coords.close();
+    }
+    repaint();
 }
 
 void Draw::paintEvent(QPaintEvent *event)
@@ -11,11 +47,17 @@ void Draw::paintEvent(QPaintEvent *event)
     qp.begin(this);
 
     //Draw polygons
+    //Polygon A
+    qp.setPen(Qt::blue);
     drawPolygon(A, qp);
+
+    //Polygon B
+    qp.setPen(Qt::green);
     drawPolygon(B, qp);
 
     //Draw edges
-    qp.setPen(Qt::red);
+    QPen pen_e(Qt::red, 3);
+    qp.setPen(pen_e);
     for(Edge e:res)
         qp.drawLine(e.getStart(), e.getEnd());
 

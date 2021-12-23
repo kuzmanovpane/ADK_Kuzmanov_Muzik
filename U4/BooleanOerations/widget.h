@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_Import_clicked();
+
 private:
     Ui::Widget *ui;
 };
