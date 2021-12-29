@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  24 DEC 2021 18:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  30 DEC 2021 00:16
 entering extended mode
 **./U4_Kuzmanov_Muzik_TZ.tex
 (U4_Kuzmanov_Muzik_TZ.tex
@@ -551,44 +551,126 @@ File: adkcv4.pdf Graphic file (type pdf)
 <use adkcv4.pdf, page 1>
 Package pdftex.def Info: adkcv4.pdf , page1 used on input line 95.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
- [2 <./adkcv4.pdf>] [3
+ [2 <./adkcv4.pdf>]
+<obrazky/mn_operace.png, id=78, 412.15366pt x 434.33554pt>
+File: obrazky/mn_operace.png Graphic file (type png)
+<use obrazky/mn_operace.png>
+Package pdftex.def Info: obrazky/mn_operace.png  used on input line 120.
+(pdftex.def)             Requested size: 247.2941pt x 260.60333pt.
+ [3
 
-]
-No file U4_Kuzmanov_Muzik_TZ.bbl.
-[4
+ <./obrazky/mn_operace.png>] [4] [5]
+<obrazky/problem_sit.png, id=102, 440.0599pt x 485.85475pt>
+File: obrazky/problem_sit.png Graphic file (type png)
+<use obrazky/problem_sit.png>
+Package pdftex.def Info: obrazky/problem_sit.png  used on input line 223.
+(pdftex.def)             Requested size: 264.03798pt x 291.51509pt.
+<obrazky/problem_sit_dve.png, id=103, 871.53326pt x 304.10643pt>
+File: obrazky/problem_sit_dve.png Graphic file (type png)
+<use obrazky/problem_sit_dve.png>
+Package pdftex.def Info: obrazky/problem_sit_dve.png  used on input line 235.
+(pdftex.def)             Requested size: 348.60713pt x 121.6404pt.
+ [6 <./obrazky/problem_sit.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+46.
+
+(C:\Users\fanda\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+<obrazky/popis_aplikace.png, id=108, 947.381pt x 661.87871pt>
+File: obrazky/popis_aplikace.png Graphic file (type png)
+<use obrazky/popis_aplikace.png>
+Package pdftex.def Info: obrazky/popis_aplikace.png  used on input line 274.
+(pdftex.def)             Requested size: 378.94568pt x 264.7468pt.
+
+[7 <./obrazky/problem_sit_dve.png>]
+<obrazky/start.png, id=115, 948.09653pt x 662.59425pt>
+File: obrazky/start.png Graphic file (type png)
+<use obrazky/start.png>
+Package pdftex.def Info: obrazky/start.png  used on input line 284.
+(pdftex.def)             Requested size: 379.23189pt x 265.033pt.
+<obrazky/sjednoceni.png, id=116, 948.09653pt x 665.45644pt>
+File: obrazky/sjednoceni.png Graphic file (type png)
+<use obrazky/sjednoceni.png>
+Package pdftex.def Info: obrazky/sjednoceni.png  used on input line 293.
+(pdftex.def)             Requested size: 379.23189pt x 266.17786pt.
+ [8 <./obrazky/popis_aplikace.png> <./obrazky/start.png>]
+<obrazky/prunik.png, id=122, 944.51881pt x 660.44762pt>
+File: obrazky/prunik.png Graphic file (type png)
+<use obrazky/prunik.png>
+Package pdftex.def Info: obrazky/prunik.png  used on input line 302.
+(pdftex.def)             Requested size: 377.80083pt x 264.17436pt.
+<obrazky/rozAB.png, id=123, 947.381pt x 663.3098pt>
+File: obrazky/rozAB.png Graphic file (type png)
+<use obrazky/rozAB.png>
+Package pdftex.def Info: obrazky/rozAB.png  used on input line 311.
+(pdftex.def)             Requested size: 378.94568pt x 265.31921pt.
+ [9 <./obrazky/sjednoceni.png> <./obrazky/prunik.png>]
+<obrazky/rozBA.png, id=129, 945.23436pt x 660.44762pt>
+File: obrazky/rozBA.png Graphic file (type png)
+<use obrazky/rozBA.png>
+Package pdftex.def Info: obrazky/rozBA.png  used on input line 320.
+(pdftex.def)             Requested size: 378.08705pt x 264.17436pt.
+ [10 <./obrazky/rozAB.png> <./obrazky/rozBA.png>] [11] (U4_Kuzmanov_Muzik_TZ.bb
+l
+Overfull \hbox (42.83618pt too wide) in paragraph at lines 4--8
+[]\T1/cmr/m/sc/12 ArcGis Pro\T1/cmr/m/n/12 .  Zá-klad sys-tému Ar-c-GIS.  https
+://www.arcdata.cz/produkty/arcgis/desktopovy-
+ []
+
+
+Underfull \hbox (badness 4927) in paragraph at lines 10--14
+[]\T1/cmr/m/sc/12 ArcƒR\T1/cmr/m/n/12 .  Vy-braná ad-mi-nis-tra-tivní a sta-tis
+-tická data o ƒeské re-pub-lice.
+ []
+
+) [12
 
 ] (U4_Kuzmanov_Muzik_TZ.aux) ) 
 Here is how much of TeX's memory you used:
- 7308 strings out of 479799
- 112357 string characters out of 2869723
- 424261 words of memory out of 3000000
- 24187 multiletter control sequences out of 15000+200000
- 541635 words of font info for 44 fonts, out of 3000000 for 9000
+ 7439 strings out of 479799
+ 114988 string characters out of 2869723
+ 433373 words of memory out of 3000000
+ 24290 multiletter control sequences out of 15000+200000
+ 547103 words of font info for 62 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
- 78i,17n,85p,274b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 78i,17n,85p,671b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\fanda\AppData\Local\MiKTeX\fonts/pk/lj
-four/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\fanda\AppData\Local\MiKTeX\fonts
-/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\fanda\AppData\Local\MiKTeX
-\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\fanda\AppData\Local\
-MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\fanda\AppData\
-Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk><C:/Users/fanda/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/
-fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
-x9.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/fanda/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/fanda/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/fanda/AppData/
+four/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\fanda\AppData\Local\MiKTeX\fonts
+/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\fanda\AppData\Local\MiKTeX
+\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\fanda\AppData\Local\
+MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\fanda\AppData\
+Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\fanda\Ap
+pData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\fa
+nda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Us
+ers\fanda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> 
+<C:\Users\fanda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm144
+0.pk><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmbx10.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmbx12.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmbx9.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/fanda/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/fanda/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/fanda/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/fand
+a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Us
+ers/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr12.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmr6.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/fanda/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/fanda/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/fanda/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/fanda/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Use
-rs/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb
->
-Output written on U4_Kuzmanov_Muzik_TZ.pdf (4 pages, 733699 bytes).
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/User
+s/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
+><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mti9.pfb>
+Output written on U4_Kuzmanov_Muzik_TZ.pdf (12 pages, 1104392 bytes).
 PDF statistics:
- 312 PDF objects out of 1000 (max. 8388607)
+ 519 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
