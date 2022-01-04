@@ -6,7 +6,7 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
     addA = true;
 }
 
-void Draw::loadData(std::string &path)
+void Draw::loadData(std::string &path, int height, int width)
 {
     A.clear();
     B.clear();
@@ -15,14 +15,30 @@ void Draw::loadData(std::string &path)
     double x, y;
     QPointFBO point;
 
+    //Random numbers
+    double x_max = 1.0e1;
+    double y_max = 1.0e1;
+    double x_min = 1.0e10;
+    double y_min = 1.0e10;
+
 
     //Load data from file
     std::ifstream coords(path);
 
     if (coords.is_open())
     {
-        while(coords >> id >> x >> y)
+        while(coords >> id >> y >> x)
         {
+            //Set min-max values
+            if(x > x_max)
+                x_max = x;
+            if(y > y_max)
+                y_max = y;
+            if(x < x_min)
+                x_min = x;
+            if(y < y_min)
+                y_min = y;
+
             if (id == 1)
             {
                 point.setX(x);
@@ -38,6 +54,36 @@ void Draw::loadData(std::string &path)
         }
         coords.close();
     }
+
+    //Transformation coefficient
+    double kx = (width)/fabs(x_max - x_min);
+    double ky = (height)/fabs(y_max - y_min);
+
+    //Scale points to the size of Canvas
+    for (int i = 0; i < A.size(); i++)
+    {
+        double pxa = A[i].x();
+        double pya = A[i].y();
+
+    //Rewrite coords
+    A[i].setX(-kx*(pya - y_max));
+    A[i].setY(ky*(pxa - x_min));
+    }
+
+    //Transformation coefficient
+//    double kxb = (width)/fabs(x_max - x_min);
+//    double kyb = (height)/fabs(y_max - y_min);
+
+    for (int j = 0; j < B.size(); j++)
+    {
+        double pxb = B[j].x();
+        double pyb = B[j].y();
+
+    //Rewrite coords
+    B[j].setX(-kx*(pyb - y_max));
+    B[j].setY(ky*(pxb - x_min));
+    }
+
     repaint();
 }
 
@@ -76,8 +122,10 @@ void Draw::mousePressEvent(QMouseEvent *event)
     //Add point to A, B
     if (addA)
         A.push_back(p);
+
     else
         B.push_back(p);
+
 
     //Update screen
     repaint();

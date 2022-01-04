@@ -59,8 +59,12 @@ void Widget::on_pushButton_4_clicked()
 
 void Widget::on_pushButton_Import_clicked()
 {
+    //Size of the canvas
+    QSize size = ui->Canvas->size();
+    int height = size.height();
+    int width = size.width();
+
     QString path(QFileDialog::getOpenFileName(this, tr("Select file with polygons"), "../", tr("Text Files (*.txt)")));
     std::string path_ = path.toStdString();
-    ui->Canvas->loadData(path_);
+    ui->Canvas->loadData(path_, height, width);
 }
-
