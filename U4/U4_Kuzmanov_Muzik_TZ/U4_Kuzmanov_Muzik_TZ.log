@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  5 JAN 2022 13:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  6 JAN 2022 13:28
 entering extended mode
 **./U4_Kuzmanov_Muzik_TZ.tex
 (U4_Kuzmanov_Muzik_TZ.tex
@@ -580,37 +580,37 @@ File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 <obrazky/popis_aplikace.png, id=108, 947.381pt x 661.87871pt>
 File: obrazky/popis_aplikace.png Graphic file (type png)
 <use obrazky/popis_aplikace.png>
-Package pdftex.def Info: obrazky/popis_aplikace.png  used on input line 274.
+Package pdftex.def Info: obrazky/popis_aplikace.png  used on input line 278.
 (pdftex.def)             Requested size: 378.94568pt x 264.7468pt.
 
 [7 <./obrazky/problem_sit_dve.png>]
-<obrazky/start.png, id=115, 948.09653pt x 662.59425pt>
+<obrazky/start.png, id=115, 948.81207pt x 665.45644pt>
 File: obrazky/start.png Graphic file (type png)
 <use obrazky/start.png>
-Package pdftex.def Info: obrazky/start.png  used on input line 284.
-(pdftex.def)             Requested size: 379.23189pt x 265.033pt.
-<obrazky/sjednoceni.png, id=116, 948.09653pt x 665.45644pt>
+Package pdftex.def Info: obrazky/start.png  used on input line 288.
+(pdftex.def)             Requested size: 379.51811pt x 266.17786pt.
+<obrazky/sjednoceni.png, id=116, 947.381pt x 661.87871pt>
 File: obrazky/sjednoceni.png Graphic file (type png)
 <use obrazky/sjednoceni.png>
-Package pdftex.def Info: obrazky/sjednoceni.png  used on input line 293.
-(pdftex.def)             Requested size: 379.23189pt x 266.17786pt.
+Package pdftex.def Info: obrazky/sjednoceni.png  used on input line 297.
+(pdftex.def)             Requested size: 378.94568pt x 264.7468pt.
  [8 <./obrazky/popis_aplikace.png> <./obrazky/start.png>]
-<obrazky/prunik.png, id=122, 944.51881pt x 660.44762pt>
+<obrazky/prunik.png, id=122, 947.381pt x 661.87871pt>
 File: obrazky/prunik.png Graphic file (type png)
 <use obrazky/prunik.png>
-Package pdftex.def Info: obrazky/prunik.png  used on input line 302.
-(pdftex.def)             Requested size: 377.80083pt x 264.17436pt.
-<obrazky/rozAB.png, id=123, 947.381pt x 663.3098pt>
+Package pdftex.def Info: obrazky/prunik.png  used on input line 306.
+(pdftex.def)             Requested size: 378.94568pt x 264.7468pt.
+<obrazky/rozAB.png, id=123, 945.23436pt x 660.44762pt>
 File: obrazky/rozAB.png Graphic file (type png)
 <use obrazky/rozAB.png>
-Package pdftex.def Info: obrazky/rozAB.png  used on input line 311.
-(pdftex.def)             Requested size: 378.94568pt x 265.31921pt.
+Package pdftex.def Info: obrazky/rozAB.png  used on input line 315.
+(pdftex.def)             Requested size: 378.08705pt x 264.17436pt.
  [9 <./obrazky/sjednoceni.png> <./obrazky/prunik.png>]
-<obrazky/rozBA.png, id=129, 945.23436pt x 660.44762pt>
+<obrazky/rozBA.png, id=129, 946.66545pt x 662.59425pt>
 File: obrazky/rozBA.png Graphic file (type png)
 <use obrazky/rozBA.png>
-Package pdftex.def Info: obrazky/rozBA.png  used on input line 320.
-(pdftex.def)             Requested size: 378.08705pt x 264.17436pt.
+Package pdftex.def Info: obrazky/rozBA.png  used on input line 324.
+(pdftex.def)             Requested size: 378.65947pt x 265.033pt.
  [10 <./obrazky/rozAB.png> <./obrazky/rozBA.png>] [11] [12] [13] [14] [15]
 (U4_Kuzmanov_Muzik_TZ.bbl
 Overfull \hbox (42.83618pt too wide) in paragraph at lines 4--8
@@ -668,7 +668,7 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/User
 s/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mti9.pfb>
-Output written on U4_Kuzmanov_Muzik_TZ.pdf (16 pages, 1133224 bytes).
+Output written on U4_Kuzmanov_Muzik_TZ.pdf (16 pages, 1146874 bytes).
 PDF statistics:
  602 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
