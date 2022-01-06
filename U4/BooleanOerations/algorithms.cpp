@@ -5,7 +5,7 @@
 TPointLinePosition Algorithms:: getPointLinePosition(QPointFBO &a,QPointFBO &p1,QPointFBO &p2)
 {
     //Analyze point and line position
-    double eps = 1.0e-10;
+    double eps = 1.0e-6;
 
     //Coordinate differences
     double ux=p2.x()-p1.x();
@@ -76,13 +76,13 @@ TPointPolygonPosition Algorithms::getPositionWinding(QPointFBO &q, TPolygon &pol
     }
 
     //Point inside polygon
-    double eps = 1.0e-5;
+    double eps = 1.0e-6;
     if (fabs(fabs(omega_sum) - 2*M_PI) < eps)
         return Inner;
 
     //Point on boundary
     else if (fabs(fabs(omega_sum) - M_PI) < eps)
-        return Boundary;
+    return Boundary;
 
     //Point outside polygon
     return Outer;
@@ -107,7 +107,7 @@ std::tuple<QPointFBO,T2LinesPosition> Algorithms::get2LinesIntersection(QPointFB
     double k3=vy*ux-vx*uy;
 
     //Const
-    double eps = 1.0e-15;
+    double eps = 1.0e-6;
 
     //Colinear lines
     if ((fabs(k1) < eps) && (fabs(k2) < eps) && (fabs(k3) < eps))
@@ -120,6 +120,7 @@ std::tuple<QPointFBO,T2LinesPosition> Algorithms::get2LinesIntersection(QPointFB
     {
         return {QPointFBO(), Parallel};
     }
+
 
     //Alpha, beta coeficients
     double alpha = k1/k3;
@@ -196,7 +197,7 @@ void Algorithms::updatePolygons(TPolygon &A, TPolygon &B)
 void Algorithms::processIntersection(QPointFBO &b, double t, int &index, TPolygon &P)
 {
     //If inner point add to polygon
-    double epsilon = 1.e-5;
+    double epsilon = 1.e-6;
 
     //Inner point
     if ((t > epsilon) && (t < (1 - epsilon)))
@@ -272,21 +273,27 @@ TEdges Algorithms:: createOverlay(TPolygon &A, TPolygon &B, TBooleanOperation &o
     else if(op == Intersection)
     {
         selectEdges(A, Inner, result);
+        //selectEdges(A, Boundary, result);
         selectEdges(B, Inner, result);
+        //selectEdges(B, Boundary, result);
     }
 
     //DifferenceA_B
     else if(op == DifferenceA_B)
     {
         selectEdges(A, Outer, result);
+        //selectEdges(A, Boundary, result);
         selectEdges(B, Inner, result);
+        //selectEdges(B, Boundary, result);
     }
 
     //DifferenceB_A
     else if (op == DifferenceB_A)
     {
         selectEdges(A, Inner, result);
+        //selectEdges(A, Boundary, result);
         selectEdges(B, Outer, result);
+        //selectEdges(B, Boundary, result);
     }
 
     return result;

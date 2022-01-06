@@ -327,9 +327,280 @@ Na obrázku~\ref{fig:popis_aplikace} je znázorněn popis uživatelského rozhra
 \section{Dokumentace}
 % popis tříd, datových položek a jednotlivých metod
 
+\subsection{Třída Algorithms}
+\textbf{Tato třída obsahuje následující veřejné metody:}
+
+\begin{verbatim}
+TPointLinePosition getPointLinePosition
+     (QPointFBO &a,QPointFBO &p1,QPointFBO &p2)
+\end{verbatim}
+Určení pozice bodu a přímky.
+
+\begin{verbatim}
+double get2LinesAngle
+     (QPointFBO &p1, QPointFBO &p2, QPointFBO &p3, QPointFBO &p4)
+\end{verbatim}
+Určení úhlu mezi dvěma přímkami.
+
+\begin{verbatim}
+TPointPolygonPosition getPositionWinding(QPointFBO &q, TPolygon &pol)
+\end{verbatim}
+Určení pozice bodu a polygonu.
+
+\begin{verbatim}
+std::tuple<QPointFBO,T2LinesPosition> get2LinesIntersection
+     (QPointFBO &p1, QPointFBO &p2, QPointFBO&p3, QPointFBO &p4)
+\end{verbatim}
+Nalezení průsečíku dvou přímek.
+
+\begin{verbatim}
+void updatePolygons(TPolygon &A, TPolygon &B)
+\end{verbatim}
+Aktualizace polygonů po nalezení průsečíků.
+
+\begin{verbatim}
+void processIntersection(QPointFBO &b, double t, int &index, TPolygon &P)
+\end{verbatim}
+Vkládání společných bodů do polygonu.
+
+\begin{verbatim}
+void setEdgePositions(TPolygon &A, TPolygon &B)
+\end{verbatim}
+Určení pozice hrany vůči polygonu.
+
+\begin{verbatim}
+void selectEdges(TPolygon &P, TPointPolygonPosition pos, TEdges &edges)
+\end{verbatim}
+Výběr hran na základě pozice.
+
+\begin{verbatim}
+TEdges createOverlay(TPolygon &A, TPolygon &B, TBooleanOperation &op)
+\end{verbatim}
+Vytvoření překryvné vrstvy polygonů na základě zvolené množinové operace.
+
+
+\subsection{Třída Draw}
+\textbf{Tato třída obsahuje následující privátní proměnné:}
+\begin{verbatim}
+TPolygon A, B
+\end{verbatim}
+Oba zadané či nakreslené polygony.
+
+\begin{verbatim}
+TEdges res
+\end{verbatim}
+Uchovávání vybraných hran.
+
+\begin{verbatim}
+bool addA
+\end{verbatim}
+Změna pro kreslení polygonu A nebo B.
+
+\textbf{Tato třída obsahuje následující veřejné metody:}
+\begin{verbatim}
+void paintEvent(QPaintEvent *event)
+\end{verbatim} 
+Vykreslování na Canvas.   
+
+\begin{verbatim}
+void mousePressEvent(QMouseEvent *event)
+\end{verbatim} 
+Metoda pro sledování kliknutí myši.
+
+\begin{verbatim}
+void switchSource(){addA = !addA;}
+\end{verbatim} 
+Změna při kreslení polygonů A nebo B.
+
+\begin{verbatim}
+void drawPolygon(TPolygon &pol, QPainter &qp)
+\end{verbatim} 
+Vykreslování polygonů.   
+
+\begin{verbatim}
+TPolygon getA(){return A;}
+\end{verbatim} 
+Předání polygonu A.
+
+\begin{verbatim}
+TPolygon getB(){return B;}
+\end{verbatim} 
+Předání polygonu B.
+
+\begin{verbatim}
+void setEdges(TEdges &edg){res = edg;}
+\end{verbatim} 
+Nastavení hran.   
+
+\begin{verbatim}
+void clear(){res.clear();}
+\end{verbatim} 
+Vymazání obsahu mapového okna.
+
+\begin{verbatim}
+void clearAll(){A.clear(); B.clear(); res.clear();}
+\end{verbatim} 
+Vymazání celého obsahu mapového okna.
+
+\begin{verbatim}
+void loadData(std::string &path, int height, int width)
+\end{verbatim} 
+Načtení textového souboru se souřadnicemi polygonů.
+
+\subsection{Třída Edge}
+\textbf{Tato třída obsahuje následující privátní proměnné:}
+\begin{verbatim}
+QPointFBO start, end
+\end{verbatim}
+Startovní a koncový bod hrany.
+
+\textbf{Tato třída obsahuje následující veřejné metody:}
+
+\begin{verbatim}
+void setStart(QPointFBO &start_){start=start_;}
+\end{verbatim}
+Nastavení počátečního bodu hrany.
+
+\begin{verbatim}
+void setEnd(QPointFBO &end_){end=end_;}
+\end{verbatim}
+Nastavení koncového bodu hrany.
+
+\begin{verbatim}
+QPointFBO getStart(){return start;}
+\end{verbatim}
+Vrácení počátečního bodu hrany.
+
+\begin{verbatim}
+QPointFBO getEnd(){return end;}
+\end{verbatim}
+Vrácení koncového bodu hrany.
+
+\subsection{Třída QPointFBO}
+\textbf{Tato třída obsahuje následující privátní proměnné:}
+\begin{verbatim}
+double alpha, beta
+\end{verbatim}
+Koeficienty $\alpha, \beta$, které udávají hodnotu průsečíku hran.
+
+\begin{verbatim}
+TPointPolygonPosition pos
+\end{verbatim}
+Pozice bodu a polygonu.
+
+\textbf{Tato třída obsahuje následující veřejné metody:}
+    
+\begin{verbatim}
+double getAlpha(){return alpha;}
+\end{verbatim}
+Vrácení $\alpha$.
+
+\begin{verbatim}
+double getBeta(){return beta;}
+\end{verbatim}
+Vrácení $\beta$.
+    
+\begin{verbatim}
+TPointPolygonPosition getPosition(){return pos;}
+\end{verbatim}  
+Předání pozice bodu a polygonu.
+
+\begin{verbatim}
+void setAlpha(double alpha_){alpha=alpha_;}
+\end{verbatim}
+Nastavení $\alpha$.
+
+\begin{verbatim}
+void setBeta(double beta_){beta=beta_;}
+\end{verbatim}
+Nastavení $\beta$.
+
+\begin{verbatim}
+void setPosition(TPointPolygonPosition pos_){pos=pos_;}
+\end{verbatim}
+Nastavení pozice bodu a polygonu.
+
+\subsection{Třída Types}
+\textbf{Tato třída definuje následující typy proměnných:}
+\begin{verbatim}
+typedef enum{
+    LeftHP,
+    RightHP,
+    On
+} TPointLinePosition
+\end{verbatim}
+Definice možností průsečíku bodu a hrany.
+
+\begin{verbatim}
+typedef enum{
+    Inner,
+    Outer,
+    Boundary
+} TPointPolygonPosition
+\end{verbatim}
+Definice možností průsečíku bodu a polygonu.
+
+\begin{verbatim}
+typedef enum {
+    Union,
+    Intersection,
+    DifferenceA_B,
+    DifferenceB_A
+} TBooleanOperation
+\end{verbatim}
+Definice možností množinových operací.
+
+\begin{verbatim}
+typedef enum{
+    Colinear,
+    Parallel,
+    Intersect,
+    NonIntersect
+} T2LinesPosition
+\end{verbatim}
+Definice možností průsečíku dvou hran.
+
+\begin{verbatim}
+typedef std::vector<QPointFBO> TPolygon
+\end{verbatim}
+Definice polygonu, který se skládá z bodů QPointFBO.
+
+\begin{verbatim}
+typedef  std::vector<Edge> TEdges
+\end{verbatim}
+Definice více za sebou jdoucích hran.
+
+\subsection{Třída Widget}
+\textbf{Tato třída obsahuje následující privátní metody:}
+
+\begin{verbatim}
+void on_pushButton_clicked()
+\end{verbatim}
+Určení operace následující po stisku tlačítka Switch A/B.
+
+\begin{verbatim}
+void on_pushButton_2_clicked()
+\end{verbatim}
+Určení operace následující po stisku tlačítka Create overlay.
+
+\begin{verbatim}
+void on_pushButton_3_clicked()
+\end{verbatim}
+Určení operace následující po stisku tlačítka Clear.
+
+\begin{verbatim}
+void on_pushButton_4_clicked()
+\end{verbatim}
+Určení operace následující po stisku tlačítka Clear All.
+
+\begin{verbatim}
+void on_pushButton_Import_clicked()
+\end{verbatim}
+Určení operace následující po stisku tlačítka Import polygons.
+
 
 \section{Závěr}
- Vývoj aplikace proběhl v~programovacím jazyce C++. 
+Byla vytvořena desktopová aplikace, umožňující vyhodnocení základních množinových operací mezi dvěma polygony A,B (sjednocení, průnik, rozdíl A-B, rozdíl B-A). Aplikace umí načítat souřadnice polygonů v~souřadnicovém systému JTSK (EPSG:5514) ve~formě textového souboru. Uživateli je umožněno polygony také vykreslit ručně. Výsledek množinové operace, zvolené z~výběrové nabídky, je červeně zvýrazněn. Vývoj aplikace proběhl v~programovacím jazyce C++. 
 
 \subsection{Možné či neřešené problémy} \label{mcn_problemy}
 Nebyly řešeny bonusové úlohy. Problémy mohou nastávat u~polygonů s~otvory. V~těchto případech aplikace nesprávně vyhodnocuje množinové operace.
@@ -341,7 +612,7 @@ K~vylepšení se nabízí vyřešení problému s~polygony, které mají otvory.
 
 
 \begin{flushright}
-V Praze 27. 12.2021\\
+V Praze 5.1.2022\\
 \vspace{2mm}
 Bc. Pane Kuzmanov\\
 Bc. František Mužík\\

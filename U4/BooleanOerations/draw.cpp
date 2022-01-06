@@ -6,6 +6,7 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
     addA = true;
 }
 
+
 void Draw::loadData(std::string &path, int height, int width)
 {
     A.clear();
@@ -56,8 +57,15 @@ void Draw::loadData(std::string &path, int height, int width)
     }
 
     //Transformation coefficient
-    double kx = (width)/fabs(x_max - x_min);
-    double ky = (height)/fabs(y_max - y_min);
+    double dy = fabs(y_max-y_min);
+    double dx = fabs(x_max-x_min);
+
+    //Find longer minmax axis difference
+    double k;
+    if (dy > dx)
+        k = width/dy;
+    else
+        k = height/dx;
 
     //Scale points to the size of Canvas
     for (int i = 0; i < A.size(); i++)
@@ -66,13 +74,9 @@ void Draw::loadData(std::string &path, int height, int width)
         double pya = A[i].y();
 
     //Rewrite coords
-    A[i].setX(-kx*(pya - y_max));
-    A[i].setY(ky*(pxa - x_min));
+    A[i].setX(-k*(pya - y_max));
+    A[i].setY(k*(pxa - x_min));
     }
-
-    //Transformation coefficient
-//    double kxb = (width)/fabs(x_max - x_min);
-//    double kyb = (height)/fabs(y_max - y_min);
 
     for (int j = 0; j < B.size(); j++)
     {
@@ -80,12 +84,12 @@ void Draw::loadData(std::string &path, int height, int width)
         double pyb = B[j].y();
 
     //Rewrite coords
-    B[j].setX(-kx*(pyb - y_max));
-    B[j].setY(ky*(pxb - x_min));
+    B[j].setX(-k*(pyb - y_max));
+    B[j].setY(k*(pxb - x_min));
     }
-
     repaint();
 }
+
 
 void Draw::paintEvent(QPaintEvent *event)
 {
