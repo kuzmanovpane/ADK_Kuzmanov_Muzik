@@ -5,7 +5,7 @@
 TPointLinePosition Algorithms:: getPointLinePosition(QPointFBO &a,QPointFBO &p1,QPointFBO &p2)
 {
     //Analyze point and line position
-    double eps = 1.0e-6;
+    double eps = 1.0e-15;
 
     //Coordinate differences
     double ux=p2.x()-p1.x();
@@ -76,13 +76,13 @@ TPointPolygonPosition Algorithms::getPositionWinding(QPointFBO &q, TPolygon &pol
     }
 
     //Point inside polygon
-    double eps = 1.0e-6;
+    double eps = 1.0e-5;
     if (fabs(fabs(omega_sum) - 2*M_PI) < eps)
         return Inner;
 
     //Point on boundary
     else if (fabs(fabs(omega_sum) - M_PI) < eps)
-    return Boundary;
+        return Boundary;
 
     //Point outside polygon
     return Outer;
@@ -107,7 +107,7 @@ std::tuple<QPointFBO,T2LinesPosition> Algorithms::get2LinesIntersection(QPointFB
     double k3=vy*ux-vx*uy;
 
     //Const
-    double eps = 1.0e-6;
+    double eps = 1.0e-15;
 
     //Colinear lines
     if ((fabs(k1) < eps) && (fabs(k2) < eps) && (fabs(k3) < eps))
@@ -197,7 +197,7 @@ void Algorithms::updatePolygons(TPolygon &A, TPolygon &B)
 void Algorithms::processIntersection(QPointFBO &b, double t, int &index, TPolygon &P)
 {
     //If inner point add to polygon
-    double epsilon = 1.e-6;
+    double epsilon = 1.e-5;
 
     //Inner point
     if ((t > epsilon) && (t < (1 - epsilon)))
