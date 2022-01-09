@@ -1051,13 +1051,23 @@ void on_pushButton_createDT_clicked()
 \end{verbatim}
 Vykreslení Delaunay triangulace.\\
 
-\section{Závěr}
+\section{Závěr a zhodnocení}
 Byla vytvořena desktopová aplikace s~interaktivním grafickým prostředí, která uživateli umožňuje vypočítat a vykreslit digitální model terénu nad zadanými či náhodně generovanými bodovými daty. Je na výběr z~následujících náhodně generovaných terénních tvarů: kupa, údolí, spočinek, hřbet nebo znázornění bodů čistě náhodných. 
 
 V aplikaci je možné vykreslit sklon terénu a expozici částí terénu k jednotlivým světovým stranám, přičemž pro obě z~možností jsou na výběr dvě barevné vykreslovací palety. Aplikace dále umožňuje vykreslení vrstevnic, včetně zvýraznění a popisu hlavních vrstevnic. Rozestup vrstevnic, včetně minimální a maximální výšky vrstevnic, lze manuálně měnit v~okně aplikace. Není implementován popis vrstevnic respektující kartografické zásady. Vývoj aplikace proběhl v~programovacím jazyce C++. 
 
-\subsection{Zhodnocení}
-Výsledný model terénu slouží jako poměrně kvalitní náhled nad načtenými daty, nicméně bez dalších úprav má stále velké nedostatky. Mezi hlavní problém jistě patří absence povinných hran, díky které se vrstevnice tvoří například po vodní ploše, jak je vidět na ukázce Černého jezera na obr.~\ref{fig:vrst_bezpop}. 
+Výsledný model terénu slouží jako poměrně kvalitní náhled nad načtenými daty, nicméně bez dalších úprav má stále velké nedostatky. Mezi hlavní problém jistě patří absence povinných hran, díky které se vrstevnice tvoří například po vodní ploše, jak je vidět na ukázce Černého jezera na obr.~\ref{fig:vrst_bezpop}. Povinné hrany by šlo využít mimo vodních ploch také u~vodních toků, staveb, silnic či například jako ohraničující polygon celé oblasti.
+
+Vhodným přídavkem do fungování algoritmu by mohlo být vyhlazení vrstevnic. Zejména v~oblastech s~menší hustotou bodů, jsou vykreslené vrstevnice často nehezky zaostřené. Toto je způsobeno implementací základní lineární interpolace. Vhodnou náhradou by mohla být interpolace morfologická, která předpokládá plynulou změnu výšky mezi jednotlivými podrobnými body. Avšak implementace této metody je jistě o~poznání náročnější, tudíž pro účely úlohy je implementace lineární interpolace naprosto dostačující. Porovnání interpolace lineární a morfologické je k~nahlédnutí na obr.~\ref{fig:interpolace}. Druhým řešením pro vyhlazení vrstevnic by mohlo být "zakulacení" linií kolem bodů dotyku, což by ale jistě vedlo k~dalším (dle našeho mínění závažnějším) problémům s~přesností a čitelností výsledné mapy. 
+
+ \begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{obrazky/interpolace.png} 
+	\caption{Lineární a morfologická interpolace \cite{mapovani}.
+	}
+	\label{fig:interpolace}
+\end{figure} 
+\FloatBarrier
 
 Další problematické situace nastávají při generování hřbetu a údolí. Vrstevnice v~okolí hřbetnice, respektive údolnice, tvoří jednotlivé "vrcholky" (obr.~\ref{fig:chyba_hrbet}), což by mohlo být pro uživatele matoucí při chápání mapy a zároveň tyto útvary zahlcují mapu. Bylo by tedy vhodné vykreslovat vrstevnice jen nad určitou délku.
 
@@ -1069,6 +1079,21 @@ Další problematické situace nastávají při generování hřbetu a údolí. 
 	\label{fig:chyba_hrbet}
 \end{figure} 
 \FloatBarrier
+
+Pro lepší chápání výškové charakteristiky terénu proběhl pokus o~implementaci barevné hypsometrie, který však neskočil funkčním řešením, tudíž nebyl ve výsledku implementován. Rozpracováno bylo taktéž zkušební řešení barevné hypsometrie přes vykreslování celých triangulačních trojúhelníků dle nadmořské výšky jejich vrcholů, nicméně tato metoda by mohla fungovat jen při velkém počtu podrobných bodů s~pozvolnými výškovými přechody mezi sebou. Stále by se ale nejednalo o~korektní zobrazení přechodů barevné hypsometrie. Tudíž popsaná metoda taktéž nebyla využita.
+
+Jak je vidět v~pravé části obr.\ref{fig:reka1}, při použití pravidelné a husté sítě podrobných bodů, se výsledné vrstevnice v~pozvolném terénu vykreslují velice hezky a dobře reprezentují povrch Země. V~tomto konkrétním případě se jedná o~body vyexportované z~digitálního modelu reliéfu 4.~generace, který disponuje bodovou sítí o~konstantní vzdáleností 2 metry mezi body. V~levé části obrázku je patrná velká nepřesnost algoritmu, který si neumí poradit s~vrstevnicemi v~říčním korytu a různě je propojuje mezi sebou. Zde by bylo opět velice vhodné využít povinné hrany říčního koryta pro celkové zpřesnění výsledné mapy.
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.5]{obrazky/reka1.png} 
+	\caption{Chyba při vykreslení vrstevnic kolem koryta řeky.
+	}
+	\label{fig:reka1}
+\end{figure} 
+\FloatBarrier
+
 
 Nicméně přes určité nedostatky se ukazuje, že užití 2D triangulace je vhodné pro prvotní náhled nad daty. Uživatel získá hrubé povědomí o~povrchu terénu a jeho členitosti. Pro pokročilejší analýzy nebo přesnější výstupy je žádoucí další úprava algoritmu a odstranění nedostatků.
 

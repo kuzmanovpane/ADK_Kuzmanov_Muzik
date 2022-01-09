@@ -5,44 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 4 items.
 The style file: acm.bst
 Reallocating 'name_of_file' (item size: 1) to 18 items.
 Database file #1: Literatura_u3_adk.bib
-You've used 4 entries,
+You've used 5 entries,
             2253 wiz_defined-function locations,
-            544 strings with 4535 characters,
-and the built_in function-call counts, 860 in all, are:
-= -- 76
-> -- 28
+            548 strings with 4701 characters,
+and the built_in function-call counts, 1070 in all, are:
+= -- 95
+> -- 35
 < -- 0
-+ -- 12
-- -- 8
-* -- 30
-:= -- 145
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 16
++ -- 15
+- -- 10
+* -- 37
+:= -- 179
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 32
-empty$ -- 93
-format.name$ -- 8
-if$ -- 185
+cite$ -- 5
+duplicate$ -- 40
+empty$ -- 116
+format.name$ -- 10
+if$ -- 231
 int.to.chr$ -- 0
-int.to.str$ -- 4
+int.to.str$ -- 5
 missing$ -- 0
-newline$ -- 23
-num.names$ -- 8
-pop$ -- 32
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 40
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 15
 quote$ -- 0
-skip$ -- 32
+skip$ -- 40
 stack$ -- 0
-substring$ -- 20
-swap$ -- 8
+substring$ -- 25
+swap$ -- 10
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 16
+type$ -- 20
 warning$ -- 0
-while$ -- 8
-width$ -- 5
-write$ -- 38
+while$ -- 10
+width$ -- 6
+write$ -- 47

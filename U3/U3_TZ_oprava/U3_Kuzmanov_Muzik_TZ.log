@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  19 DEC 2021 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.3)  9 JAN 2022 21:33
 entering extended mode
 **./U3_Kuzmanov_Muzik_TZ.tex
 (U3_Kuzmanov_Muzik_TZ.tex
@@ -1117,12 +1117,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 1052--1053
  []
 
 [28]
-<obrazky/chyba_hrbet.png, id=210, 567.42683pt x 404.28267pt>
+Overfull \hbox (5.57735pt too wide) in paragraph at lines 1061--1062
+[]\T1/cmr/m/n/12 Vhodným p°í-dav-kem do fun-go-vání al-go-ritmu by mohlo být vy
+-hla-zení vrs-tev-nic. Zejména
+ []
+
+<obrazky/interpolace.png, id=210, 402.85158pt x 193.91257pt>
+File: obrazky/interpolace.png Graphic file (type png)
+<use obrazky/interpolace.png>
+Package pdftex.def Info: obrazky/interpolace.png  used on input line 1065.
+(pdftex.def)             Requested size: 322.2817pt x 155.13025pt.
+<obrazky/chyba_hrbet.png, id=211, 567.42683pt x 404.28267pt>
 File: obrazky/chyba_hrbet.png Graphic file (type png)
 <use obrazky/chyba_hrbet.png>
-Package pdftex.def Info: obrazky/chyba_hrbet.png  used on input line 1066.
+Package pdftex.def Info: obrazky/chyba_hrbet.png  used on input line 1076.
 (pdftex.def)             Requested size: 453.94208pt x 323.42657pt.
- [29 <./obrazky/chyba_hrbet.png>] [30] (U3_Kuzmanov_Muzik_TZ.bbl
+[29 <./obrazky/interpolace.png>]
+<obrazky/reka1.png, id=216, 774.21921pt x 536.65842pt>
+File: obrazky/reka1.png Graphic file (type png)
+<use obrazky/reka1.png>
+Package pdftex.def Info: obrazky/reka1.png  used on input line 1090.
+(pdftex.def)             Requested size: 387.10866pt x 268.32855pt.
+ [30 <./obrazky/chyba_hrbet.png>] [31 <./obrazky/reka1.png>] (U3_Kuzmanov_Muzik
+_TZ.bbl
 Overfull \hbox (42.83618pt too wide) in paragraph at lines 4--8
 []\T1/cmr/m/sc/12 ArcGis Pro\T1/cmr/m/n/12 .  Zá-klad sys-tému Ar-c-GIS.  https
 ://www.arcdata.cz/produkty/arcgis/desktopovy-
@@ -1140,7 +1157,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--15
 nd.
  []
 
-) [31
+) [32
 
 ] (U3_Kuzmanov_Muzik_TZ.aux)
 
@@ -1148,13 +1165,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7556 strings out of 479799
- 117175 string characters out of 2869723
- 433591 words of memory out of 3000000
- 24392 multiletter control sequences out of 15000+200000
+ 7573 strings out of 479799
+ 117466 string characters out of 2869723
+ 433615 words of memory out of 3000000
+ 24407 multiletter control sequences out of 15000+200000
  547787 words of font info for 63 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
- 78i,17n,85p,624b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 78i,17n,85p,941b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\fanda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc
 1200.pk> <C:\Users\fanda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\ecti1200.pk> <C:\Users\fanda\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -1186,9 +1203,9 @@ lic/amsfonts/cm/cmsy6.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmsy8.pfb><C:/Users/fanda/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/fanda/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on U3_Kuzmanov_Muzik_TZ.pdf (31 pages, 2468644 bytes).
+Output written on U3_Kuzmanov_Muzik_TZ.pdf (32 pages, 2576340 bytes).
 PDF statistics:
- 708 PDF objects out of 1000 (max. 8388607)
+ 717 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
