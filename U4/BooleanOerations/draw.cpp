@@ -12,7 +12,7 @@ void Draw::loadData(std::string &path, int height, int width)
     A.clear();
     B.clear();
     res.clear();
-    int id;
+    int id, id2;
     double x, y;
     QPointFBO point;
 
@@ -46,11 +46,19 @@ void Draw::loadData(std::string &path, int height, int width)
                 point.setY(y);
                 A.push_back(point);
             }
+
             if (id == 2)
             {
                 point.setX(x);
                 point.setY(y);
                 B.push_back(point);
+            }
+
+            if (id == 3)
+            {
+                point.setX(x);
+                point.setY(y);
+                C.push_back(point);
             }
         }
         coords.close();
@@ -68,42 +76,64 @@ void Draw::loadData(std::string &path, int height, int width)
         k = height/dx;
 
     //Scale points to the size of Canvas
-    for (int i = 0; i < A.size(); i++)
-    {
-        double pxa = A[i].x();
-        double pya = A[i].y();
+        for (int i = 0; i < A.size(); i++)
+        {
+            double pxa = A[i].x();
+            double pya = A[i].y();
 
-    //Rewrite coords
-    A[i].setX(-k*(pya - y_max));
-    A[i].setY(k*(pxa - x_min));
-    }
+        //Rewrite coords
+        A[i].setX(-k*(pya - y_max));
+        A[i].setY(k*(pxa - x_min));
+        }
 
-    for (int j = 0; j < B.size(); j++)
-    {
-        double pxb = B[j].x();
-        double pyb = B[j].y();
+        for (int j = 0; j < B.size(); j++)
+        {
+            double pxb = B[j].x();
+            double pyb = B[j].y();
 
-    //Rewrite coords
-    B[j].setX(-k*(pyb - y_max));
-    B[j].setY(k*(pxb - x_min));
-    }
-    repaint();
+        //Rewrite coords
+        B[j].setX(-k*(pyb - y_max));
+        B[j].setY(k*(pxb - x_min));
+        }
+
+        for (int m = 0; m < C.size(); m++)
+        {
+            double pxb = C[m].x();
+            double pyb = C[m].y();
+
+        //Rewrite coords
+        C[m].setX(-k*(pyb - y_max));
+        C[m].setY(k*(pxb - x_min));
+        }
+
+        polygons.push_back(B);
+        polygons.push_back(A);
+        polygons.push_back(C);
+
+        repaint();
 }
-
 
 void Draw::paintEvent(QPaintEvent *event)
 {
     QPainter qp(this);
     qp.begin(this);
 
+
+
     //Draw polygons
+
     //Polygon A
     qp.setPen(Qt::blue);
     drawPolygon(A, qp);
 
     //Polygon B
-    qp.setPen(Qt::green);
+    qp.setPen(Qt::black);
     drawPolygon(B, qp);
+
+    //Polygon C
+    qp.setPen(Qt::green);
+    drawPolygon(C, qp);
+
 
     //Draw edges
     QPen pen_e(Qt::red, 3);
@@ -113,6 +143,7 @@ void Draw::paintEvent(QPaintEvent *event)
 
     qp.end();
 }
+
 
 void Draw::mousePressEvent(QMouseEvent *event)
 {
@@ -141,7 +172,7 @@ void Draw::drawPolygon(TPolygon &polygon, QPainter &qp)
     int r=4;
     QPolygon pol;
 
-    //Convert polygon to QPolygon
+    //Convert TPolygon to QPolygon
     for (int i=0; i<polygon.size(); i++)
     {
        qp.drawEllipse(polygon[i].x()-r,polygon[i].y()-r,2*r,2*r);
@@ -151,4 +182,6 @@ void Draw::drawPolygon(TPolygon &polygon, QPainter &qp)
     //Draw polygon
     qp.drawPolygon(pol);
 }
+
+
 

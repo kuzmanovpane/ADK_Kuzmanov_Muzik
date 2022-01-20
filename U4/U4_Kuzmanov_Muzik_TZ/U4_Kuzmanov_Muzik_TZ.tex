@@ -241,7 +241,7 @@ Další problém nastává u~polygonů s~otvory. Na~obr.~\ref{fig:problem_sit_dv
 
 \section{Vstupní data}
 % formát vstupních dat, popis
-Vstupními daty je textový soubor obsahující lomové body polygonů. Jedná se o~generalizovaná data (s~tolerancí 1 km) z~datasetu ArcČR \cite{arccr}. Konkrétně jde o~Ústecký kraj a území CHKO České středohoří. Výběr a export dat proběhl v~softwaru ArcGIS Pro \cite{arcgispro}. Každý bod je zadaný id polygonu (Ústecký kraj či České středohoří) a souřadnicemi X,Y v~modifikovaném systému JTSK:
+Vstupními daty je textový soubor obsahující lomové body polygonů. Jedná se o~generalizovaná data (s~tolerancí 2 km) z~datasetu ArcČR \cite{arccr}. Konkrétně jde o~Ústecký, Liberecký kraj a území CHKO České středohoří. Výběr a export dat proběhl v~softwaru ArcGIS Pro \cite{arcgispro}. Každý bod je zadaný id polygonu (Ústecký, Liberecký kraj či České středohoří) a souřadnicemi X,Y v~modifikovaném systému JTSK:
 
 \begin{verbatim}
 1 736266 965664
@@ -251,6 +251,10 @@ Vstupními daty je textový soubor obsahující lomové body polygonů. Jedná s
 2 736358 972787
 2 739509 978352
 2 732697 995088
+...
+3 705750 965801
+3 702423 960319
+3 690445 962329
 ...
 \end{verbatim}
 
@@ -286,7 +290,7 @@ Na obrázku~\ref{fig:popis_aplikace} je znázorněn popis uživatelského rozhra
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.4]{obrazky/start.png} 
-	\caption{Aplikace po vykreslení obou polygonů.
+	\caption{Aplikace po vykreslení tří polygonů.
 	}
 	\label{fig:start}
 \end{figure} 

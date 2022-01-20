@@ -27,18 +27,34 @@ void Widget::on_pushButton_clicked()
 void Widget::on_pushButton_2_clicked()
 {
     //Get polygons and Boolean operation
-    TPolygon A = ui->Canvas->getA();
-    TPolygon B = ui->Canvas->getB();
+    std::vector<TPolygon> polygons = ui->Canvas->getPolygons();
     TBooleanOperation op = (TBooleanOperation)ui->comboBox->currentIndex();
 
     //Create overlay of polygons
     Algorithms a;
-    TEdges res = a.createOverlay(A, B, op);
+
+    int n = polygons.size();
+    TEdges res, res_temp;
+
+    for (int i = 0; i < n-1; i++)
+    {
+        TPolygon A = polygons[i];
+        for (int j = 1; j < n; j++)
+        {
+            TPolygon B = polygons[j];
+            TEdges res_temp = a.createOverlay(A, B, op);
+            for (int k = 0; k < res_temp.size(); k++)
+            {
+                res.push_back(res_temp[k]);
+            }
+        }
+    }
 
     //Set result
     ui->Canvas->setEdges(res);
 
     repaint();
+
 }
 
 
@@ -68,3 +84,4 @@ void Widget::on_pushButton_Import_clicked()
     std::string path_ = path.toStdString();
     ui->Canvas->loadData(path_, height, width);
 }
+

@@ -267,33 +267,35 @@ TEdges Algorithms:: createOverlay(TPolygon &A, TPolygon &B, TBooleanOperation &o
     {
         selectEdges(A, Outer, result);
         selectEdges(B, Outer, result);
+        selectEdges(A, Boundary, result);
+        selectEdges(B, Boundary, result);
     }
 
     //Intersection
     else if(op == Intersection)
     {
         selectEdges(A, Inner, result);
-        //selectEdges(A, Boundary, result);
+        selectEdges(A, Boundary, result);
         selectEdges(B, Inner, result);
-        //selectEdges(B, Boundary, result);
+        selectEdges(B, Boundary, result);
     }
 
     //DifferenceA_B
     else if(op == DifferenceA_B)
     {
         selectEdges(A, Outer, result);
-        //selectEdges(A, Boundary, result);
+        selectEdges(A, Boundary, result);
         selectEdges(B, Inner, result);
-        //selectEdges(B, Boundary, result);
+        selectEdges(B, Boundary, result);
     }
 
     //DifferenceB_A
     else if (op == DifferenceB_A)
     {
         selectEdges(A, Inner, result);
-        //selectEdges(A, Boundary, result);
+        selectEdges(A, Boundary, result);
         selectEdges(B, Outer, result);
-        //selectEdges(B, Boundary, result);
+        selectEdges(B, Boundary, result);
     }
 
     return result;
